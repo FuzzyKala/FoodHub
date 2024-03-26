@@ -16,7 +16,7 @@ An application that can record your receipts and diet, wanted to record your wor
 - run server script
 
 ```sh
-npm run devStart
+npm run server
 ```
 
 ## 📝 Product
