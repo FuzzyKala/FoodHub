@@ -4,6 +4,8 @@ const postRouter = express.Router();
 const moment = require("moment-timezone");
 const multer = require("multer");
 const upload = multer();
+const sharp = require("sharp");
+const fs = require("fs");
 
 // get all posts
 postRouter.get("/", async (req, res) => {
@@ -20,14 +22,30 @@ postRouter.get("/", async (req, res) => {
 });
 
 // get a specific post by id
+// postRouter.get("/:post_id", async (req, res) => {
+//   const post_id = req.params.post_id;
+//   try {
+//     const queryText = "select * from post where post_id = $1";
+//     const posts = await query(queryText, [post_id]);
+//     // this is for empty database checking.
+//     const rows = posts.rows ? posts.rows : [];
+//     res.status(200).json(rows);
+//   } catch (err) {
+//     res.statusMessage = err;
+//     res.status(500).json({ error: err });
+//   }
+// });
+
+// get a specific post by id
 postRouter.get("/:post_id", async (req, res) => {
   const post_id = req.params.post_id;
   try {
     const queryText = "select * from post where post_id = $1";
-    const posts = await query(queryText, [post_id]);
+    const post = await query(queryText, [post_id]);
     // this is for empty database checking.
-    const rows = posts.rows ? posts.rows : [];
-    res.status(200).json(rows);
+    const postData = post.rows ? post.rows : [];
+    // responsd an object to the frontend
+    res.status(200).json(...postData);
   } catch (err) {
     res.statusMessage = err;
     res.status(500).json({ error: err });
