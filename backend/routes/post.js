@@ -4,8 +4,6 @@ const postRouter = express.Router();
 const moment = require("moment-timezone");
 const multer = require("multer");
 const upload = multer();
-const sharp = require("sharp");
-const fs = require("fs");
 
 // get all posts
 postRouter.get("/", async (req, res) => {
