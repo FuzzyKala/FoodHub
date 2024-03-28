@@ -1,57 +1,46 @@
 require("dotenv").config();
-const { Pool } = require("pg");
+const { Client } = require("pg");
+const fs = require("fs");
+const path = require("path");
 
-const query = (sql, values = []) => {
-  return new Promise(async (resolve, reject) => {
-    try {
-      const pool = openDb();
-      const result = await pool.query(sql, values);
-      resolve(result);
-    } catch (error) {
-      reject(error.message);
-    }
-  });
+// Connection config
+const rejectUnauthorized = process.env.rejectUnauthorized;
+const ca = fs.readFileSync(path.resolve(__dirname, "ca.pem")).toString();
+
+const config = {
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PW,
+  port: process.env.DB_PORT,
+  ssl: {
+    rejectUnauthorized,
+    ca,
+  },
 };
 
-const openDb = () => {
-  const pool = new Pool({
-    user: process.env.DB_USER,
-    host: process.env.DB_HOST,
-    database: process.env.DB_NAME,
-    password: process.env.DB_PW,
-    port: process.env.DB_PORT,
-    ssl: {`${process.env.rejectUnauthorized}`,}
-      rejectUnauthorized: true,
-      ca: `-----BEGIN CERTIFICATE-----
-*****************************************************************
-*****************************************************************
-*****************************************************************
-*****************************************************************
-*****************************************************************
-*****************************************************************
-*****************************************************************
-*****************************************************************
-*****************************************************************
-*****************************************************************
-*****************************************************************
-*****************************************************************
-*****************************************************************
-*****************************************************************
-*****************************************************************
-*****************************************************************
-*****************************************************************
-*****************************************************************
-*****************************************************************
-*****************************************************************
-*****************************************************************
-****************************************************
------END CERTIFICATE-----`,
-    },
-  });
-  return pool;
-};
+const client = new Client(config);
 
-// try const client = await pool.connect();
+// Connect to the database
+client
+  .connect()
+  .then(() => {
+    console.log("Connected to PostgreSQL database - db.js");
+  })
+  .catch((err) => {
+    console.error("Error connecting to PostgreSQL database:", err);
+  });
+
+// Define a function to execute queries
+const query = async (sql, values = []) => {
+  try {
+    const result = await client.query(sql, values);
+
+    return result;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
 
 module.exports = {
   query,
