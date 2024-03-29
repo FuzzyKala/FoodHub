@@ -13,10 +13,10 @@ const config = {
   database: process.env.DB_NAME,
   password: process.env.DB_PW,
   port: process.env.DB_PORT,
-  ssl: {
-    rejectUnauthorized,
-    ca,
-  },
+  // ssl: {
+  //   rejectUnauthorized,
+  //   ca,
+  // },
 };
 
 const client = new Client(config);
