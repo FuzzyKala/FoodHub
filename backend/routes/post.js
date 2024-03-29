@@ -41,11 +41,13 @@ postRouter.post("/new", upload.single("photo"), async (req, res) => {
     const timestamp = moment().tz("Europe/Berlin").format();
     // Extract photo data from request
     const photoData = req.file ? req.file.buffer : null;
+    const accound_id = req.body.account_id;
+    const description = req.body.description;
     const queryText =
       "insert into post (account_id, description, photo_data, date) values ($1, $2, $3, $4) returning *";
     const result = await query(queryText, [
-      req.body.account_id,
-      req.body.description,
+      accound_id,
+      description,
       photoData,
       timestamp,
     ]);
