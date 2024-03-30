@@ -4,8 +4,6 @@ const fs = require("fs");
 const path = require("path");
 
 // Connection config
-// const rejectUnauthorized = process.env.rejectUnauthorized;
-// const ca = fs.readFileSync(path.resolve(__dirname, "ca.pem")).toString();
 
 const config = {
   user: process.env.DB_USER,
