@@ -4,8 +4,8 @@ const fs = require("fs");
 const path = require("path");
 
 // Connection config
-const rejectUnauthorized = process.env.rejectUnauthorized;
-const ca = fs.readFileSync(path.resolve(__dirname, "ca.pem")).toString();
+// const rejectUnauthorized = process.env.rejectUnauthorized;
+// const ca = fs.readFileSync(path.resolve(__dirname, "ca.pem")).toString();
 
 const config = {
   user: process.env.DB_USER,
@@ -13,10 +13,7 @@ const config = {
   database: process.env.DB_NAME,
   password: process.env.DB_PW,
   port: process.env.DB_PORT,
-  // ssl: {
-  //   rejectUnauthorized,
-  //   ca,
-  // },
+  ssl: true,
 };
 
 const client = new Client(config);
