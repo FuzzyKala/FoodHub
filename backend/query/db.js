@@ -38,11 +38,10 @@ const { Pool } = require("pg");
 
 // // Connection config
 const config = {
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PW,
-  port: process.env.DB_PORT,
+  user: process.env.POSTGRES_USER,
+  host: process.env.POSTGRES_HOST,
+  database: process.env.POSTGRES_DATABASE,
+  password: process.env.POSTGRES_PASSWORD,
   ssl: true,
 };
 
