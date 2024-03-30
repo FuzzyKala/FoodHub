@@ -39,7 +39,7 @@
 -- drop table account,post;
 
 -- select * from account;
-select * from post;
+-- select * from post;
 
 -- SELECT account.account_id, post.post_id, post.description, post.date, photo_data
 -- FROM account
