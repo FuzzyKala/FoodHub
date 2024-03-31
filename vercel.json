@@ -1,4 +1,4 @@
 {
   "version": 2,
-  "rewrites": [{ "source": "/(.*)", "destination": "./frontend/test.html" }]
+  "rewrites": [{ "source": "/(.*)", "destination": "/" }]
 }
