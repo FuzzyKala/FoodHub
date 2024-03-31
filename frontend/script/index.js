@@ -1,6 +1,9 @@
+const backendUrl = "food-hub-oamk.vercel.app";
+// const backendUrl = 'http://localhost:10000/2'
+
 // for rendering photo testing
 const renderPost = async () => {
-  const response = await fetch("http://localhost:3000/72");
+  const response = await fetch("backendUrl");
   const json = await response.json();
 
   const photoData = json.photo_data.data;
