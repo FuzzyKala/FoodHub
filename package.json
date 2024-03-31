@@ -1,5 +1,21 @@
 {
+  "name": "foodhub",
+  "version": "1.0.0",
+  "description": "<p>\r   <img alt=\"Nodejs Badge\" longdesc=\"Supports Expo iOS\" src=\"https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white\" />",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "dotenv": "^16.4.5"
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "moment-timezone": "^0.5.45",
+    "multer": "^1.4.5-lts.1",
+    "pg": "^8.11.4"
   }
 }

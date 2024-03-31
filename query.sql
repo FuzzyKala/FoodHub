@@ -34,7 +34,7 @@
 
 
 
--- ouput query command --
+-- output query command --
 
 -- drop table account,post;
 
