@@ -2,7 +2,7 @@
   "name": "foodhub",
   "version": "1.0.0",
   "description": "<p>\r   <img alt=\"Nodejs Badge\" longdesc=\"Supports Expo iOS\" src=\"https://img.shields.io/badge/Node%20js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white\" />",
-  "main": "app.js",
+  "main": "./api/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon app.js"
