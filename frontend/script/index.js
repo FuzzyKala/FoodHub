@@ -1,5 +1,5 @@
-// const backendUrl = "food-hub-oamk.vercel.app";
-const backendUrl = `http://localhost:10000`;
+const backendUrl = "food-hub-oamk.vercel.app";
+// const backendUrl = `http://localhost:10000`;
 
 // for rendering photo testing
 const renderPost = async () => {
