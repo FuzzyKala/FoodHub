@@ -23,6 +23,17 @@ const getPostById = async (id) => {
   }
 };
 
+// Function to get the latest post
+const getLatestPost = async () => {
+  try {
+    const queryText = "SELECT * FROM post ORDER BY date DESC LIMIT 1";
+    const post = await query(queryText);
+    return post.rows[0] || null;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};
+
 // Function to add a new post
 const addNewPost = async (account_id, description, photoData) => {
   try {
@@ -64,6 +75,7 @@ const deletePost = async (id) => {
 module.exports = {
   getAllPosts,
   getPostById,
+  getLatestPost,
   addNewPost,
   updatePost,
   deletePost,

@@ -6,6 +6,7 @@ const upload = multer();
 
 router.get("/", postController.getAllPostsController);
 router.get("/:id", postController.getPostByIdController);
+router.get("/latest", postController.getLatestPostController);
 router.post(
   "/new",
   upload.single("photo"),

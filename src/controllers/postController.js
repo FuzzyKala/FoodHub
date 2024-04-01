@@ -1,6 +1,7 @@
 const {
   getAllPosts,
   getPostById,
+  getLatestPost,
   addNewPost,
   updatePost,
   deletePost,
@@ -42,6 +43,15 @@ const addNewPostController = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+// Function to get the latest post
+const getLatestPostController = async (req, res) => {
+  try {
+    const post = await getLatestPost();
+    res.status(200).json(post);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
 
 // Update a post by id
 const updatePostById = async (req, res) => {
@@ -69,6 +79,7 @@ const deletePostById = async (req, res) => {
 module.exports = {
   getAllPostsController,
   getPostByIdController,
+  getLatestPostController,
   addNewPostController,
   updatePostById,
   deletePostById,

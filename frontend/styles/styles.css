@@ -1,0 +1,28 @@
+/* styles.css */
+
+body {
+  background-color: #f0f0f0; /* Light Gray */
+  color: #333; /* Dark Gray */
+}
+
+header {
+  background-color: #4caf50; /* Green */
+}
+
+nav {
+  background-color: #333; /* Dark Gray */
+}
+
+nav ul li a {
+  color: #fff; /* White */
+}
+
+nav ul li a:hover {
+  color: #f0f0f0; /* Light Gray */
+}
+
+.receipt,
+.workout {
+  background-color: #fff; /* White */
+  border: 1px solid #ccc; /* Light Gray */
+}

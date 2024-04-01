@@ -33,7 +33,7 @@
 --     (3, 'Description 4', '2024-03-28 13:00:00'::timestamp with time zone);
 
 -- update data
--- UPDATE post SET column1 = $1, column2 = $2 WHERE id = $3
+-- UPDATE post SET description = 'update desc',account_id = 3 WHERE post_id = 2
 
 
 -- output query command --
@@ -41,10 +41,11 @@
 -- drop table account,post;
 
 -- select * from account;
-select * from post;
+-- select * from post;
 
 -- SELECT account.account_id, post.post_id, post.description, post.date, photo_data
 -- FROM account
 -- JOIN post ON account.account_id = post.account_id;
 
-
+-- SELECT * FROM post ORDER BY post_id DESC LIMIT 1;
+-- SELECT * FROM post WHERE photo_data IS NOT NULL ORDER BY post_id DESC LIMIT 1;
