@@ -1,4 +1,10 @@
-const { getAllPosts, getPostById, addNewPost } = require("../models/index");
+const {
+  getAllPosts,
+  getPostById,
+  addNewPost,
+  updatePost,
+  deletePost,
+} = require("../models/index");
 
 // Get all posts
 const getAllPostsController = async (req, res) => {
@@ -12,8 +18,8 @@ const getAllPostsController = async (req, res) => {
 
 // Get a post by id
 const getPostByIdController = async (req, res) => {
-  const id = req.params.id;
   try {
+    const id = req.params.id;
     const post = await getPostById(id);
     if (!post) {
       res.status(404).json({ error: "Post not found" });
@@ -37,8 +43,33 @@ const addNewPostController = async (req, res) => {
   }
 };
 
+// Update a post by id
+const updatePostById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const newData = req.body;
+    await updatePost(id, newData);
+    res.status(200).json({ message: "Post updated successfully" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+// Delete a post by id
+const deletePostById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    await deletePost(id);
+    res.status(200).json({ message: "Post deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 module.exports = {
   getAllPostsController,
   getPostByIdController,
   addNewPostController,
+  updatePostById,
+  deletePostById,
 };

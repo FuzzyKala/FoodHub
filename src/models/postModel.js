@@ -4,7 +4,8 @@ const moment = require("moment-timezone");
 // Function to get all posts
 const getAllPosts = async () => {
   try {
-    const posts = await query("SELECT * FROM post");
+    const queryText = "SELECT * FROM post";
+    const posts = await query(queryText);
     return posts.rows || [];
   } catch (err) {
     throw new Error(err.message);
@@ -14,8 +15,8 @@ const getAllPosts = async () => {
 // Function to get a post by id
 const getPostById = async (id) => {
   try {
-    const post = await query("SELECT * FROM post WHERE post_id = $1", [id]);
-    console.log(post);
+    const queryText = "SELECT * FROM post WHERE post_id = $1";
+    const post = await query(queryText, [id]);
     return post.rows[0] || null;
   } catch (err) {
     throw new Error(err.message);
@@ -40,4 +41,30 @@ const addNewPost = async (account_id, description, photoData) => {
   }
 };
 
-module.exports = { getAllPosts, getPostById, addNewPost };
+// Function to update an existing post
+const updatePost = async (id, newData) => {
+  try {
+    const queryText = "UPDATE post SET description = $1 WHERE post_id = $2";
+    await query(queryText, [newData.description, id]);
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};
+
+// Function to delete a post
+const deletePost = async (id) => {
+  try {
+    const queryText = "DELETE FROM post WHERE post_id = $1";
+    await query(queryText, [id]);
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};
+
+module.exports = {
+  getAllPosts,
+  getPostById,
+  addNewPost,
+  updatePost,
+  deletePost,
+};

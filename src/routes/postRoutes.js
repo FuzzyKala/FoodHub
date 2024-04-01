@@ -11,6 +11,6 @@ router.post(
   upload.single("photo"),
   postController.addNewPostController
 );
-// router.put('/:id', postController.updatePostById);
-// router.delete('/:id', postController.deletePostById);
+router.put("/:id", postController.updatePostById);
+router.delete("/:id", postController.deletePostById);
 module.exports = router;

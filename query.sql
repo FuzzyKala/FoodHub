@@ -32,6 +32,8 @@
 --     (3, 'Description 4', '2024-03-25 13:00:00'::timestamp with time zone),
 --     (3, 'Description 4', '2024-03-28 13:00:00'::timestamp with time zone);
 
+-- update data
+-- UPDATE post SET column1 = $1, column2 = $2 WHERE id = $3
 
 
 -- output query command --
@@ -39,7 +41,7 @@
 -- drop table account,post;
 
 -- select * from account;
--- select * from post;
+select * from post;
 
 -- SELECT account.account_id, post.post_id, post.description, post.date, photo_data
 -- FROM account
