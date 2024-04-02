@@ -6,7 +6,7 @@ const renderPost = async () => {
   const response = await fetch(`${backendUrl}/posts`);
   const json = await response.json();
   console.log(json);
-  const photoBuffer = json[14].photo_data;
+  const photoBuffer = json[6].photo_data;
   console.log(photoBuffer);
   if (photoBuffer != null) {
     const photo = photoBuffer.data;

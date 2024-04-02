@@ -43,10 +43,11 @@ const addNewPostController = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
-// Function to get the latest post
+// Get the latest post
 const getLatestPostController = async (req, res) => {
   try {
     const post = await getLatestPost();
+    console.log(post);
     res.status(200).json(post);
   } catch (err) {
     res.status(500).json({ error: err.message });
