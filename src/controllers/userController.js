@@ -1,7 +1,7 @@
 const { User } = require("../models/index");
 const bcrypt = require("bcrypt");
 
-const signup = async (req, res) => {
+const userSignUp = async (req, res) => {
   try {
     const { username, email, password } = req.body;
     // Hash the password before storing it in the database
@@ -17,5 +17,5 @@ const signup = async (req, res) => {
 };
 
 module.exports = {
-  signup,
+  userSignUp,
 };

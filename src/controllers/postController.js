@@ -1,16 +1,9 @@
-const {
-  getAllPosts,
-  getPostById,
-  getLatestPost,
-  addNewPost,
-  updatePost,
-  deletePost,
-} = require("../models/index");
+const { Post } = require("../models/index");
 
 // Get all posts
-const getAllPostsController = async (req, res) => {
+const getAllPosts = async (req, res) => {
   try {
-    const posts = await getAllPosts();
+    const posts = await Post.getAllPosts();
     res.status(200).json(posts);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -18,10 +11,10 @@ const getAllPostsController = async (req, res) => {
 };
 
 // Get a post by id
-const getPostByIdController = async (req, res) => {
+const getPostById = async (req, res) => {
   try {
     const id = req.params.id;
-    const post = await getPostById(id);
+    const post = await Post.getPostById(id);
     if (!post) {
       res.status(404).json({ error: "Post not found" });
       return;
@@ -33,20 +26,20 @@ const getPostByIdController = async (req, res) => {
 };
 
 // Add a new post
-const addNewPostController = async (req, res) => {
+const addNewPost = async (req, res) => {
   try {
     const { user_id, description } = req.body;
     const photoData = req.file ? req.file.buffer : null;
-    const newPost = await addNewPost(user_id, description, photoData);
+    const newPost = await Post.addNewPost(user_id, description, photoData);
     res.status(201).json(newPost);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 };
 // Get the latest post
-const getLatestPostController = async (req, res) => {
+const getLatestPost = async (req, res) => {
   try {
-    const post = await getLatestPost();
+    const post = await Post.getLatestPost();
     res.status(200).json(post);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -58,7 +51,7 @@ const updatePostById = async (req, res) => {
   try {
     const id = req.params.id;
     const newData = req.body;
-    await updatePost(id, newData);
+    await Post.updatePost(id, newData);
     res.status(200).json({ message: "Post updated successfully" });
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -69,7 +62,7 @@ const updatePostById = async (req, res) => {
 const deletePostById = async (req, res) => {
   try {
     const id = req.params.id;
-    await deletePost(id);
+    await Post.deletePost(id);
     res.status(200).json({ message: "Post deleted successfully" });
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -77,10 +70,10 @@ const deletePostById = async (req, res) => {
 };
 
 module.exports = {
-  getAllPostsController,
-  getPostByIdController,
-  getLatestPostController,
-  addNewPostController,
+  getAllPosts,
+  getPostById,
+  getLatestPost,
+  addNewPost,
   updatePostById,
   deletePostById,
 };
