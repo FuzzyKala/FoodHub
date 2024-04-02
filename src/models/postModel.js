@@ -39,7 +39,7 @@ const addNewPost = async (account_id, description, photoData) => {
   try {
     const timestamp = moment.tz("Europe/Helsinki").format();
     const queryText =
-      "INSERT INTO post (account_id, description, photo_data, date) VALUES ($1, $2, $3, $4) RETURNING *";
+      "INSERT INTO post (user_id, description, photo_data, date) VALUES ($1, $2, $3, $4) RETURNING *";
     const result = await query(queryText, [
       account_id,
       description,

@@ -35,9 +35,9 @@ const getPostByIdController = async (req, res) => {
 // Add a new post
 const addNewPostController = async (req, res) => {
   try {
-    const { account_id, description } = req.body;
+    const { user_id, description } = req.body;
     const photoData = req.file ? req.file.buffer : null;
-    const newPost = await addNewPost(account_id, description, photoData);
+    const newPost = await addNewPost(user_id, description, photoData);
     res.status(201).json(newPost);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -47,7 +47,6 @@ const addNewPostController = async (req, res) => {
 const getLatestPostController = async (req, res) => {
   try {
     const post = await getLatestPost();
-    console.log(post);
     res.status(200).json(post);
   } catch (err) {
     res.status(500).json({ error: err.message });

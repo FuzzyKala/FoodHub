@@ -10,10 +10,8 @@ const renderPost = async () => {
   console.log(photoBuffer);
   if (photoBuffer != null) {
     const photo = photoBuffer.data;
-
     const uint8Array = new Uint8Array(photo);
     const blob = new Blob([uint8Array], { type: "image/jpeg" });
-
     // Create a data URL from the Blob
     const reader = new FileReader();
     reader.onload = (event) => {
