@@ -12,8 +12,8 @@ const getAllPosts = async (req, res) => {
 
 // Get a post by id
 const getPostById = async (req, res) => {
+  const id = req.params.id;
   try {
-    const id = req.params.id;
     const post = await Post.getPostById(id);
     if (!post) {
       res.status(404).json({ error: "Post not found" });
@@ -27,8 +27,8 @@ const getPostById = async (req, res) => {
 
 // Add a new post
 const addNewPost = async (req, res) => {
+  const { user_id, description } = req.body;
   try {
-    const { user_id, description } = req.body;
     const photoData = req.file ? req.file.buffer : null;
     const newPost = await Post.addNewPost(user_id, description, photoData);
     res.status(201).json(newPost);
@@ -48,8 +48,8 @@ const getLatestPost = async (req, res) => {
 
 // Update a post by id
 const updatePostById = async (req, res) => {
+  const id = req.params.id;
   try {
-    const id = req.params.id;
     const newData = req.body;
     await Post.updatePost(id, newData);
     res.status(200).json({ message: "Post updated successfully" });

@@ -18,6 +18,16 @@ class User {
       throw new Error(err.message);
     }
   }
+
+  static async findUserByEmail(email) {
+    try {
+      const queryText = "SELECT * FROM account WHERE email = $1";
+      const result = await query(queryText, [email]);
+      return result.rows[0] || null;
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  }
 }
 
 module.exports = User;
