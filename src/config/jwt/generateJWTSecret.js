@@ -5,7 +5,7 @@ const crypto = require("crypto");
 const generateJWTSecret = () => {
   // Generate a new JWT_SECRET
   const JWT_SECRET = crypto.randomBytes(32).toString("hex");
-
+  console.log("JWT_SECRET: ", JWT_SECRET);
   // Construct the new line to be added or updated in the .env file
   const newLine = `JWT_SECRET=${JWT_SECRET}\n`;
 
