@@ -1,4 +1,3 @@
-// modalInteraction.js
 export const openRegisterModal = () => {
   const registerModal = new bootstrap.Modal(
     document.getElementById("registerModal"),

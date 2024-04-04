@@ -1,7 +1,5 @@
-// eventHandling.js
 import { reloadHomePage } from "./reloadPage.js";
 import { openRegisterModal, closeModalAndReload } from "./modalInteraction.js";
-import { renderPost } from "./renderingPosts.js";
 
 // Get the register button
 const registerButton = document.querySelector("#registerButton");

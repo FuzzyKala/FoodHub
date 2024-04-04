@@ -1,5 +1,7 @@
-// renderingPosts.js
-export const renderPost = async () => {
+// const backendUrl = "food-hub-oamk.vercel.app";
+const backendUrl = `http://localhost:10000`;
+
+export const renderingPost = async () => {
   const response = await fetch(`${backendUrl}/posts`);
   const json = await response.json();
   console.log(json);
