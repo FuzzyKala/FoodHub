@@ -1,21 +1,42 @@
-// const backendUrl = "food-hub-oamk.vercel.app";
-const backendUrl = `http://localhost:10000`;
+export const renderingPost = async (trendingPosts) => {
+  const postList = await trendingPosts.getPosts();
+  console.log(postList);
+  renderingPhoto(postList);
+  renderingText(postList);
 
-export const renderingPost = async () => {
-  const response = await fetch(`${backendUrl}/posts`);
-  const json = await response.json();
-  console.log(json);
-  const photoBuffer = json[5].photo_data;
-  if (photoBuffer != null) {
-    const photo = photoBuffer.data;
-    const uint8Array = new Uint8Array(photo);
-    const blob = new Blob([uint8Array], { type: "image/jpeg" });
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      const img = document.querySelector("img");
-      img.src = event.target.result;
-      img.setAttribute("width", "200");
-    };
-    reader.readAsDataURL(blob);
+  // keep this for comment system later
+  const commentNum = document.getElementById("commentNum");
+};
+
+const renderingPhoto = (postList) => {
+  const photoContainer = document.getElementById("photoContainer");
+  photoContainer.innerHTML = "";
+  if (postList != null) {
+    postList.forEach((post, i) => {
+      const photo = post.getPhotoData();
+      const uint8Array = new Uint8Array(photo);
+      const blob = new Blob([uint8Array], { type: "image/*" });
+      console.log(blob);
+      const url = URL.createObjectURL(blob);
+      // console.log(url);
+      const img = document.createElement("img");
+      img.src = url;
+      img.alt = "photo";
+      img.height = "auto";
+      img.width = "100%";
+      img.className = "img-fluid rounded mx-auto d-block mb-3";
+      photoContainer.appendChild(img);
+    });
   }
+};
+
+const renderingText = (postList) => {
+  const username = document.getElementById("username");
+  const description = document.getElementById("description");
+  const rate = document.getElementById("rate");
+  const date = document.getElementById("date");
+  username.textContent = postList[0].getUsername();
+  description.textContent = postList[0].getDescription();
+  rate.textContent = postList[0].getRate();
+  date.textContent = postList[0].getDate();
 };

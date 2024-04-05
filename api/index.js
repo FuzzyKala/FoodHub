@@ -11,6 +11,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/posts", postRoutes);
 app.use("/user", userRoutes);
 
-generateJWTSecret();
+// generateJWTSecret();
 const port = process.env.PORT;
 app.listen(port, console.log(`Port:${port} has been listening....`));

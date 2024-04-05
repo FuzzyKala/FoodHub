@@ -24,23 +24,33 @@ const getPostById = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
-
-// Add a new post
-const addNewPost = async (req, res) => {
-  const { user_id, description } = req.body;
-  try {
-    const photoData = req.file ? req.file.buffer : null;
-    const newPost = await Post.addNewPost(user_id, description, photoData);
-    res.status(201).json(newPost);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-};
 // Get the latest post
 const getLatestPost = async (req, res) => {
   try {
     const post = await Post.getLatestPost();
     res.status(200).json(post);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+// Function to get Top 3 rated posts for trending collection
+const getTopRatedPosts = async (req, res) => {
+  try {
+    const posts = await Post.getTopRatedPosts();
+    res.status(200).json(posts);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+// Add a new post
+const addNewPost = async (req, res) => {
+  const { account_id, description } = req.body;
+  try {
+    const photoData = req.files.length > 0 ? req.files : null;
+    const newPost = await Post.addNewPost(account_id, description, photoData);
+    res.status(201).json(newPost);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -73,6 +83,7 @@ module.exports = {
   getAllPosts,
   getPostById,
   getLatestPost,
+  getTopRatedPosts,
   addNewPost,
   updatePostById,
   deletePostById,

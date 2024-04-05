@@ -3,6 +3,7 @@ const router = express.Router();
 const { postController } = require("../controllers/index");
 const { authMiddleware, multerMiddleware } = require("../middleware/index");
 
+router.get("/trending", postController.getTopRatedPosts);
 router.get("/latest", postController.getLatestPost);
 router.get("/:id", postController.getPostById);
 router.get("/", postController.getAllPosts);
@@ -10,7 +11,7 @@ router.get("/", postController.getAllPosts);
 router.post(
   "/new",
   authMiddleware.authenticateToken,
-  multerMiddleware.uploadPhoto,
+  multerMiddleware.upload,
   postController.addNewPost
 );
 router.put(
