@@ -51,12 +51,12 @@
 
 -- drop table post,account;
 -- select * from account;
-select * from post;
+-- select * from post;
 
 -- Top 5 trending posts
--- SELECT post.*,account.username FROM post
--- join account on post.account_id = account.account_id
--- where post.comment_num > 10 and photo_data IS NOT Null ORDER BY post.rate DESC LIMIT 5
+SELECT post.*,account.username FROM post
+join account on post.account_id = account.account_id
+where post.comment_num > 10 and photo_data IS NOT Null ORDER BY post.rate DESC LIMIT 3
 
 -- The latest one data
 -- SELECT * FROM post WHERE photo_data IS NOT NULL ORDER BY post_id DESC LIMIT 1;
