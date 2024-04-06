@@ -40,6 +40,7 @@ class Post {
       join account on post.account_id = account.account_id
       where post.comment_num > 10 and photo_data IS NOT Null ORDER BY post.rate DESC LIMIT 3`;
       const posts = await query(queryText);
+      console.log("posts.rows :>> ", posts.rows);
       return posts.rows || [];
     } catch (err) {
       throw new Error(err.message);
@@ -52,10 +53,11 @@ class Post {
       const timestamp = moment.tz("Europe/Helsinki").format();
       const queryText =
         "INSERT INTO post (account_id, description, photo_data, date) VALUES ($1, $2, $3, $4) RETURNING *";
+      const buffers = photoData.map((photo) => photo.buffer);
       const result = await query(queryText, [
         account_id,
         description,
-        photoData,
+        buffers,
         timestamp,
       ]);
       return result.rows[0];

@@ -26,3 +26,13 @@ nav ul li a:hover {
   background-color: #fff; /* White */
   border: 1px solid #ccc; /* Light Gray */
 }
+
+.row-fluid {
+  display: flex;
+  flex-wrap: nowrap; /* Prevent wrapping */
+}
+
+.overflow-x-auto {
+  overflow-x: auto; /* Enable horizontal scrolling */
+  white-space: nowrap; /* Prevent wrapping */
+}
