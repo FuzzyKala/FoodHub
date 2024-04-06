@@ -36,3 +36,13 @@ nav ul li a:hover {
   overflow-x: auto; /* Enable horizontal scrolling */
   white-space: nowrap; /* Prevent wrapping */
 }
+
+/* Previous arrow */
+.carousel-control-prev-icon {
+  color: #0e100e;
+}
+
+/* Next arrow */
+.carousel-control-next-icon {
+  color: #0e100e;
+}

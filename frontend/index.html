@@ -92,15 +92,38 @@
         <h2 class="text-center mb-4">Trending</h2>
         <div class="row">
           <div class="col-md-6 offset-md-3">
-            <!-- Add a parent div with Bootstrap class for horizontal scrolling -->
-            <div class="row row-fluid overflow-x-auto" id="photoContainer">
-              <!-- Your trending posts go here -->
-            </div>
-            <div class="mb-3">
-              <h4 class="fw-bold">Username: <span id="username"></span></h4>
-              <p class="mb-1">Description: <span id="description"></span></p>
-              <p class="mb-1">Rate: <span id="rate"></span></p>
-              <p class="mb-0">Date: <span id="date"></span></p>
+            <div
+              id="carouselExampleControls"
+              class="carousel slide"
+              data-bs-ride="carousel"
+            >
+              <div class="carousel-inner" id="postContainer">
+                <!-- Posts will be dynamically appended here -->
+              </div>
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#carouselExampleControls"
+                data-bs-slide="prev"
+              >
+                <span
+                  class="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#carouselExampleControls"
+                data-bs-slide="next"
+              >
+                <span
+                  class="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Next</span>
+              </button>
             </div>
           </div>
         </div>
