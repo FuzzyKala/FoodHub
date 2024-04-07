@@ -1,9 +1,7 @@
+import { reloadHomePage } from "./reloadPage.js";
 export const openRegisterModal = () => {
   const registerModal = new bootstrap.Modal(
-    document.getElementById("registerModal"),
-    {
-      keyboard: false,
-    }
+    document.getElementById("registerModal")
   );
   registerModal.show();
 };

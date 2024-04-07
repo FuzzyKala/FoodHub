@@ -18,6 +18,7 @@ const createPostItem = (post, isActive) => {
   const postItem = document.createElement("div");
   postItem.className = isActive ? "carousel-item active" : "carousel-item";
   const photos = post.getPhotoData();
+
   // rendering first photo only
   const photo = photos[0];
   const img = createImage(photo);
