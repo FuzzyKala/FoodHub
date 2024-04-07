@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const { authController } = require("../controllers/index");
+const { userController } = require("../controllers/index");
 
 // Define routes for user actions (signup, login, profile updates, etc.)
-router.post("/register", authController.register);
-router.post("/login", authController.login);
+router.post("/register", userController.register);
+router.post("/login", userController.login);
 
 // router.put("/profile", userController.updateProfile);
 
