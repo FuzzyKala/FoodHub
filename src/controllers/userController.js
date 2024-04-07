@@ -26,7 +26,9 @@ const login = async (req, res) => {
     const user = await User.findUserByEmail(email);
     // Verify user exists and check password
     if (!user || !(await bcrypt.compare(password, user.password))) {
-      return res.status(401).json({ error: "Invalid credentials" });
+      return res
+        .status(401)
+        .send("Invalid email or password. Please try again.");
     }
     // Generate JWT token
     const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET);

@@ -12,7 +12,7 @@ export const registration = (backendUrl) => {
     const email = document.getElementById("registeredEmail").value;
     const password = document.getElementById("registeredPassword").value;
     const registerData = { username, email, password };
-    console.log(registerData);
+    // console.log(registerData);
     try {
       const response = await fetch(`${backendUrl}/user/register`, {
         method: "POST",
@@ -24,14 +24,20 @@ export const registration = (backendUrl) => {
       if (response.ok) {
         alert("Registration successful!");
         registrationForm.reset();
-        closeModalAndReload();
+        const registerModal = bootstrap.Modal.getInstance(
+          document.getElementById("registerModal")
+        );
+        closeModalAndReload(registerModal);
       } else {
         const errorMessage = await response.text();
         throw new Error(errorMessage);
       }
     } catch (err) {
-      console.log(err.message);
-      alert("Registration failed. Please try again.");
+      if (err.message) {
+        alert(err.message);
+      } else {
+        alert("Registration failed. Please try again.");
+      }
     }
   });
 };
@@ -58,14 +64,22 @@ export const login = (backendUrl) => {
       if (response.ok) {
         alert("Login successful!");
         loginForm.reset();
-        closeModalAndReload();
+        const loginModal = bootstrap.Modal.getInstance(
+          document.getElementById("loginModal")
+        );
+        closeModalAndReload(loginModal);
       } else {
         const errorMessage = await response.text();
+        // console.log("errorMessage", errorMessage);
         throw new Error(errorMessage);
       }
     } catch (err) {
-      console.log(err.message);
-      alert("Login failed. Please try again.");
+      if (err.message) {
+        console.log("err.message", err.message);
+        alert(err.message);
+      } else {
+        alert("Login failed. Please try again.");
+      }
     }
   });
 };

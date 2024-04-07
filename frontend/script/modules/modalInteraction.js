@@ -1,5 +1,3 @@
-import { reloadHomePage } from "./reloadPage.js";
-
 // export const openRegisterModal = () => {
 //   const registerModal = new bootstrap.Modal(
 //     document.getElementById("registerModal")
@@ -7,10 +5,11 @@ import { reloadHomePage } from "./reloadPage.js";
 //   registerModal.show();
 // };
 
-export const closeModalAndReload = () => {
-  const registerModal = bootstrap.Modal.getInstance(
-    document.getElementById("registerModal")
-  );
-  registerModal.hide();
+export const closeModalAndReload = (currentModal) => {
+  currentModal.hide();
   reloadHomePage(); // Reload the page to return to the home page
+};
+
+export const reloadHomePage = () => {
+  location.reload(); // Reload the page to return to the home page
 };
