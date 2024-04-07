@@ -71,8 +71,8 @@
           type="button"
           class="btn btn-primary me-2"
           data-bs-toggle="modal"
-          data-bs-target="#registerModal"
-          id="logiButton"
+          data-bs-target="#loginModal"
+          id="loginButton"
         >
           Login
         </button>
@@ -152,24 +152,80 @@
           </div>
 
           <div class="modal-body">
-            <!-- Your registration form goes here -->
+            <!-- registration form goes here -->
             <form id="registrationForm">
               <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" id="username" />
+                <input
+                  type="text"
+                  class="form-control"
+                  id="registeredUsername"
+                />
               </div>
               <div class="mb-3">
                 <label for="email" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="email" />
+                <input type="email" class="form-control" id="registeredEmail" />
               </div>
               <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" />
+                <input
+                  type="password"
+                  class="form-control"
+                  id="registeredPassword"
+                />
               </div>
               <button
                 type="submit"
                 class="btn btn-primary"
                 id="registeredFormSubmit"
+              >
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- login Modal -->
+    <div
+      class="modal fade"
+      id="loginModal"
+      tabindex="-1"
+      aria-labelledby="loginModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="loginModalLabel">login</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+
+          <div class="modal-body">
+            <!-- login form goes here -->
+            <form id="loginForm">
+              <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="loginEmail" />
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="loginPassword"
+                />
+              </div>
+              <button
+                type="submit"
+                class="btn btn-primary"
+                id="loginFormSubmit"
               >
                 Submit
               </button>

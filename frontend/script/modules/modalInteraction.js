@@ -1,10 +1,11 @@
 import { reloadHomePage } from "./reloadPage.js";
-export const openRegisterModal = () => {
-  const registerModal = new bootstrap.Modal(
-    document.getElementById("registerModal")
-  );
-  registerModal.show();
-};
+
+// export const openRegisterModal = () => {
+//   const registerModal = new bootstrap.Modal(
+//     document.getElementById("registerModal")
+//   );
+//   registerModal.show();
+// };
 
 export const closeModalAndReload = () => {
   const registerModal = bootstrap.Modal.getInstance(
