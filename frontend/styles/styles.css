@@ -46,3 +46,7 @@ nav ul li a:hover {
 .carousel-control-next-icon {
   color: #0e100e;
 }
+.user-icon {
+  width: 40px; /* Adjust the width as needed */
+  height: 40px; /* Adjust the height as needed */
+}
