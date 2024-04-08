@@ -7,9 +7,9 @@
 
 export const closeModalAndReload = (currentModal) => {
   currentModal.hide();
-  reloadHomePage(); // Reload the page to return to the home page
+  reloadPage(); // Reload the page to return to the home page
 };
 
-export const reloadHomePage = () => {
+export const reloadPage = () => {
   location.reload(); // Reload the page to return to the home page
 };

@@ -52,11 +52,11 @@ class Post {
       const timestamp = moment.tz("Europe/Helsinki").format();
       const queryText =
         "INSERT INTO post (account_id, description, photo_data, date) VALUES ($1, $2, $3, $4) RETURNING *";
-      const buffers = photoData.map((photo) => photo.buffer);
+      // const buffers = photoData.map((photo) => photo.buffer);
       const result = await query(queryText, [
         account_id,
         description,
-        buffers,
+        photoData,
         timestamp,
       ]);
       return result.rows[0];

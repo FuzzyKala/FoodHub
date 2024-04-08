@@ -1,5 +1,4 @@
-// import { reloadHomePage } from "./reloadPage.js";
-import { closeModalAndReload } from "./modalInteraction.js";
+import { closeModalAndReload, reloadPage } from "./modalInteraction.js";
 
 export const registration = (backendUrl) => {
   // Get the submit button inside the registration form modal
@@ -61,7 +60,14 @@ export const login = (backendUrl) => {
         },
         body: JSON.stringify(loginData),
       });
+
       if (response.ok) {
+        const responseData = await response.json();
+        const token = responseData.token;
+        const account_id = responseData.account_id;
+        localStorage.setItem("token", token);
+        localStorage.setItem("account_id", account_id);
+
         alert("Login successful!");
         loginForm.reset();
         const loginModal = bootstrap.Modal.getInstance(
@@ -79,6 +85,56 @@ export const login = (backendUrl) => {
         alert(err.message);
       } else {
         alert("Login failed. Please try again.");
+      }
+    }
+  });
+};
+
+export const addNewPost = (backendUrl) => {
+  const postForm = document.getElementById("postForm");
+
+  postForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    const description = document.getElementById("description").value;
+
+    formData.append("description", description);
+    const photos = document.getElementById("photos").files;
+
+    // Check if the input element exists and files are attached
+    if (photos) {
+      for (let i = 0; i < photos.length; i++) {
+        formData.append("photo", photos[i]);
+      }
+    }
+
+    try {
+      const token = localStorage.getItem("token");
+      const account_id = localStorage.getItem("account_id");
+      console.log(token);
+      console.log(account_id);
+      formData.append("account_id", account_id);
+      const response = await fetch(`${backendUrl}/posts/new`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData, // Send FormData object as body
+      });
+
+      if (response.ok) {
+        alert("Post added successfully!");
+        postForm.reset();
+        reloadPage();
+      } else {
+        const errorMessage = await response.text();
+        throw new Error(errorMessage);
+      }
+    } catch (err) {
+      if (err.message) {
+        alert(err.message);
+      } else {
+        alert("Post failed. Please try again.");
       }
     }
   });

@@ -49,6 +49,9 @@ const addNewPost = async (req, res) => {
   const { account_id, description } = req.body;
   try {
     const photoData = req.files.length > 0 ? req.files : null;
+    if (description == "") {
+      return res.status(400).send("Description is required");
+    }
     const newPost = await Post.addNewPost(account_id, description, photoData);
     res.status(201).json(newPost);
   } catch (err) {

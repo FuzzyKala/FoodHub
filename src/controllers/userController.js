@@ -24,6 +24,7 @@ const login = async (req, res) => {
   try {
     // Find the user by email
     const user = await User.findUserByEmail(email);
+    console.log(user);
     // Verify user exists and check password
     if (!user || !(await bcrypt.compare(password, user.password))) {
       return res
@@ -32,7 +33,7 @@ const login = async (req, res) => {
     }
     // Generate JWT token
     const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET);
-    res.json({ token });
+    res.json({ token: token, account_id: user.account_id });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Server error" });

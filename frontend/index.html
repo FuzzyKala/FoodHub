@@ -138,6 +138,33 @@
       </div>
     </section>
 
+    <!-- Add Receipt Section -->
+    <section class="p-3">
+      <div class="receipt p-3 mb-3 bg-light rounded">
+        <h2 class="text-center mb-4">Add Receipt</h2>
+        <form id="postForm" enctype="multipart/form-data">
+          <!-- Add enctype attribute for file upload -->
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" rows="3"></textarea>
+            <!-- Add textarea for description -->
+          </div>
+          <div class="mb-3">
+            <label for="photos" class="form-label">Photos</label>
+            <input
+              type="file"
+              class="form-control"
+              id="photos"
+              accept="image/*"
+              multiple
+            />
+            <!-- Add file input for photo upload -->
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </section>
+
     <!-- Register Modal -->
     <div
       class="modal fade"
