@@ -67,14 +67,14 @@ export const login = (backendUrl) => {
         const userData = await getUserInfo(token, backendUrl);
         localStorage.setItem("token", token);
         localStorage.setItem("userData", JSON.stringify(userData));
-        console.log("userData", userData);
+
         displayUserData(userData);
         alert("Login successful!");
         loginForm.reset();
         const loginModal = bootstrap.Modal.getInstance(
           document.getElementById("loginModal")
         );
-        // closeModalAndReload(loginModal);
+        closeModalAndReload(loginModal);
       } else {
         const errorMessage = await response.text();
         console.log("errorMessage", errorMessage);

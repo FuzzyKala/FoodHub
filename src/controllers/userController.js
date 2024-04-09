@@ -31,7 +31,7 @@ const login = async (req, res) => {
     }
     // Generate JWT token
     // console.log("JWT signed user", user);
-    const expiresIn = 10;
+    const expiresIn = 60 * 60; // 1 hour
     const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, {
       expiresIn: expiresIn,
     });
