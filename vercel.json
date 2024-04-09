@@ -4,6 +4,6 @@
   "builds": [
     { "src": "*.js", "use": "@vercel/node" },
     { "src": "*.html", "use": "@vercel/static" }
-  ]
-  // "rewrites": [{ "source": "/(.*)", "destination": "/api" }]
+  ],
+  "rewrites": [{ "source": "/(.*)", "destination": "/api" }]
 }
