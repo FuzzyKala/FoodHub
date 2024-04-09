@@ -1,9 +1,26 @@
 {
   "version": 2,
-  "name": "FoodHub",
-  "builds": [
-    { "src": "*.js", "use": "@vercel/node" },
-    { "src": "*.html", "use": "@vercel/static" }
+  "routes": [
+    { "handle": "filesystem" },
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/frontend/$1"
+    }
   ],
-  "rewrites": [{ "source": "/(.*)", "destination": "/api" }]
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/frontend/$1"
+    }
+  ],
+  "builds": [
+    {
+      "src": "frontend/**",
+      "use": "@vercel/static-build"
+    }
+  ]
 }
