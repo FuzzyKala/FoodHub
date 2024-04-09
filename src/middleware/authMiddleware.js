@@ -5,14 +5,18 @@ const authenticateToken = (req, res, next) => {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
   if (token == null) {
-    return res.status(401).send("Unauthorized");
+    return res.status(401).send("Please log in first.");
   }
 
   jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
     if (err) {
-      return res.status(403).send("Forbidden");
+      // Check if token has expired
+      if (err.name === "TokenExpiredError") {
+        return res.status(401).send("Token has expired. Please log in again.");
+      } else {
+        return res.status(403).send("Forbidden operation. Please log in.");
+      }
     }
-    // console.log("verify user", user);
     req.user = user;
     next();
   });

@@ -31,7 +31,10 @@ const login = async (req, res) => {
     }
     // Generate JWT token
     // console.log("JWT signed user", user);
-    const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET);
+    const expiresIn = 10;
+    const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, {
+      expiresIn: expiresIn,
+    });
     res.json({ token: token });
   } catch (error) {
     res.status(500).json({ error: "Server error" });
