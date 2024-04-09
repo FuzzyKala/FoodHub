@@ -51,7 +51,7 @@
 
 -- drop table post,account;
 -- select * from account;
-select * from post;
+-- select * from post;
 
 -- Top 5 trending posts
 -- SELECT post.*,account.username FROM post
@@ -61,5 +61,6 @@ select * from post;
 -- The latest one data
 -- SELECT * FROM post WHERE photo_data IS NOT NULL ORDER BY post_id DESC LIMIT 1;
 
-
+-- get user info after login successfully
+-- select account_id, username, email from account;
 
