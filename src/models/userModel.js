@@ -21,7 +21,17 @@ class User {
 
   static async findUserByEmail(email) {
     try {
-      const queryText = "SELECT * FROM account WHERE email = $1";
+      const queryText =
+        "SELECT account_id, username, email FROM account WHERE email = $1";
+      const result = await query(queryText, [email]);
+      return result.rows[0] || null;
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  }
+  static async findPasswordByEmail(email) {
+    try {
+      const queryText = "SELECT email, password FROM account WHERE email = $1";
       const result = await query(queryText, [email]);
       return result.rows[0] || null;
     } catch (err) {

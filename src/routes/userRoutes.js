@@ -1,7 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const { userController } = require("../controllers/index");
-const { userExistingMiddleware } = require("../middleware/index");
+const {
+  authMiddleware,
+  userExistingMiddleware,
+} = require("../middleware/index");
 
 // Define routes for user actions (signup, login, profile updates, etc.)
 router.post(
@@ -11,7 +14,13 @@ router.post(
 );
 router.post("/login", userController.login);
 
-// router.put("/profile", userController.updateProfile);
+router.get(
+  "/profile",
+  authMiddleware.authenticateToken,
+  userController.getUserInfoAfterLogin
+);
+
+// router.put("/update", userController.updateProfile);
 
 // Exporting the router object to the router/index.js
 module.exports = router;

@@ -64,19 +64,20 @@ export const login = (backendUrl) => {
       if (response.ok) {
         const responseData = await response.json();
         const token = responseData.token;
-        const account_id = responseData.account_id;
+        const userData = await getUserInfo(token, backendUrl);
         localStorage.setItem("token", token);
-        localStorage.setItem("account_id", account_id);
-
+        localStorage.setItem("userData", JSON.stringify(userData));
+        console.log("userData", userData);
+        displayUserData(userData);
         alert("Login successful!");
         loginForm.reset();
         const loginModal = bootstrap.Modal.getInstance(
           document.getElementById("loginModal")
         );
-        closeModalAndReload(loginModal);
+        // closeModalAndReload(loginModal);
       } else {
         const errorMessage = await response.text();
-        // console.log("errorMessage", errorMessage);
+        console.log("errorMessage", errorMessage);
         throw new Error(errorMessage);
       }
     } catch (err) {
@@ -110,9 +111,10 @@ export const addNewPost = (backendUrl) => {
 
     try {
       const token = localStorage.getItem("token");
-      const account_id = localStorage.getItem("account_id");
-      console.log(token);
-      console.log(account_id);
+      const userDataString = localStorage.getItem("userData");
+      const userData = JSON.parse(userDataString);
+      const account_id = userData.account_id;
+
       formData.append("account_id", account_id);
       const response = await fetch(`${backendUrl}/posts/new`, {
         method: "POST",
@@ -138,4 +140,24 @@ export const addNewPost = (backendUrl) => {
       }
     }
   });
+};
+
+const getUserInfo = async (token, backendUrl) => {
+  try {
+    console.log("token frontend", token);
+    const response = await fetch(`${backendUrl}/user/profile`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    if (response.ok) {
+      return response.json();
+    } else {
+      // Handle error when fetching user data
+    }
+  } catch (error) {
+    console.error("Failed to fetch user data:", error);
+  }
+};
+
+const displayUserData = (userData) => {
+  // Display user-specific data on the UI
 };

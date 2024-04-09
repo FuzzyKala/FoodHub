@@ -22,9 +22,7 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   const { email, password } = req.body;
   try {
-    // Find the user by email
-    const user = await User.findUserByEmail(email);
-    console.log(user);
+    const user = await User.findPasswordByEmail(email);
     // Verify user exists and check password
     if (!user || !(await bcrypt.compare(password, user.password))) {
       return res
@@ -32,12 +30,22 @@ const login = async (req, res) => {
         .send("Invalid email or password. Please try again.");
     }
     // Generate JWT token
-    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET);
-    res.json({ token: token, account_id: user.account_id });
+    // console.log("JWT signed user", user);
+    const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET);
+    res.json({ token: token });
   } catch (error) {
-    console.error(error);
     res.status(500).json({ error: "Server error" });
   }
 };
 
-module.exports = { register, login };
+const getUserInfoAfterLogin = async (req, res) => {
+  try {
+    const email = req.user.email;
+    const userInfo = await User.findUserByEmail(email);
+    res.json(userInfo);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch user data" });
+  }
+};
+
+module.exports = { register, login, getUserInfoAfterLogin };
