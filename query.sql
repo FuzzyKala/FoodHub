@@ -1,7 +1,7 @@
 -- create table account and post--
 
 -- create table account(
---  account_id SERIAL primary key,
+--  	account_id SERIAL primary key,
 -- 	username varchar(20) not null,
 -- 	password varchar(100) not null,
 -- 	email varchar(50) not null,
@@ -51,7 +51,7 @@
 
 -- drop table post,account;
 -- select * from account;
--- select * from post;
+select * from post;
 
 -- Top 5 trending posts
 -- SELECT post.*,account.username FROM post
