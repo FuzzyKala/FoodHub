@@ -3,7 +3,7 @@ import { registration, login, addNewPost } from "./modules/eventHandling.js";
 import { Trending } from "./modules/trending.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  // const backendUrl = "food-hub-oamk.vercel.app";
+  // const backendUrl = "http://food-hub-oamk.vercel.app/api";
   const backendUrl = `http://localhost:10000`;
 
   const trending = new Trending(backendUrl);

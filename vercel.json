@@ -1,6 +1,13 @@
 {
   "version": 2,
-  "name": "FoodHub",
-  "builds": [{ "src": "./index.js", "use": "@vercel/node" }],
-  "rewrites": [{ "source": "/(.*)", "destination": "/api" }]
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/index.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/frontend/$1"
+    }
+  ]
 }
