@@ -1,5 +1,6 @@
 export const renderingPost = async (trendingPosts) => {
   const postList = await trendingPosts.getPosts();
+
   renderingPostContainer(postList);
 };
 
@@ -21,12 +22,10 @@ const createPostItem = (post, isActive) => {
 
   // rendering first photo only
   const photo = photos[0];
+
   const img = createImage(photo);
   postItem.appendChild(img);
-  // photos.forEach((photo) => {
-  //   const img = createImage(photo);
-  //   postItem.appendChild(img);
-  // });
+
   return postItem;
 };
 

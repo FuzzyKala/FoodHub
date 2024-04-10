@@ -1,9 +1,8 @@
-require("dotenv").config({ path: "./src/config/dotenv/.env" });
-require("dotenv").config({ path: "./src/config/dotenv/.env.vault" });
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const { postRoutes, userRoutes } = require("../src/routes/index");
-const { generateJWTSecret } = require("../src/config/jwt/generateJWTSecret");
+const { postRoutes, userRoutes } = require("./src/routes/index");
+const { generateJWTSecret } = require("./src/config/jwt/generateJWTSecret");
 
 const app = express();
 app.use(cors());

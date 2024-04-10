@@ -144,7 +144,6 @@ export const addNewPost = (backendUrl) => {
 
 const getUserInfo = async (token, backendUrl) => {
   try {
-    console.log("token frontend", token);
     const response = await fetch(`${backendUrl}/user/profile`, {
       headers: { Authorization: `Bearer ${token}` },
     });
