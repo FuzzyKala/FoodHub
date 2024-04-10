@@ -1,4 +1,4 @@
-// require("dotenv").config({ path: "./src/config/dotenv/.env" });
+require("dotenv").config({ path: "./src/config/dotenv/.env" });
 require("dotenv").config({ path: "./src/config/dotenv/.env.vault" });
 const express = require("express");
 const cors = require("cors");
@@ -13,9 +13,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/posts", postRoutes);
 app.use("/user", userRoutes);
 
-app.use("/", (req, res) => {
-  res.send("Welcome to the API");
-});
+// app.use("/", (req, res) => {
+//   res.send("Welcome to the API");
+// });
 
 // generateJWTSecret();
 const port = process.env.PORT;

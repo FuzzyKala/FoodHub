@@ -11,6 +11,7 @@ class Trending {
     try {
     } catch (error) {}
     return new Promise(async (resolve, reject) => {
+      // console.log(this.#backendUrl + "/posts/trending");
       fetch(this.#backendUrl + "/posts/trending")
         .then((res) => {
           return res.json();
