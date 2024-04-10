@@ -1,4 +1,5 @@
-require("dotenv").config({ path: "./src/config/dotenv/.env" });
+// require("dotenv").config({ path: "./src/config/dotenv/.env" });
+require("dotenv").config({ path: "./src/config/dotenv/.env.vault" });
 const express = require("express");
 const cors = require("cors");
 const { postRoutes, userRoutes } = require("../src/routes/index");
