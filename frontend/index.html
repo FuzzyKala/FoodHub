@@ -25,7 +25,7 @@
             role="tab"
             aria-controls="home-tab-pane"
             aria-selected="true"
-            href="index.html"
+            href="#"
             >Home</a
           >
         </li>
@@ -33,21 +33,21 @@
           <a
             class="nav-link"
             data-bs-toggle="tab"
-            data-bs-target="#home-tab-pane"
+            data-bs-target="#receipt-tab-pane"
             role="tab"
-            aria-controls="home-tab-pane"
+            aria-controls="receipt-tab-pane"
             aria-selected="true"
             href="#"
-            >Trending</a
+            >receipt</a
           >
         </li>
         <li class="nav-item" role="presentation">
           <a
             class="nav-link"
             data-bs-toggle="tab"
-            data-bs-target="#home-tab-pane"
+            data-bs-target="#following-tab-pane"
             role="tab"
-            aria-controls="home-tab-pane"
+            aria-controls="following-tab-pane"
             aria-selected="true"
             href="#"
             >following</a
@@ -57,9 +57,9 @@
           <a
             class="nav-link"
             data-bs-toggle="tab"
-            data-bs-target="#home-tab-pane"
+            data-bs-target="#Profile-tab-pane"
             role="tab"
-            aria-controls="home-tab-pane"
+            aria-controls="Profile-tab-pane"
             aria-selected="true"
             href="#"
             >Profile</a
@@ -103,77 +103,93 @@
     </nav>
 
     <section class="p-3">
-      <div class="receipt p-3 mb-3 bg-light rounded">
-        <h2 class="text-center mb-4">Trending</h2>
-        <div class="row">
-          <div class="col-md-6 offset-md-3">
-            <div
-              id="carouselExampleControls"
-              class="carousel slide"
-              data-bs-ride="carousel"
-            >
-              <div class="carousel-inner" id="postContainer">
-                <!-- Posts will be dynamically appended here -->
+      <div class="tab-content">
+        <div
+          class="tab-pane fade show active"
+          id="home-tab-pane"
+          role="tabpanel"
+          aria-labelledby="trending-tab"
+        >
+          <div class="receipt p-3 mb-3 bg-light rounded">
+            <h2 class="text-center mb-4">Trending</h2>
+            <div class="row">
+              <div class="col-md-6 offset-md-3">
+                <div
+                  id="carouselExampleControls"
+                  class="carousel slide"
+                  data-bs-ride="carousel"
+                >
+                  <div class="carousel-inner" id="postContainer">
+                    <!-- Posts will be dynamically appended here -->
+                  </div>
+                  <button
+                    class="carousel-control-prev"
+                    type="button"
+                    data-bs-target="#carouselExampleControls"
+                    data-bs-slide="prev"
+                  >
+                    <span
+                      class="carousel-control-prev-icon"
+                      aria-hidden="true"
+                    ></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button
+                    class="carousel-control-next"
+                    type="button"
+                    data-bs-target="#carouselExampleControls"
+                    data-bs-slide="next"
+                  >
+                    <span
+                      class="carousel-control-next-icon"
+                      aria-hidden="true"
+                    ></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
               </div>
-              <button
-                class="carousel-control-prev"
-                type="button"
-                data-bs-target="#carouselExampleControls"
-                data-bs-slide="prev"
-              >
-                <span
-                  class="carousel-control-prev-icon"
-                  aria-hidden="true"
-                ></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button
-                class="carousel-control-next"
-                type="button"
-                data-bs-target="#carouselExampleControls"
-                data-bs-slide="next"
-              >
-                <span
-                  class="carousel-control-next-icon"
-                  aria-hidden="true"
-                ></span>
-                <span class="visually-hidden">Next</span>
-              </button>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- Add Receipt Section -->
-    <section class="p-3">
-      <div class="receipt p-3 mb-3 bg-light rounded">
-        <h2 class="text-center mb-4">Add Receipt</h2>
-        <form id="postForm" enctype="multipart/form-data">
-          <!-- Add enctype attribute for file upload -->
-          <div class="mb-3">
-            <label for="title" class="form-label">Title</label>
-            <textarea class="form-control" id="title" rows="1"></textarea>
-            <!-- Add textarea for description -->
+        <div
+          class="tab-pane fade"
+          id="receipt-tab-pane"
+          role="tabpanel"
+          aria-labelledby="receipt-tab"
+        >
+          <div class="receipt p-3 mb-3 bg-light rounded">
+            <h2 class="text-center mb-4">Add Receipt</h2>
+            <form id="postForm" enctype="multipart/form-data">
+              <!-- Add enctype attribute for file upload -->
+              <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <textarea class="form-control" id="title" rows="1"></textarea>
+                <!-- Add textarea for description -->
+              </div>
+              <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea
+                  class="form-control"
+                  id="description"
+                  rows="3"
+                ></textarea>
+                <!-- Add textarea for description -->
+              </div>
+              <div class="mb-3">
+                <label for="photos" class="form-label">Photos</label>
+                <input
+                  type="file"
+                  class="form-control"
+                  id="photos"
+                  accept="image/*"
+                  multiple
+                />
+                <!-- Add file input for photo upload -->
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
           </div>
-          <div class="mb-3">
-            <label for="description" class="form-label">Description</label>
-            <textarea class="form-control" id="description" rows="3"></textarea>
-            <!-- Add textarea for description -->
-          </div>
-          <div class="mb-3">
-            <label for="photos" class="form-label">Photos</label>
-            <input
-              type="file"
-              class="form-control"
-              id="photos"
-              accept="image/*"
-              multiple
-            />
-            <!-- Add file input for photo upload -->
-          </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+        </div>
       </div>
     </section>
 
