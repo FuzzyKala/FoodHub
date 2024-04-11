@@ -1,4 +1,4 @@
-import { closeModalAndReload, reloadPage } from "./modalInteraction.js";
+import { closeModal, reloadPage } from "./modalInteraction.js";
 
 export const registration = (backendUrl) => {
   // Get the submit button inside the registration form modal
@@ -26,7 +26,7 @@ export const registration = (backendUrl) => {
         const registerModal = bootstrap.Modal.getInstance(
           document.getElementById("registerModal")
         );
-        closeModalAndReload(registerModal);
+        closeModal(registerModal);
       } else {
         const errorMessage = await response.text();
         throw new Error(errorMessage);
@@ -68,21 +68,20 @@ export const login = (backendUrl) => {
         localStorage.setItem("token", token);
         localStorage.setItem("userData", JSON.stringify(userData));
 
-        displayUserData(userData);
+        hideLoginRegisterButton(userData);
+
         alert("Login successful!");
         loginForm.reset();
         const loginModal = bootstrap.Modal.getInstance(
           document.getElementById("loginModal")
         );
-        closeModalAndReload(loginModal);
+        closeModal(loginModal);
       } else {
         const errorMessage = await response.text();
-        console.log("errorMessage", errorMessage);
         throw new Error(errorMessage);
       }
     } catch (err) {
       if (err.message) {
-        console.log("err.message", err.message);
         alert(err.message);
       } else {
         alert("Login failed. Please try again.");
@@ -127,7 +126,7 @@ export const addNewPost = (backendUrl) => {
       if (response.ok) {
         alert("Post added successfully!");
         postForm.reset();
-        reloadPage();
+        // reloadPage();
       } else {
         const errorMessage = await response.text();
         throw new Error(errorMessage);
@@ -139,6 +138,17 @@ export const addNewPost = (backendUrl) => {
         alert("Post failed. Please try again.");
       }
     }
+  });
+};
+
+export const logout = () => {
+  const logoutButton = document.getElementById("logoutButton");
+
+  logoutButton.addEventListener("click", () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userData");
+    hideLoginRegisterButton(null);
+    reloadPage();
   });
 };
 
@@ -157,6 +167,21 @@ const getUserInfo = async (token, backendUrl) => {
   }
 };
 
-const displayUserData = (userData) => {
-  // Display user-specific data on the UI
+const hideLoginRegisterButton = (userData) => {
+  const loginButton = document.getElementById("loginButton");
+  const registerButton = document.getElementById("registerButton");
+  const logoutButton = document.getElementById("logoutButton");
+  const profileIcon = document.getElementById("profileIcon");
+
+  if (userData) {
+    loginButton.classList.add("d-none");
+    registerButton.classList.add("d-none");
+    logoutButton.classList.remove("d-none");
+    profileIcon.classList.remove("d-none");
+  } else {
+    loginButton.classList.remove("d-none");
+    registerButton.classList.remove("d-none");
+    logoutButton.classList.add("d-none");
+    profileIcon.classList.add("d-none");
+  }
 };

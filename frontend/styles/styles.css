@@ -21,6 +21,14 @@ nav ul li a:hover {
   color: #f0f0f0; /* Light Gray */
 }
 
+body header a {
+  color: inherit; /* Inherit color from parent element */
+  text-decoration: none; /* Remove underline */
+}
+section a {
+  color: inherit; /* Inherit color from parent element */
+  text-decoration: none; /* Remove underline */
+}
 .receipt,
 .workout {
   background-color: #fff; /* White */

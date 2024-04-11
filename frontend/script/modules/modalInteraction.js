@@ -5,9 +5,9 @@
 //   registerModal.show();
 // };
 
-export const closeModalAndReload = (currentModal) => {
+export const closeModal = (currentModal) => {
   currentModal.hide();
-  reloadPage(); // Reload the page to return to the home page
+  // reloadPage(); // Reload the page to return to the home page
 };
 
 export const reloadPage = () => {

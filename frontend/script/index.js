@@ -1,5 +1,10 @@
 import { renderingPost } from "./modules/renderingPosts.js";
-import { registration, login, addNewPost } from "./modules/eventHandling.js";
+import {
+  registration,
+  login,
+  addNewPost,
+  logout,
+} from "./modules/eventHandling.js";
 import { Trending } from "./modules/trending.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -11,4 +16,5 @@ document.addEventListener("DOMContentLoaded", () => {
   registration(backendUrl);
   login(backendUrl);
   addNewPost(backendUrl);
+  logout();
 });

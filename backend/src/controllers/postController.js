@@ -46,18 +46,22 @@ const getTopRatedPosts = async (req, res) => {
 
 // Add a new post
 const addNewPost = async (req, res) => {
-  const { account_id, description } = req.body;
+  const { account_id, title, description, category } = req.body;
+  console.log(req.body);
   try {
     const photoData =
       req.files.length > 0 ? req.files.map((file) => file.buffer) : null;
 
-    // console.log(req.files);
-    // console.log("photoData:", photoData);
-
     if (description == "") {
       return res.status(400).send("Description is required");
     }
-    const newPost = await Post.addNewPost(account_id, description, photoData);
+    const newPost = await Post.addNewPost(
+      account_id,
+      title,
+      description,
+      category,
+      photoData
+    );
     res.status(201).json(newPost);
   } catch (err) {
     res.status(500).json({ error: err.message });

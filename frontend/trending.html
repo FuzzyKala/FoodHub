@@ -12,7 +12,7 @@
   </head>
   <body>
     <header class="p-3 mb-3 bg-success text-white">
-      <h1 class="text-center">FoodHub</h1>
+      <a href="./index.html"> <h1 class="text-center">FoodHub</h1> </a>
     </header>
 
     <nav class="p-2 mb-3 bg-dark">
@@ -25,7 +25,7 @@
             role="tab"
             aria-controls="home-tab-pane"
             aria-selected="true"
-            href="index.html"
+            href="#"
             >Home</a
           >
         </li>
@@ -38,7 +38,7 @@
             aria-controls="home-tab-pane"
             aria-selected="true"
             href="#"
-            >Trending</a
+            >Receipts</a
           >
         </li>
         <li class="nav-item" role="presentation">
@@ -50,7 +50,7 @@
             aria-controls="home-tab-pane"
             aria-selected="true"
             href="#"
-            >following</a
+            >Workouts</a
           >
         </li>
         <li class="nav-item" role="presentation">
@@ -62,7 +62,7 @@
             aria-controls="home-tab-pane"
             aria-selected="true"
             href="#"
-            >Profile</a
+            >About</a
           >
         </li>
       </ul>
@@ -74,13 +74,6 @@
           id="profileIcon"
           class="user-icon me-2 d-none"
         />
-        <button
-          type="button"
-          class="btn btn-primary me-2 d-none"
-          id="logoutButton"
-        >
-          Logout
-        </button>
         <button
           type="button"
           class="btn btn-primary me-2"
@@ -101,49 +94,6 @@
         </button>
       </div>
     </nav>
-
-    <section class="p-3">
-      <div class="receipt p-3 mb-3 bg-light rounded">
-        <h2 class="text-center mb-4">Trending</h2>
-        <div class="row">
-          <div class="col-md-6 offset-md-3">
-            <div
-              id="carouselExampleControls"
-              class="carousel slide"
-              data-bs-ride="carousel"
-            >
-              <div class="carousel-inner" id="postContainer">
-                <!-- Posts will be dynamically appended here -->
-              </div>
-              <button
-                class="carousel-control-prev"
-                type="button"
-                data-bs-target="#carouselExampleControls"
-                data-bs-slide="prev"
-              >
-                <span
-                  class="carousel-control-prev-icon"
-                  aria-hidden="true"
-                ></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-              <button
-                class="carousel-control-next"
-                type="button"
-                data-bs-target="#carouselExampleControls"
-                data-bs-slide="next"
-              >
-                <span
-                  class="carousel-control-next-icon"
-                  aria-hidden="true"
-                ></span>
-                <span class="visually-hidden">Next</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- Add Receipt Section -->
     <section class="p-3">
