@@ -12,12 +12,22 @@ class Post {
       throw new Error(err.message);
     }
   }
-  // Function to get a post by id
-  static async getPostById(id) {
+  // Function to get a post by post_id
+  static async getPostByPostId(post_id) {
     try {
       const queryText = "SELECT * FROM post WHERE post_id = $1";
-      const post = await query(queryText, [id]);
+      const post = await query(queryText, [post_id]);
       return post.rows[0] || null;
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  }
+  // Function to get all of posts by account_id
+  static async getAllPostsByAccountId(account_id) {
+    try {
+      const queryText = "SELECT * FROM post WHERE account_id = $1";
+      const post = await query(queryText, [account_id]);
+      return post.rows || null;
     } catch (err) {
       throw new Error(err.message);
     }
@@ -34,12 +44,13 @@ class Post {
     }
   }
   // Function to get Top 3 rated posts for trending collection
-  static async getTopRatedPosts() {
+  static async getTrendingPosts() {
     try {
       const queryText = `SELECT post.*,account.username FROM post
       join account on post.account_id = account.account_id
       where post.comment_num > 10 and photo_data IS NOT Null ORDER BY post.rate DESC LIMIT 3`;
       const posts = await query(queryText);
+      console.log(posts.rows);
       return posts.rows || [];
     } catch (err) {
       throw new Error(err.message);

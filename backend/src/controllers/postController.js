@@ -10,11 +10,11 @@ const getAllPosts = async (req, res) => {
   }
 };
 
-// Get a post by id
-const getPostById = async (req, res) => {
-  const id = req.params.id;
+// Get a post by post id
+const getPostByPostId = async (req, res) => {
+  const post_id = req.params.post_id;
   try {
-    const post = await Post.getPostById(id);
+    const post = await Post.getPostByPostId(post_id);
     if (!post) {
       res.status(404).json({ error: "Post not found" });
       return;
@@ -24,6 +24,22 @@ const getPostById = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+// Function to get all of posts by account_id
+const getAllPostsByAccountId = async (req, res) => {
+  const account_id = req.params.account_id;
+  try {
+    const post = await Post.getAllPostsByAccountId(account_id);
+    if (!post) {
+      res.status(404).json({ error: "No post for this account" });
+      return;
+    }
+    res.status(200).json(post);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 // Get the latest post
 const getLatestPost = async (req, res) => {
   try {
@@ -35,9 +51,9 @@ const getLatestPost = async (req, res) => {
 };
 
 // Function to get Top 3 rated posts for trending collection
-const getTopRatedPosts = async (req, res) => {
+const getTrendingPosts = async (req, res) => {
   try {
-    const posts = await Post.getTopRatedPosts();
+    const posts = await Post.getTrendingPosts();
     res.status(200).json(posts);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -93,9 +109,10 @@ const deletePostById = async (req, res) => {
 
 module.exports = {
   getAllPosts,
-  getPostById,
+  getPostByPostId,
+  getAllPostsByAccountId,
   getLatestPost,
-  getTopRatedPosts,
+  getTrendingPosts,
   addNewPost,
   updatePostById,
   deletePostById,

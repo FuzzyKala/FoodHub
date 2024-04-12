@@ -5,7 +5,7 @@
 -- 	username varchar(20) not null,
 -- 	password varchar(100) not null,
 -- 	email varchar(50) not null,
---  avantar BYTEA
+--  avantar BYTEA,
 -- 	date TIMESTAMP WITH TIME ZONE
 -- );
 
@@ -14,7 +14,7 @@
 --  account_id INT not null,
 -- 	title varchar(255) not null,
 -- 	description varchar(255) not null,
---  catagory varchar[],
+--  category varchar[],
 -- 	photo_data BYTEA [],
 -- 	rate float,
 -- 	comment_num int,
@@ -29,7 +29,7 @@
 -- post_id INT not null,
 -- comment varchar(255) not null,
 -- date TIMESTAMP WITH TIME ZONE,
--- CONSTRAINT fk_account_id FOREIGN KEY (account_id) REFERENCES account(account_id)
+-- CONSTRAINT fk_account_id FOREIGN KEY (account_id) REFERENCES account(account_id),
 -- CONSTRAINT fk_post_id FOREIGN KEY (post_id) REFERENCES post(post_id)
 -- );
 
@@ -67,9 +67,10 @@
 
 -- drop table post,account;
 -- select * from account;
--- select * from post;
+select * from post;
+-- select * from comment;
 
--- Top 5 trending posts
+-- Top 3 trending posts
 -- SELECT post.*,account.username FROM post
 -- join account on post.account_id = account.account_id
 -- where post.comment_num > 10 and photo_data IS NOT Null ORDER BY post.rate DESC LIMIT 3

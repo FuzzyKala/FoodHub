@@ -1,18 +1,19 @@
 import { Post } from "./post.js";
-class Trending {
+class posts {
   #posts = [];
   #backendUrl = "";
+  #restUrl = "";
 
-  constructor(url) {
+  constructor(url, restUrl) {
     this.#backendUrl = url;
+    this.#restUrl = restUrl;
   }
 
   getPosts = async () => {
     try {
     } catch (error) {}
     return new Promise(async (resolve, reject) => {
-      // console.log(this.#backendUrl + "/posts/trending");
-      fetch(this.#backendUrl + "/posts/trending")
+      fetch(this.#backendUrl + this.#restUrl)
         .then((res) => {
           return res.json();
         })
@@ -34,7 +35,9 @@ class Trending {
       const newPost = new Post(
         post.post_id,
         post.username,
+        post.title,
         post.description,
+        post.category,
         post.photo_data,
         post.rate,
         post.comment_num,
@@ -45,4 +48,4 @@ class Trending {
   };
 }
 
-export { Trending };
+export { posts };

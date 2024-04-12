@@ -3,9 +3,10 @@ const router = express.Router();
 const { postController } = require("../controllers/index");
 const { authMiddleware, multerMiddleware } = require("../middleware/index");
 
-router.get("/trending", postController.getTopRatedPosts);
+router.get("/trending", postController.getTrendingPosts);
 router.get("/latest", postController.getLatestPost);
-router.get("/:id", postController.getPostById);
+router.get("/:post_id", postController.getPostByPostId);
+router.get("/account/:account_id", postController.getAllPostsByAccountId);
 router.get("/", postController.getAllPosts);
 
 router.post(
