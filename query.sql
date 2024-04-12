@@ -67,7 +67,7 @@
 
 -- drop table post,account;
 -- select * from account;
-select * from post;
+-- select * from post;
 -- select * from comment;
 
 -- Top 3 trending posts
@@ -80,4 +80,6 @@ select * from post;
 
 -- get user info after login successfully
 -- select account_id, username, email from account;
+
+
 

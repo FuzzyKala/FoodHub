@@ -76,12 +76,17 @@ const createMyPostsItem = (post) => {
   categoryContainer.className = "card-body";
   const categoryRow = document.createElement("div");
   categoryRow.className = "row";
-  const category = document.createElement("p");
-  category.className = "card-text";
-  category.textContent = post.getCategory();
+  const categoryColumn = document.createElement("div");
+  categoryColumn.className = "col";
 
-  // rate.className = "card-text";
-  // rate.textContent = "Rate:" + post.getRate();
+  post.getCategory().forEach((category) => {
+    const badge = document.createElement("span");
+    badge.className = "badge bg-primary me-1";
+    badge.textContent = category;
+    categoryColumn.appendChild(badge);
+  });
+  categoryRow.appendChild(categoryColumn);
+  categoryContainer.appendChild(categoryRow);
 
   // create post footer
   const footerContainer = document.createElement("div");
@@ -119,9 +124,6 @@ const createMyPostsItem = (post) => {
   // append to card body
   bodyContainer.appendChild(description);
   bodyContainer.appendChild(img);
-  // append to category row
-  categoryRow.appendChild(category);
-  categoryContainer.appendChild(categoryRow);
   // append to card footer
   commentColumn.appendChild(commentNum);
   dateColumn.appendChild(date);
