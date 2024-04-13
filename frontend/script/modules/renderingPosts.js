@@ -1,9 +1,5 @@
 export const renderingTrending = async (PostsObj) => {
   const postList = await PostsObj.getPosts();
-  renderingTrendingContainer(postList);
-};
-
-const renderingTrendingContainer = (postList) => {
   const trendingContainer = document.getElementById("trendingPostsContainer");
   trendingContainer.innerHTML = "";
   if (postList != null) {
@@ -34,19 +30,16 @@ const createTrendingItem = (post, isActive) => {
 // renderingMyPosts
 export const renderingMyPosts = async (PostsObj) => {
   const postList = await PostsObj.getPosts();
-  renderingMyPostsContainer(postList);
-};
-
-const renderingMyPostsContainer = (postList) => {
   const myPostsContainer = document.getElementById("myPostsContainer");
-  myPostContainer.innerHTML = "";
+  myPostsContainer.innerHTML = "";
   if (postList != null) {
     postList.forEach((post) => {
       const postItem = createMyPostsItem(post);
-      myPostContainer.appendChild(postItem);
+      myPostsContainer.appendChild(postItem);
     });
   }
 };
+
 const createMyPostsItem = (post) => {
   // create card header
   const headerContainer = document.createElement("div");
