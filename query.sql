@@ -23,15 +23,15 @@
 -- );
 
 
--- create table comment(
--- comment_id SERIAL primary key,
--- account_id INT not null,
--- post_id INT not null,
--- comment varchar(255) not null,
--- date TIMESTAMP WITH TIME ZONE,
--- CONSTRAINT fk_account_id FOREIGN KEY (account_id) REFERENCES account(account_id),
--- CONSTRAINT fk_post_id FOREIGN KEY (post_id) REFERENCES post(post_id)
--- );
+create table comment(
+comment_id SERIAL primary key,
+account_id INT not null,
+post_id INT not null,
+comment varchar(255) not null,
+date TIMESTAMP WITH TIME ZONE,
+CONSTRAINT fk_account_id FOREIGN KEY (account_id) REFERENCES account(account_id),
+CONSTRAINT fk_post_id FOREIGN KEY (post_id) REFERENCES post(post_id)
+);
 
 
 
@@ -66,6 +66,7 @@
 -- output query command --
 
 -- drop table post,account;
+drop table comment
 -- select * from account;
 -- select * from post;
 -- select * from comment;
@@ -82,4 +83,7 @@
 -- select account_id, username, email from account;
 
 
-
+-- get all posts with username by account_id
+-- SELECT post.*, account.username FROM post 
+-- join account on post.account_id = account.account_id
+-- WHERE post.account_id = 1

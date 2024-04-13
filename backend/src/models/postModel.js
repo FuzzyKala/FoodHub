@@ -25,7 +25,9 @@ class Post {
   // Function to get all of posts by account_id
   static async getAllPostsByAccountId(account_id) {
     try {
-      const queryText = "SELECT * FROM post WHERE account_id = $1";
+      const queryText = `SELECT post.*, account.username FROM post 
+      join account on post.account_id = account.account_id
+      WHERE post.account_id = $1`;
       const post = await query(queryText, [account_id]);
       return post.rows || null;
     } catch (err) {

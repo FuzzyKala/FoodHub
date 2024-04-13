@@ -8,6 +8,7 @@ import {
   login,
   addNewPost,
   logout,
+  // showComments,
 } from "./modules/eventHandling.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -27,5 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
   registration(backendUrl);
   login(backendUrl);
   addNewPost(backendUrl);
+  // showComments();
   logout();
 });

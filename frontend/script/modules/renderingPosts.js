@@ -51,11 +51,6 @@ const createMyPostsItem = (post) => {
   const title = document.createElement("h5");
   title.className = "card-title";
   title.textContent = post.getTitle();
-  const usernameColumn = document.createElement("div");
-  usernameColumn.className = "col-auto";
-  const username = document.createElement("small");
-  username.className = "text-muted";
-  username.textContent = post.getUsername();
 
   // create card body
   const bodyContainer = document.createElement("div");
@@ -81,22 +76,63 @@ const createMyPostsItem = (post) => {
   categoryRow.appendChild(categoryColumn);
   categoryContainer.appendChild(categoryRow);
 
-  // create post footer
+  // create card footer
   const footerContainer = document.createElement("div");
   footerContainer.className = "card-footer text-muted";
   const footerRow = document.createElement("div");
   footerRow.className = "row";
-  const commentColumn = document.createElement("div");
-  commentColumn.className = "col";
-  const commentNum = document.createElement("small");
-  commentNum.className = "card-text";
-  commentNum.textContent = post.getCommentNum() + " comments";
+
+  // comments column part
+  const commentsColumn = document.createElement("div");
+  commentsColumn.className = "col-auto d-flex align-items-center";
+
+  const commentsIcon = document.createElement("span");
+  commentsIcon.className = "material-icons";
+  commentsIcon.textContent = " comment ";
+
+  const commentsNum = document.createElement("span");
+  commentsNum.className = "card-text";
+  commentsNum.id = "commentsNum";
+  commentsNum.textContent = post.getCommentNum();
+
+  // user column part
+  // const userColumn = document.createElement("div");
+  // userColumn.className = "col text-end";
+
+  const userAvatar = document.createElement("img");
+  userAvatar.className = "userAvatar";
+  userAvatar.src = "https://www.w3schools.com/howto/img_avatar.png";
+  userAvatar.alt = "userAvatar";
+  userAvatar.style.width = "30px";
+  userAvatar.style.height = "30px";
+
+  const userName = document.createElement("span");
+  userName.className = "card-text m-2";
+  userName.id = "userName";
+  userName.textContent = post.getUsername();
+
+  // rate column part
+  const rateColumn = document.createElement("div");
+  rateColumn.className = "col-auto d-flex align-items-center";
+
+  const rateIcon = document.createElement("span");
+  rateIcon.className = "material-icons";
+  rateIcon.textContent = " star ";
+
+  const rateNum = document.createElement("span");
+  rateNum.className = "card-text";
+  rateNum.id = "rateNum";
+  rateNum.textContent = post.getRate();
+
+  // date column part
+  const dateColumn = document.createElement("div");
+  dateColumn.className = "col text-end";
+
   const date = document.createElement("small");
   date.className = "card-text";
-  const dateColumn = document.createElement("div");
-  dateColumn.className = "col-auto";
   date.textContent = post.getDate();
 
+  // get photo data
   const photos = post.getPhotoData();
 
   // incase of no photo
@@ -110,17 +146,26 @@ const createMyPostsItem = (post) => {
 
   // append to card header
   titleColumn.appendChild(title);
-  usernameColumn.appendChild(username);
   headerRow.appendChild(titleColumn);
-  headerRow.appendChild(usernameColumn);
   headerContainer.appendChild(headerRow);
   // append to card body
   bodyContainer.appendChild(description);
   bodyContainer.appendChild(img);
   // append to card footer
-  commentColumn.appendChild(commentNum);
+  commentsColumn.appendChild(commentsIcon);
+  commentsColumn.appendChild(commentsNum);
+  rateColumn.appendChild(rateIcon);
+  rateColumn.appendChild(rateNum);
+  dateColumn.appendChild(userAvatar);
+  dateColumn.appendChild(userName);
   dateColumn.appendChild(date);
-  footerRow.appendChild(commentColumn);
+
+  // userColumn.appendChild(userAvatar);
+  // userColumn.appendChild(userName);
+
+  footerRow.appendChild(commentsColumn);
+  footerRow.appendChild(rateColumn);
+  // footerRow.appendChild(userColumn);
   footerRow.appendChild(dateColumn);
   footerContainer.appendChild(footerRow);
 

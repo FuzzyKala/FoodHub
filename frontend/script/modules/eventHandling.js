@@ -151,6 +151,10 @@ export const logout = () => {
     reloadPage();
   });
 };
+// export const showComments = () => {
+//   const commentsLabel = document.getElementById("commentsLabel");
+//   commentsLabel.addEventListener("click", () => {});
+// };
 
 const getUserInfo = async (token, backendUrl) => {
   try {
