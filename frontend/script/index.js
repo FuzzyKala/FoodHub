@@ -8,17 +8,16 @@ import {
   login,
   addNewPost,
   logout,
+  loginStatusIsValid,
   // showComments,
 } from "./modules/eventHandling.js";
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   // const backendUrl = "https://food-hub-oamk.vercel.app/api";
   const backendUrl = `http://localhost:10000`;
 
-  const userDataString = localStorage.getItem("userData");
-  const userData = JSON.parse(userDataString);
-  const account_id = userData.account_id;
-
+  const localToken = localStorage.getItem("token");
+  const account_id = await loginStatusIsValid(localToken, backendUrl);
   const trending = new posts(backendUrl, "/posts/trending");
   const myPosts = new posts(backendUrl, `/posts/account/${account_id}`);
 

@@ -67,7 +67,7 @@ export const login = (backendUrl) => {
         const userData = await getUserInfo(token, backendUrl);
         localStorage.setItem("token", token);
         localStorage.setItem("userData", JSON.stringify(userData));
-
+        console.log("login -> userData", userData);
         hideLoginRegisterButton(userData);
 
         alert("Login successful!");
@@ -76,6 +76,7 @@ export const login = (backendUrl) => {
           document.getElementById("loginModal")
         );
         closeModal(loginModal);
+        reloadPage();
       } else {
         const errorMessage = await response.text();
         throw new Error(errorMessage);
@@ -168,6 +169,31 @@ const getUserInfo = async (token, backendUrl) => {
     }
   } catch (error) {
     console.error("Failed to fetch user data:", error);
+  }
+};
+
+export const loginStatusIsValid = async (localToken, backendUrl) => {
+  try {
+    const response = await fetch(`${backendUrl}/user/verification`, {
+      headers: { Authorization: `Bearer ${localToken}` },
+    });
+    if (response.ok) {
+      const userDataString = localStorage.getItem("userData");
+      const userData = JSON.parse(userDataString);
+      const account_id = userData.account_id;
+      console.log("loginStatusIsValid -> userData", userData);
+      hideLoginRegisterButton(userData);
+      console.log("User is verified.");
+      return account_id;
+    } else {
+      localStorage.removeItem("token");
+      localStorage.removeItem("userData");
+      hideLoginRegisterButton(null);
+      // reloadPage();
+      return false;
+    }
+  } catch (error) {
+    console.error("Failed to verify user:", error);
   }
 };
 

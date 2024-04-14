@@ -19,7 +19,7 @@ router.get(
   authMiddleware.authenticateToken,
   userController.getUserInfoAfterLogin
 );
-
+router.get("/verification", authMiddleware.verification);
 // router.put("/update", userController.updateProfile);
 
 // Exporting the router object to the router/index.js
