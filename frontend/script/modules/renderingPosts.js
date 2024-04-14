@@ -51,6 +51,10 @@ const createMyPostsItem = (post) => {
   const title = document.createElement("h5");
   title.className = "card-title";
   title.textContent = post.getTitle();
+  // append to card header
+  titleColumn.appendChild(title);
+  headerRow.appendChild(titleColumn);
+  headerContainer.appendChild(headerRow);
 
   // create card body
   const bodyContainer = document.createElement("div");
@@ -58,6 +62,9 @@ const createMyPostsItem = (post) => {
   const description = document.createElement("p");
   description.className = "card-text";
   description.textContent = post.getDescription();
+
+  // append to card body
+  bodyContainer.appendChild(description);
 
   // create category row
   const categoryContainer = document.createElement("div");
@@ -67,12 +74,15 @@ const createMyPostsItem = (post) => {
   const categoryColumn = document.createElement("div");
   categoryColumn.className = "col";
 
-  post.getCategory().forEach((category) => {
-    const badge = document.createElement("span");
-    badge.className = "badge bg-primary me-1";
-    badge.textContent = category;
-    categoryColumn.appendChild(badge);
-  });
+  if (post.getCategory() != null) {
+    post.getCategory().forEach((category) => {
+      const badge = document.createElement("span");
+      badge.className = "badge bg-primary me-1";
+      badge.textContent = category;
+      categoryColumn.appendChild(badge);
+    });
+  }
+
   categoryRow.appendChild(categoryColumn);
   categoryContainer.appendChild(categoryRow);
 
@@ -94,10 +104,6 @@ const createMyPostsItem = (post) => {
   commentsNum.className = "card-text";
   commentsNum.id = "commentsNum";
   commentsNum.textContent = post.getCommentNum();
-
-  // user column part
-  // const userColumn = document.createElement("div");
-  // userColumn.className = "col text-end";
 
   const userAvatar = document.createElement("img");
   userAvatar.className = "userAvatar";
@@ -132,25 +138,6 @@ const createMyPostsItem = (post) => {
   date.className = "card-text";
   date.textContent = post.getDate();
 
-  // get photo data
-  const photos = post.getPhotoData();
-
-  // incase of no photo
-  if (photos == null || photos.length === 0) {
-    return postItem;
-  }
-  // rendering first photo only
-  const photo = photos[0];
-
-  const img = createImage(photo);
-
-  // append to card header
-  titleColumn.appendChild(title);
-  headerRow.appendChild(titleColumn);
-  headerContainer.appendChild(headerRow);
-  // append to card body
-  bodyContainer.appendChild(description);
-  bodyContainer.appendChild(img);
   // append to card footer
   commentsColumn.appendChild(commentsIcon);
   commentsColumn.appendChild(commentsNum);
@@ -159,13 +146,8 @@ const createMyPostsItem = (post) => {
   dateColumn.appendChild(userAvatar);
   dateColumn.appendChild(userName);
   dateColumn.appendChild(date);
-
-  // userColumn.appendChild(userAvatar);
-  // userColumn.appendChild(userName);
-
   footerRow.appendChild(commentsColumn);
   footerRow.appendChild(rateColumn);
-  // footerRow.appendChild(userColumn);
   footerRow.appendChild(dateColumn);
   footerContainer.appendChild(footerRow);
 
@@ -176,6 +158,16 @@ const createMyPostsItem = (post) => {
   postItem.appendChild(bodyContainer);
   postItem.appendChild(categoryContainer);
   postItem.appendChild(footerContainer);
+  // get photo data
+  const photos = post.getPhotoData();
+  // incase of no photo
+  if (photos == null) {
+    return postItem;
+  }
+  // rendering first photo only
+  const photo = photos[0];
+  const img = createImage(photo);
+  bodyContainer.appendChild(img);
   return postItem;
 };
 

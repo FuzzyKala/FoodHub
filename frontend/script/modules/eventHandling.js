@@ -97,11 +97,10 @@ export const addNewPost = (backendUrl) => {
   postForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     const formData = new FormData();
+    const title = document.getElementById("title").value;
     const description = document.getElementById("description").value;
 
-    formData.append("description", description);
     const photos = document.getElementById("photos").files;
-
     // Check if the input element exists and files are attached
     if (photos) {
       for (let i = 0; i < photos.length; i++) {
@@ -116,6 +115,9 @@ export const addNewPost = (backendUrl) => {
       const account_id = userData.account_id;
 
       formData.append("account_id", account_id);
+      formData.append("title", title);
+      formData.append("description", description);
+
       const response = await fetch(`${backendUrl}/posts/new`, {
         method: "POST",
         headers: {
