@@ -10,14 +10,24 @@ import {
   addNewPost,
   logout,
   loginStatusIsValid,
+  jumpToFollowingPage,
   // showComments,
 } from "./modules/eventHandling.js";
 
 const backendUrl = `http://localhost:10000`;
 
 document.addEventListener("DOMContentLoaded", async () => {
-  toggleCategoryButton();
+  // toggleCategoryButton();
 
+  const localToken = localStorage.getItem("token");
+  const account_id = await loginStatusIsValid(localToken, backendUrl);
   const trending = new posts(backendUrl, "/posts/trending");
+  const myPosts = new posts(backendUrl, `/posts/account/${account_id}`);
+
   renderingTrending(trending);
+  // renderingMyPosts(myPosts);
+  jumpToFollowingPage();
+  registration(backendUrl);
+  login(backendUrl);
+  logout();
 });

@@ -57,6 +57,10 @@ nav div {
 .carousel-control-next-icon {
   background-color: #0e100e;
 }
+.noHrefColor {
+  color: inherit;
+  text-decoration: none;
+}
 /* .scroll-box:before,
 .scroll-box:after {
   content: "";

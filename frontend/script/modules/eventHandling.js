@@ -11,7 +11,6 @@ export const registration = (backendUrl) => {
     const email = document.getElementById("registeredEmail").value;
     const password = document.getElementById("registeredPassword").value;
     const registerData = { username, email, password };
-    // console.log(registerData);
     try {
       const response = await fetch(`${backendUrl}/user/register`, {
         method: "POST",
@@ -26,6 +25,7 @@ export const registration = (backendUrl) => {
         const registerModal = bootstrap.Modal.getInstance(
           document.getElementById("registerModal")
         );
+
         closeModal(registerModal);
       } else {
         const errorMessage = await response.text();
@@ -39,6 +39,12 @@ export const registration = (backendUrl) => {
       }
     }
   });
+  const closeRegisterModalButton = document.getElementById(
+    "closeRegisterModalButton"
+  );
+  closeRegisterModalButton.addEventListener("click", () => {
+    registrationForm.reset();
+  });
 };
 
 export const login = (backendUrl) => {
@@ -51,7 +57,6 @@ export const login = (backendUrl) => {
     const email = document.getElementById("loginEmail").value;
     const password = document.getElementById("loginPassword").value;
     const loginData = { email, password };
-    console.log(loginData);
     try {
       const response = await fetch(`${backendUrl}/user/login`, {
         method: "POST",
@@ -88,6 +93,12 @@ export const login = (backendUrl) => {
         alert("Login failed. Please try again.");
       }
     }
+  });
+  const closeLoginModalButton = document.getElementById(
+    "closeLoginModalButton"
+  );
+  closeLoginModalButton.addEventListener("click", () => {
+    loginForm.reset();
   });
 };
 
@@ -178,19 +189,11 @@ export const toggleCategoryButton = () => {
   });
 };
 
-const getUserInfo = async (token, backendUrl) => {
-  try {
-    const response = await fetch(`${backendUrl}/user/profile`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    if (response.ok) {
-      return response.json();
-    } else {
-      // Handle error when fetching user data
-    }
-  } catch (error) {
-    console.error("Failed to fetch user data:", error);
-  }
+export const jumpToFollowingPage = () => {
+  const carouselItem = document.querySelector("#carouselExampleControls");
+  carouselItem.addEventListener("click", () => {
+    window.location.href = "trending.html";
+  });
 };
 
 export const loginStatusIsValid = async (localToken, backendUrl) => {
@@ -217,22 +220,30 @@ export const loginStatusIsValid = async (localToken, backendUrl) => {
     console.error("Failed to verify user:", error);
   }
 };
+const getUserInfo = async (token, backendUrl) => {
+  try {
+    const response = await fetch(`${backendUrl}/user/profile`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    if (response.ok) {
+      return response.json();
+    } else {
+      // Handle error when fetching user data
+    }
+  } catch (error) {
+    console.error("Failed to fetch user data:", error);
+  }
+};
 
 const hideLoginRegisterButton = (userData) => {
   const loginButton = document.getElementById("loginButton");
-  const registerButton = document.getElementById("registerButton");
   const logoutButton = document.getElementById("logoutButton");
-  const profileIcon = document.getElementById("profileIcon");
 
   if (userData) {
     loginButton.classList.add("d-none");
-    registerButton.classList.add("d-none");
     logoutButton.classList.remove("d-none");
-    profileIcon.classList.remove("d-none");
   } else {
     loginButton.classList.remove("d-none");
-    registerButton.classList.remove("d-none");
     logoutButton.classList.add("d-none");
-    profileIcon.classList.add("d-none");
   }
 };

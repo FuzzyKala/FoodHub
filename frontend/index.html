@@ -20,20 +20,28 @@
       <div
         class="container-fluid d-flex justify-content-between align-items-center"
       >
-        <span
+        <span class="material-symbols-outlined" id="homeButton">
+          <a href="./index.html" class="noHrefColor"> house </a></span
+        >
+        <!-- <span
           data-bs-toggle="modal"
           data-bs-target="#settingsModal"
           class="material-symbols-outlined"
+          id="settingsButton"
         >
           Settings
-        </span>
+        </span> -->
         <img src="./img/logo.png" alt="logo" id="logo" />
         <span
           data-bs-toggle="modal"
           data-bs-target="#loginModal"
           class="material-symbols-outlined"
+          id="loginButton"
         >
           login
+        </span>
+        <span class="material-symbols-outlined d-none" id="logoutButton">
+          logout
         </span>
       </div>
     </nav>
@@ -137,6 +145,7 @@
               class="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
+              id="closeLoginModalButton"
             ></button>
           </div>
 
@@ -200,6 +209,7 @@
               class="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
+              id="closeRegisterModalButton"
             ></button>
           </div>
 
@@ -252,7 +262,7 @@
     </div>
 
     <!-- setting Modal -->
-    <div
+    <!-- <div
       class="modal fade"
       id="settingsModal"
       tabindex="-1"
@@ -275,7 +285,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="./script/index.js" type="module"></script>
