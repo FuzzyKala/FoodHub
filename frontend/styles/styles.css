@@ -1,60 +1,139 @@
-/* styles.css */
-
+/* index.html */
 body {
-  background-color: #f0f0f0; /* Light Gray */
-  color: #333; /* Dark Gray */
+  background-image: url("../img/background.svg");
+  background-size: cover; /* Adjust the size to cover the entire viewport */
+  background-repeat: no-repeat; /* Ensure the background image doesn't repeat */
+  /* You can add more CSS styles as needed */
+}
+nav div {
+  margin-top: 10px;
+  background-color: #528fba;
+}
+#logo {
+  width: 100px;
+  height: 60px;
+  margin: 0px 80px;
+}
+.material-symbols-outlined {
+  font-size: 36px;
+}
+
+.category-button {
+  padding: 0.25rem 0.5rem;
+  /* font-size: 0.8rem; */
+  border-radius: 10px;
+  margin: 5px;
+  color: #333;
+  border: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.category-button.active {
+  background-color: #28a745;
+  color: white;
+}
+/* .scroll-box {
+  position: relative;
+  background-color: #333;
+  padding: 20px;
+  border: 1px solid #ddd;
+  overflow: auto;
+
+  height: 200px;
+  white-space: nowrap;
+} */
+#carouselContainer {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+#trendingPostsContainer {
+  height: 300px;
+  width: 100%;
+  border: 1px solid #4d4545;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  /* background-color: #333; */
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: #0e100e;
+}
+/* .scroll-box:before,
+.scroll-box:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #000;
+  font-size: 2rem;
+  padding: 0 10px;
+  cursor: pointer;
+} */
+/* .scroll-box:before {
+  content: "❮";
+  left: 0;
+}
+.scroll-box:after {
+  content: "❯";
+  right: 0;
+} */
+
+/* For backend test html */
+/* 
+body {
+  background-color: #f0f0f0; 
+  color: #333; 
 }
 
 header {
-  background-color: #4caf50; /* Green */
+  background-color: #4caf50;
 }
 
 nav {
-  background-color: #333; /* Dark Gray */
+  background-color: #333; 
 }
 
 nav ul li a {
-  color: #fff; /* White */
+  color: #fff;
 }
 
 nav ul li a:hover {
-  color: #f0f0f0; /* Light Gray */
+  color: #f0f0f0;
 }
 
 body header a {
-  color: inherit; /* Inherit color from parent element */
-  text-decoration: none; /* Remove underline */
+  color: inherit;
+  text-decoration: none;
 }
 section a {
-  color: inherit; /* Inherit color from parent element */
-  text-decoration: none; /* Remove underline */
+  color: inherit;
+  text-decoration: none; 
 }
 .receipt,
 .workout {
-  background-color: #fff; /* White */
-  border: 1px solid #ccc; /* Light Gray */
+  background-color: #fff;
+  border: 1px solid #ccc;
 }
 
 .row-fluid {
   display: flex;
-  flex-wrap: nowrap; /* Prevent wrapping */
+  flex-wrap: nowrap;
 }
 
 .overflow-x-auto {
-  overflow-x: auto; /* Enable horizontal scrolling */
-  white-space: nowrap; /* Prevent wrapping */
+  overflow-x: auto;
+  white-space: nowrap;
 }
 
-/* Previous arrow */
+
 .carousel-control-prev-icon {
   color: #0e100e;
 }
 
-/* Next arrow */
 .carousel-control-next-icon {
   color: #0e100e;
 }
 .user-icon {
-  width: 40px; /* Adjust the width as needed */
-  height: 40px; /* Adjust the height as needed */
-}
+  width: 40px; 
+  height: 40px; 
+} 
+*/

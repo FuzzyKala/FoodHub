@@ -4,6 +4,7 @@ import {
 } from "./modules/renderingPosts.js";
 import { posts } from "./modules/posts.js";
 import {
+  toggleCategoryButton,
   registration,
   login,
   addNewPost,
@@ -12,21 +13,11 @@ import {
   // showComments,
 } from "./modules/eventHandling.js";
 
+const backendUrl = `http://localhost:10000`;
+
 document.addEventListener("DOMContentLoaded", async () => {
-  // const backendUrl = "https://food-hub-oamk.vercel.app/api";
-  const backendUrl = `http://localhost:10000`;
+  toggleCategoryButton();
 
-  const localToken = localStorage.getItem("token");
-  const account_id = await loginStatusIsValid(localToken, backendUrl);
   const trending = new posts(backendUrl, "/posts/trending");
-  const myPosts = new posts(backendUrl, `/posts/account/${account_id}`);
-
   renderingTrending(trending);
-  renderingMyPosts(myPosts);
-
-  registration(backendUrl);
-  login(backendUrl);
-  addNewPost(backendUrl);
-  // showComments();
-  logout();
 });

@@ -159,6 +159,25 @@ export const logout = () => {
 //   commentsLabel.addEventListener("click", () => {});
 // };
 
+export const performSearch = () => {
+  var searchTerm = document.getElementById("searchInput").value;
+  alert("Search for: " + searchTerm);
+};
+
+export const toggleCategoryButton = () => {
+  const buttons = document.querySelectorAll(".btn.category-button");
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      if (button.classList.contains("active")) {
+        button.classList.remove("active");
+        return;
+      } else {
+        button.classList.add("active");
+      }
+    });
+  });
+};
+
 const getUserInfo = async (token, backendUrl) => {
   try {
     const response = await fetch(`${backendUrl}/user/profile`, {
