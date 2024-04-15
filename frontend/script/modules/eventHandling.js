@@ -171,8 +171,11 @@ export const logout = () => {
 // };
 
 export const performSearch = () => {
-  var searchTerm = document.getElementById("searchInput").value;
-  alert("Search for: " + searchTerm);
+  const searchButton = document.getElementById("searchButton");
+  searchButton.addEventListener("click", () => {
+    const searchInput = document.querySelector("#searchInput").value;
+    console.log("Search text:", searchInput);
+  });
 };
 
 export const toggleCategoryButton = () => {

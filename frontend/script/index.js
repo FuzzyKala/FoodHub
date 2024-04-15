@@ -11,6 +11,7 @@ import {
   logout,
   loginStatusIsValid,
   jumpToFollowingPage,
+  performSearch,
   // showComments,
 } from "./modules/eventHandling.js";
 
@@ -26,8 +27,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   renderingTrending(trending);
   // renderingMyPosts(myPosts);
-  jumpToFollowingPage();
   registration(backendUrl);
   login(backendUrl);
+  jumpToFollowingPage();
+  performSearch();
   logout();
 });

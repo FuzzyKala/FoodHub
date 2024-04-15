@@ -59,7 +59,11 @@
                 placeholder="Enter keyword..."
                 aria-label="Search"
               />
-              <button type="button" class="btn btn-secondary">Search</button>
+              <!-- <button type="button" class="btn btn-secondary">Search</button>
+               -->
+              <span class="material-symbols-outlined" id="searchButton">
+                search
+              </span>
             </div>
           </div>
         </div>
@@ -90,6 +94,48 @@
     <div class="receipt p-3 mb-3 bg-light rounded">
       <div class="row">
         <h5 class="text">What's Trending?</h5>
+        <div class="col-md-6 offset-md-3" id="carouselContainer">
+          <div
+            id="carouselExampleControls"
+            class="carousel slide"
+            data-bs-ride="carousel"
+          >
+            <div class="carousel-inner" id="trendingPostsContainer">
+              <!-- Posts will be dynamically appended here -->
+            </div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#carouselExampleControls"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#carouselExampleControls"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Following section -->
+    <div class="receipt p-3 mb-3 bg-light rounded">
+      <div class="row">
+        <h5 class="text">What's your following?</h5>
         <div class="col-md-6 offset-md-3" id="carouselContainer">
           <div
             id="carouselExampleControls"
