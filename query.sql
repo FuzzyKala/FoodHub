@@ -67,8 +67,8 @@
 
 -- drop table post,account;
 -- drop table comment
--- select * from account;
-select * from post;
+select * from account;
+-- select * from post;
 -- select * from comment;
 
 -- Top 3 trending posts
