@@ -59,6 +59,15 @@ const getTrendingPosts = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+// Function to get Top 3 following posts for following collection
+const getFollowingPosts = async (req, res) => {
+  try {
+    const posts = await Post.getFollowingPosts();
+    res.status(200).json(posts);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
 
 // Add a new post
 const addNewPost = async (req, res) => {
@@ -113,6 +122,7 @@ module.exports = {
   getAllPostsByAccountId,
   getLatestPost,
   getTrendingPosts,
+  getFollowingPosts,
   addNewPost,
   updatePostById,
   deletePostById,

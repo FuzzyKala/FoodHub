@@ -3,6 +3,7 @@ const router = express.Router();
 const { postController } = require("../controllers/index");
 const { authMiddleware, multerMiddleware } = require("../middleware/index");
 
+router.get("/following", postController.getFollowingPosts);
 router.get("/trending", postController.getTrendingPosts);
 router.get("/latest", postController.getLatestPost);
 router.get("/:post_id", postController.getPostByPostId);

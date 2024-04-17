@@ -57,6 +57,18 @@ class Post {
       throw new Error(err.message);
     }
   }
+  // Function to get Top 3 following posts for following collection
+  static async getFollowingPosts() {
+    try {
+      const queryText = `SELECT DISTINCT * FROM post
+      WHERE account_id = ANY(SELECT unnest(following_id) FROM account WHERE account_id = 1)
+      LIMIT 3;`;
+      const posts = await query(queryText);
+      return posts.rows || [];
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  }
 
   // Function to add a new post
   static async addNewPost(account_id, title, description, category, photoData) {
