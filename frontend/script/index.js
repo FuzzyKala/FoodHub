@@ -10,6 +10,7 @@ import {
   addNewPost,
   logout,
   loginStatusIsValid,
+  jumpToTrendingPage,
   jumpToFollowingPage,
   performSearch,
   // showComments,
@@ -29,6 +30,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // renderingMyPosts(myPosts);
   registration(backendUrl);
   login(backendUrl);
+  jumpToTrendingPage();
   jumpToFollowingPage();
   performSearch();
   logout();

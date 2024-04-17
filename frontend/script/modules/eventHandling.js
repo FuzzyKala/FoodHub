@@ -192,10 +192,16 @@ export const toggleCategoryButton = () => {
   });
 };
 
-export const jumpToFollowingPage = () => {
-  const carouselItem = document.querySelector("#followingImage");
+export const jumpToTrendingPage = () => {
+  const carouselItem = document.querySelector("#trendingTitle");
   carouselItem.addEventListener("click", () => {
     window.location.href = "trending.html";
+  });
+};
+export const jumpToFollowingPage = () => {
+  const carouselItem = document.querySelector("#followingTitle");
+  carouselItem.addEventListener("click", () => {
+    window.location.href = "following.html";
   });
 };
 
@@ -208,7 +214,7 @@ export const loginStatusIsValid = async (localToken, backendUrl) => {
       const userDataString = localStorage.getItem("userData");
       const userData = JSON.parse(userDataString);
       const account_id = userData.account_id;
-      console.log("loginStatusIsValid -> userData", userData);
+      // console.log("loginStatusIsValid -> userData", userData);
       hideLoginRegisterButton(userData);
       console.log("User is verified.");
       return account_id;

@@ -180,8 +180,7 @@ const createImage = (photo) => {
   const img = document.createElement("img");
   img.src = url;
   img.alt = "photo";
-  img.className = "img-fluid rounded mx-auto d-block mb-3";
-  img.id = "followingImage";
+  img.className = "img-fluid";
   img.style.height = "200px";
   img.style.width = "100%";
   return img;
