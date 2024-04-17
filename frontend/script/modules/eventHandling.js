@@ -193,7 +193,7 @@ export const toggleCategoryButton = () => {
 };
 
 export const jumpToFollowingPage = () => {
-  const carouselItem = document.querySelector("#carouselExampleControls");
+  const carouselItem = document.querySelector("#followingImage");
   carouselItem.addEventListener("click", () => {
     window.location.href = "trending.html";
   });
