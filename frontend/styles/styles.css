@@ -1,18 +1,19 @@
 /* index.html */
 body {
+  /* background-color: #52ba5c; */
+  /* background-color: white; */
   background-image: url("../img/background.svg");
   background-size: cover; /* Adjust the size to cover the entire viewport */
   background-repeat: no-repeat; /* Ensure the background image doesn't repeat */
   /* You can add more CSS styles as needed */
 }
-nav div {
-  margin-top: 10px;
-  background-color: #528fba;
-}
+
 #logo {
-  width: 100px;
   height: 60px;
-  margin: 0px 80px;
+}
+#searchContainer {
+  margin: 10px 10px;
+  border-radius: 5px;
 }
 .material-symbols-outlined {
   font-size: 36px;
@@ -31,27 +32,12 @@ nav div {
   background-color: #28a745;
   color: white;
 }
-/* .scroll-box {
-  position: relative;
-  background-color: #333;
-  padding: 20px;
-  border: 1px solid #ddd;
-  overflow: auto;
 
-  height: 200px;
-  white-space: nowrap;
-} */
-#carouselContainer {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
 #trendingPostsContainer {
-  height: 300px;
+  height: 200px;
   width: 100%;
   border: 1px solid #4d4545;
-  margin-bottom: 20px;
   border-radius: 10px;
-  /* background-color: #333; */
 }
 .carousel-control-prev-icon,
 .carousel-control-next-icon {

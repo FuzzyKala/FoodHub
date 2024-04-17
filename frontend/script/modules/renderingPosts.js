@@ -181,7 +181,8 @@ const createImage = (photo) => {
   img.src = url;
   img.alt = "photo";
   img.className = "img-fluid rounded mx-auto d-block mb-3";
-  img.style.height = "300px";
+  img.id = "followingImage";
+  img.style.height = "200px";
   img.style.width = "100%";
   return img;
 };
