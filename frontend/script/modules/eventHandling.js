@@ -73,7 +73,7 @@ export const login = (backendUrl) => {
         localStorage.setItem("token", token);
         localStorage.setItem("userData", JSON.stringify(userData));
         console.log("login -> userData", userData);
-        hideLoginRegisterButton(userData);
+        hideBeforeLogin(userData);
 
         alert("Login successful!");
         loginForm.reset();
@@ -161,7 +161,7 @@ export const logout = () => {
   logoutButton.addEventListener("click", () => {
     localStorage.removeItem("token");
     localStorage.removeItem("userData");
-    hideLoginRegisterButton(null);
+    hideBeforeLogin(null);
     reloadPage();
   });
 };
@@ -215,13 +215,13 @@ export const loginStatusIsValid = async (localToken, backendUrl) => {
       const userData = JSON.parse(userDataString);
       const account_id = userData.account_id;
       // console.log("loginStatusIsValid -> userData", userData);
-      hideLoginRegisterButton(userData);
+      hideBeforeLogin(userData);
       console.log("User is verified.");
       return account_id;
     } else {
       localStorage.removeItem("token");
       localStorage.removeItem("userData");
-      hideLoginRegisterButton(null);
+      hideBeforeLogin(null);
       // reloadPage();
       return false;
     }
@@ -244,15 +244,18 @@ const getUserInfo = async (token, backendUrl) => {
   }
 };
 
-const hideLoginRegisterButton = (userData) => {
+const hideBeforeLogin = (userLoginSuccessfully) => {
   const loginButton = document.getElementById("loginButton");
   const logoutButton = document.getElementById("logoutButton");
+  const followingCollection = document.getElementById("followingCollection");
 
-  if (userData) {
+  if (userLoginSuccessfully) {
     loginButton.classList.add("d-none");
     logoutButton.classList.remove("d-none");
+    followingCollection.classList.remove("d-none");
   } else {
     loginButton.classList.remove("d-none");
     logoutButton.classList.add("d-none");
+    followingCollection.classList.add("d-none");
   }
 };

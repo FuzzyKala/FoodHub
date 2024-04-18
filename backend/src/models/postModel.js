@@ -57,6 +57,7 @@ class Post {
       throw new Error(err.message);
     }
   }
+
   // Function to get Top 3 following posts for following collection
   static async getFollowingPosts() {
     try {
@@ -64,6 +65,18 @@ class Post {
       WHERE account_id = ANY(SELECT unnest(following_id) FROM account WHERE account_id = 1)
       LIMIT 3;`;
       const posts = await query(queryText);
+      return posts.rows || [];
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  }
+
+  // Function to search for posts by keyword
+  static async getAllPostsBySearchingKeyword(keyword) {
+    try {
+      const queryText = `Select * from ( SELECT * FROM post WHERE description like $1) 
+      post join account on account.account_id = post.account_id`;
+      const posts = await query(queryText, ["%" + keyword + "%"]);
       return posts.rows || [];
     } catch (err) {
       throw new Error(err.message);

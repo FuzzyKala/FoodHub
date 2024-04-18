@@ -95,3 +95,8 @@
 -- SELECT post.*, account.username FROM post 
 -- join account on post.account_id = account.account_id
 -- WHERE post.account_id = 1
+
+-- search function
+
+Select * from ( SELECT * FROM post WHERE description like $1) 
+post join account on account.account_id = post.account_id
