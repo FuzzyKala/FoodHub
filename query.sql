@@ -67,7 +67,8 @@
 
 -- drop table post,account;
 -- drop table comment
-select * from account;
+
+-- select * from account;
 -- select * from post;
 -- select * from comment;
 
@@ -75,6 +76,13 @@ select * from account;
 -- SELECT post.*,account.username FROM post
 -- join account on post.account_id = account.account_id
 -- where post.comment_num > 10 and photo_data IS NOT Null ORDER BY post.rate DESC LIMIT 3
+
+-- Top 3 following posts
+-- SELECT DISTINCT *
+-- FROM post
+-- WHERE account_id = ANY(SELECT unnest(following_id) FROM account WHERE account_id = 1)
+-- LIMIT 3;
+
 
 -- The latest one data
 -- SELECT * FROM post WHERE photo_data IS NOT NULL ORDER BY post_id DESC LIMIT 1;
@@ -87,3 +95,8 @@ select * from account;
 -- SELECT post.*, account.username FROM post 
 -- join account on post.account_id = account.account_id
 -- WHERE post.account_id = 1
+
+-- search function
+
+Select * from ( SELECT * FROM post WHERE description like $1) 
+post join account on account.account_id = post.account_id

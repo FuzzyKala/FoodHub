@@ -27,6 +27,35 @@ const createTrendingItem = (post, isActive) => {
   return postItem;
 };
 
+export const renderingFollowing = async (PostsObj) => {
+  const postList = await PostsObj.getPosts();
+  const trendingContainer = document.getElementById("followingPostsContainer");
+  trendingContainer.innerHTML = "";
+  if (postList != null) {
+    postList.forEach((post, index) => {
+      const postItem = createFollowingItem(post, index === 0);
+      trendingContainer.appendChild(postItem);
+    });
+  }
+};
+
+const createFollowingItem = (post, isActive) => {
+  const postItem = document.createElement("div");
+  postItem.className = isActive ? "carousel-item active" : "carousel-item";
+  const photos = post.getPhotoData();
+  // incase of no photo
+  if (photos == null || photos.length === 0) {
+    return postItem;
+  }
+  // rendering first photo only
+  const photo = photos[0];
+
+  const img = createImage(photo);
+  postItem.appendChild(img);
+
+  return postItem;
+};
+
 // renderingMyPosts
 export const renderingMyPosts = async (PostsObj) => {
   const postList = await PostsObj.getPosts();
@@ -180,8 +209,7 @@ const createImage = (photo) => {
   const img = document.createElement("img");
   img.src = url;
   img.alt = "photo";
-  img.className = "img-fluid rounded mx-auto d-block mb-3";
-  img.id = "followingImage";
+  img.className = "img-fluid";
   img.style.height = "200px";
   img.style.width = "100%";
   return img;

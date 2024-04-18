@@ -60,6 +60,27 @@ const getTrendingPosts = async (req, res) => {
   }
 };
 
+// Function to get Top 3 following posts for following collection
+const getFollowingPosts = async (req, res) => {
+  try {
+    const posts = await Post.getFollowingPosts();
+    res.status(200).json(posts);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+// Function to search for posts by keyword
+const getAllPostsBySearchingKeyword = async (req, res) => {
+  const keyword = req.params.keyword;
+  try {
+    const posts = await Post.getAllPostsBySearchingKeyword(keyword);
+    res.status(200).json(posts);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 // Add a new post
 const addNewPost = async (req, res) => {
   const { account_id, title, description, category } = req.body;
@@ -113,7 +134,9 @@ module.exports = {
   getAllPostsByAccountId,
   getLatestPost,
   getTrendingPosts,
+  getFollowingPosts,
   addNewPost,
+  getAllPostsBySearchingKeyword,
   updatePostById,
   deletePostById,
 };

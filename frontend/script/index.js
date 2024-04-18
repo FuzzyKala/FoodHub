@@ -1,5 +1,6 @@
 import {
   renderingTrending,
+  renderingFollowing,
   renderingMyPosts,
 } from "./modules/renderingPosts.js";
 import { posts } from "./modules/posts.js";
@@ -10,6 +11,7 @@ import {
   addNewPost,
   logout,
   loginStatusIsValid,
+  jumpToTrendingPage,
   jumpToFollowingPage,
   performSearch,
   // showComments,
@@ -23,12 +25,15 @@ document.addEventListener("DOMContentLoaded", async () => {
   const localToken = localStorage.getItem("token");
   const account_id = await loginStatusIsValid(localToken, backendUrl);
   const trending = new posts(backendUrl, "/posts/trending");
+  const following = new posts(backendUrl, "/posts/following");
   const myPosts = new posts(backendUrl, `/posts/account/${account_id}`);
 
   renderingTrending(trending);
+  renderingFollowing(following);
   // renderingMyPosts(myPosts);
   registration(backendUrl);
   login(backendUrl);
+  jumpToTrendingPage();
   jumpToFollowingPage();
   performSearch();
   logout();
