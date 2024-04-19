@@ -73,8 +73,7 @@ export const login = (backendUrl) => {
         localStorage.setItem("token", token);
         localStorage.setItem("userData", JSON.stringify(userData));
         console.log("login -> userData", userData);
-        hideBeforeLogin(userData);
-
+        hideLoginButton(userData);
         alert("Login successful!");
         loginForm.reset();
         const loginModal = bootstrap.Modal.getInstance(
@@ -83,6 +82,7 @@ export const login = (backendUrl) => {
         closeModal(loginModal);
         reloadPage();
       } else {
+        hideLoginButton(null);
         const errorMessage = await response.text();
         throw new Error(errorMessage);
       }
@@ -161,7 +161,7 @@ export const logout = () => {
   logoutButton.addEventListener("click", () => {
     localStorage.removeItem("token");
     localStorage.removeItem("userData");
-    hideBeforeLogin(null);
+    hideLoginButton(null);
     reloadPage();
   });
 };
@@ -169,14 +169,6 @@ export const logout = () => {
 //   const commentsLabel = document.getElementById("commentsLabel");
 //   commentsLabel.addEventListener("click", () => {});
 // };
-
-export const performSearch = () => {
-  const searchButton = document.getElementById("searchButton");
-  searchButton.addEventListener("click", () => {
-    const searchInput = document.querySelector("#searchInput").value;
-    console.log("Search text:", searchInput);
-  });
-};
 
 export const toggleCategoryButton = () => {
   const buttons = document.querySelectorAll(".btn.category-button");
@@ -205,6 +197,25 @@ export const jumpToFollowingPage = () => {
   });
 };
 
+export const jumpToSearchResult = () => {
+  const searchButton = document.getElementById("searchButton");
+  const searchInput = document.querySelector("#searchInput");
+  const performSearch = () => {
+    const keyword = searchInput.value;
+    window.location.href = `searchResult.html?keyword=${encodeURIComponent(
+      keyword
+    )}`;
+    searchInput.value = "";
+  };
+
+  searchButton.addEventListener("click", performSearch);
+  searchInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      performSearch();
+    }
+  });
+};
+
 export const loginStatusIsValid = async (localToken, backendUrl) => {
   try {
     const response = await fetch(`${backendUrl}/user/verification`, {
@@ -213,22 +224,21 @@ export const loginStatusIsValid = async (localToken, backendUrl) => {
     if (response.ok) {
       const userDataString = localStorage.getItem("userData");
       const userData = JSON.parse(userDataString);
-      const account_id = userData.account_id;
-      // console.log("loginStatusIsValid -> userData", userData);
-      hideBeforeLogin(userData);
-      console.log("User is verified.");
-      return account_id;
+      hideLoginButton(userData);
+      console.log("Login session is valid");
+      return true;
     } else {
       localStorage.removeItem("token");
       localStorage.removeItem("userData");
-      hideBeforeLogin(null);
-      // reloadPage();
+      hideLoginButton(null);
+      console.log("Login session is invalid");
       return false;
     }
   } catch (error) {
     console.error("Failed to verify user:", error);
   }
 };
+
 const getUserInfo = async (token, backendUrl) => {
   try {
     const response = await fetch(`${backendUrl}/user/profile`, {
@@ -244,18 +254,24 @@ const getUserInfo = async (token, backendUrl) => {
   }
 };
 
-const hideBeforeLogin = (userLoginSuccessfully) => {
+const hideLoginButton = (userLoginSuccessfully) => {
   const loginButton = document.getElementById("loginButton");
   const logoutButton = document.getElementById("logoutButton");
-  const followingCollection = document.getElementById("followingCollection");
 
   if (userLoginSuccessfully) {
     loginButton.classList.add("d-none");
     logoutButton.classList.remove("d-none");
-    followingCollection.classList.remove("d-none");
   } else {
     loginButton.classList.remove("d-none");
     logoutButton.classList.add("d-none");
+  }
+};
+
+export const hideFollowingCollection = (userLoginSuccessfully) => {
+  const followingCollection = document.getElementById("followingCollection");
+  if (userLoginSuccessfully) {
+    followingCollection.classList.remove("d-none");
+  } else {
     followingCollection.classList.add("d-none");
   }
 };
