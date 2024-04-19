@@ -86,7 +86,7 @@ class Post {
   // Function to add a new post
   static async addNewPost(account_id, title, description, category, photoData) {
     try {
-      const timestamp = moment.tz("Europe/Helsinki").format();
+      const timestamp = moment().format();
       const queryText =
         "INSERT INTO post (account_id, title, description, category, photo_data, date) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *";
       const result = await query(queryText, [

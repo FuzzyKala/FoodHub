@@ -1,10 +1,10 @@
 const { query } = require("./database");
-const moment = require("moment-timezone");
+const moment = require("moment");
 
 class User {
   static async createUser(username, email, password) {
     try {
-      const timestamp = moment.tz("Europe/Helsinki").format();
+      const timestamp = moment().format();
       const queryText =
         "INSERT INTO account (username, email, password, date) VALUES ($1, $2, $3, $4) RETURNING *";
       const result = await query(queryText, [
@@ -13,7 +13,7 @@ class User {
         password,
         timestamp,
       ]);
-      return result.rows[0];
+      return result.rows[0] || null;
     } catch (err) {
       throw new Error(err.message);
     }

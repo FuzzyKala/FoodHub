@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require("express");
+const path = require("path");
 const cors = require("cors");
 const { postRoutes, userRoutes } = require("./src/routes/index");
 const { generateJWTSecret } = require("./src/config/jwt/generateJWTSecret");
@@ -11,10 +12,6 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/posts", postRoutes);
 app.use("/user", userRoutes);
-
-// app.use("/", (req, res) => {
-//   res.send("Welcome to the API");
-// });
 
 // generateJWTSecret();
 const port = process.env.PORT;

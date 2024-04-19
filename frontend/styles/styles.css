@@ -6,7 +6,7 @@ body {
 
   font-family: "Work Sans", sans-serif;
   font-optical-sizing: auto;
-  font-weight: 100;
+  font-weight: 500;
   font-style: normal;
 }
 
@@ -49,83 +49,24 @@ body {
   color: inherit;
   text-decoration: none;
 }
-/* .scroll-box:before,
-.scroll-box:after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #000;
-  font-size: 2rem;
-  padding: 0 10px;
-  cursor: pointer;
-} */
-/* .scroll-box:before {
-  content: "❮";
-  left: 0;
-}
-.scroll-box:after {
-  content: "❯";
-  right: 0;
-} */
 
-/* For backend test html */
-/* 
-body {
-  background-color: #f0f0f0; 
-  color: #333; 
+/* search result page */
+.card-header {
+  margin: -3px;
+  padding: 0.5rem 1rem;
+}
+.card-title {
+  margin-bottom: 0px;
 }
 
-header {
-  background-color: #4caf50;
+.card-body {
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+}
+.card-text.description {
+  margin-bottom: 0.5rem;
 }
 
-nav {
-  background-color: #333; 
+.badge.bg-success.me-1 {
+  margin-bottom: 0.3rem;
 }
-
-nav ul li a {
-  color: #fff;
-}
-
-nav ul li a:hover {
-  color: #f0f0f0;
-}
-
-body header a {
-  color: inherit;
-  text-decoration: none;
-}
-section a {
-  color: inherit;
-  text-decoration: none; 
-}
-.receipt,
-.workout {
-  background-color: #fff;
-  border: 1px solid #ccc;
-}
-
-.row-fluid {
-  display: flex;
-  flex-wrap: nowrap;
-}
-
-.overflow-x-auto {
-  overflow-x: auto;
-  white-space: nowrap;
-}
-
-
-.carousel-control-prev-icon {
-  color: #0e100e;
-}
-
-.carousel-control-next-icon {
-  color: #0e100e;
-}
-.user-icon {
-  width: 40px; 
-  height: 40px; 
-} 
-*/

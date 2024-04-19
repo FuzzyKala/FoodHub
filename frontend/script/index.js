@@ -13,7 +13,8 @@ import {
   loginStatusIsValid,
   jumpToTrendingPage,
   jumpToFollowingPage,
-  performSearch,
+  jumpToSearchResult,
+  hideFollowingCollection,
   // showComments,
 } from "./modules/eventHandling.js";
 
@@ -23,18 +24,23 @@ document.addEventListener("DOMContentLoaded", async () => {
   // toggleCategoryButton();
 
   const localToken = localStorage.getItem("token");
-  const account_id = await loginStatusIsValid(localToken, backendUrl);
+  const userData = localStorage.getItem("userData");
+
   const trending = new posts(backendUrl, "/posts/trending");
   const following = new posts(backendUrl, "/posts/following");
-  const myPosts = new posts(backendUrl, `/posts/account/${account_id}`);
+
+  // const account_id = await loginStatusIsValid(localToken, backendUrl);
+  // const myPosts = new posts(backendUrl, `/posts/account/${account_id}`);
+  // renderingMyPosts(myPosts);
 
   renderingTrending(trending);
   renderingFollowing(following);
-  // renderingMyPosts(myPosts);
   registration(backendUrl);
   login(backendUrl);
+  loginStatusIsValid(localToken, backendUrl);
+  hideFollowingCollection(userData);
   jumpToTrendingPage();
   jumpToFollowingPage();
-  performSearch();
+  jumpToSearchResult();
   logout();
 });

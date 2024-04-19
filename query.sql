@@ -6,6 +6,7 @@
 -- 	password varchar(100) not null,
 -- 	email varchar(50) not null,
 --  avantar BYTEA,
+-- 	following_id INT[],
 -- 	date TIMESTAMP WITH TIME ZONE
 -- );
 
@@ -68,9 +69,17 @@
 -- drop table post,account;
 -- drop table comment
 
--- select * from account;
+select * from account;
+
+-- SELECT * FROM pg_timezone_names;
+-- ALTER DATABASE postgres SET timezone TO 'Europe/Helsinki';
+SHOW TIMEZONE;
+
 -- select * from post;
 -- select * from comment;
+
+-- Reset SERIAL Sequence
+-- SELECT setval('account_account_id_seq', (SELECT MAX(account_id) FROM account));
 
 -- Top 3 trending posts
 -- SELECT post.*,account.username FROM post
@@ -98,5 +107,7 @@
 
 -- search function
 
-Select * from ( SELECT * FROM post WHERE description like $1) 
-post join account on account.account_id = post.account_id
+-- Select * from ( SELECT * FROM post WHERE description like 2) 
+-- post join account on account.account_id = post.account_id
+
+
