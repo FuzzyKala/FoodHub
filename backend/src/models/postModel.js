@@ -79,7 +79,8 @@ class Post {
       post.photo_data, post.rate, post.comment_num, post.date from account
       join post
       on account.account_id = post.account_id
-      WHERE description ILIKE $1;`;
+      WHERE description ILIKE $1
+      ORDER BY post.date DESC;`;
       const posts = await query(queryText, ["%" + keyword + "%"]);
       return posts.rows || [];
     } catch (err) {

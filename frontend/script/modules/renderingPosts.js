@@ -75,11 +75,14 @@ export const renderingSearchResult = async (PostsObj) => {
     "searchResultContainer"
   );
   searchResultContainer.innerHTML = "";
-  if (postList != null) {
+  if (postList.length > 0) {
     postList.forEach((post) => {
       const postItem = createMyPostsItem(post);
       searchResultContainer.appendChild(postItem);
     });
+  } else {
+    const noFoundItem = createNoFoundItem();
+    searchResultContainer.appendChild(noFoundItem);
   }
 };
 
@@ -356,6 +359,25 @@ const createMyPostsItem = (post) => {
   const photo = photos[0];
   const img = createImage(photo);
   bodyContainer.appendChild(img);
+  return postItem;
+};
+const createNoFoundItem = () => {
+  // create card header
+  const headerContainer = document.createElement("div");
+  headerContainer.className = "card-header";
+  // header row
+  const headerRow = document.createElement("div");
+  headerRow.className =
+    "row  d-flex justify-content-between align-items-center";
+  const NoFoundText = document.createElement("span");
+  NoFoundText.className = "card-text text-center";
+  NoFoundText.textContent = "No post found";
+  // append to header row
+  headerRow.appendChild(NoFoundText);
+  headerContainer.appendChild(headerRow);
+  const postItem = document.createElement("div");
+  postItem.className = "card";
+  postItem.appendChild(headerContainer);
   return postItem;
 };
 
