@@ -71,7 +71,6 @@ export const renderingMyPosts = async (PostsObj) => {
 
 export const renderingSearchResult = async (PostsObj) => {
   const postList = await PostsObj.getPosts();
-  console.log("postList", postList);
   const searchResultContainer = document.getElementById(
     "searchResultContainer"
   );
@@ -218,7 +217,6 @@ export const renderingSearchResult = async (PostsObj) => {
 // createImage
 
 const createMyPostsItem = (post) => {
-  console.log("post", post);
   // create card header
   const headerContainer = document.createElement("div");
   headerContainer.className = "card-header";

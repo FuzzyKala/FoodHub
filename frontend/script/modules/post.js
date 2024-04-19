@@ -54,9 +54,7 @@ class Post {
     return this.#comment_num;
   }
   getDate() {
-    console.log("this.#date", this.#date);
     const databaseTimestamp = this.#date;
-    console.log("databaseTimestamp", databaseTimestamp);
     const dbDate = new Date(databaseTimestamp);
     const currentDate = new Date();
     const timeDifference = Math.abs(currentDate - dbDate); // Absolute difference in milliseconds

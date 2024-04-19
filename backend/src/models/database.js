@@ -2,9 +2,9 @@ require("dotenv").config({ path: "../config/dotenv/.env" });
 const { Pool } = require("pg");
 const moment = require("moment");
 const databaseConfig = require("../config/database/config");
+
 const pool = new Pool(databaseConfig);
 
-// Define a function to execute queries
 const query = async (sql, values = []) => {
   try {
     return pool
@@ -12,12 +12,11 @@ const query = async (sql, values = []) => {
       .then((result) => {
         result.rows = result.rows.map((row) => {
           if (row.date instanceof Date) {
-            row.date = moment().format();
-            console.log("row.date", row.date);
+            const timeZoneFormat = moment(row.date).format();
+            row.date = timeZoneFormat;
           }
           return row;
         });
-        // console.log("result", result);
         return result;
       })
       .catch((err) => {
@@ -27,6 +26,17 @@ const query = async (sql, values = []) => {
     throw new Error(err.message);
   }
 };
+
+// const query = async (sql, values = []) => {
+//   try {
+//     const result = await pool.query(sql, values);
+//     // console.log("Raw database result:", result);
+//     return result;
+//   } catch (error) {
+//     console.error("Error executing query:", error);
+//     throw error;
+//   }
+// };
 
 module.exports = {
   query,

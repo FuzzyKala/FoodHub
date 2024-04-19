@@ -74,8 +74,12 @@ class Post {
   // Function to search for posts by keyword
   static async getAllPostsBySearchingKeyword(keyword) {
     try {
-      const queryText = `Select * from ( SELECT * FROM post WHERE description like $1) 
-      post join account on account.account_id = post.account_id`;
+      const queryText = `select account.account_id, account.username, account.avantar,
+      post.post_id, post.title, post.description, post.category, 
+      post.photo_data, post.rate, post.comment_num, post.date from account
+      join post
+      on account.account_id = post.account_id
+      WHERE description ILIKE $1;`;
       const posts = await query(queryText, ["%" + keyword + "%"]);
       return posts.rows || [];
     } catch (err) {
