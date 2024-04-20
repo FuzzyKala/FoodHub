@@ -77,8 +77,8 @@ export const renderingSearchResult = async (PostsObj) => {
   );
   searchResultContainer.innerHTML = "";
   if (postList.length > 0) {
-    postList.forEach((post) => {
-      const postItem = createPostsItem(post);
+    postList.forEach((post, index) => {
+      const postItem = createPostsItem(post, index);
       const postContainer = document.createElement("div");
       postContainer.className = "col-md-4 mb-4 postContainer";
       postContainer.appendChild(postItem);
@@ -91,7 +91,7 @@ export const renderingSearchResult = async (PostsObj) => {
 };
 
 // renderingMyPosts
-const createPostsItem = (post) => {
+const createPostsItem = (post, index) => {
   console.log("createMyPostsItem -> post", post);
   // create card header
   const headerContainer = document.createElement("div");
@@ -171,11 +171,11 @@ const createPostsItem = (post) => {
   // comments column
   const commentsColumn = document.createElement("div");
   commentsColumn.className = "col-auto d-flex align-items-center";
-  commentsColumn.id = "commentsColumn";
+  commentsColumn.id = `commentsColumn-${index}`;
   commentsColumn.setAttribute("data-bs-toggle", "collapse");
-  commentsColumn.setAttribute("data-bs-target", "#collapseComments");
+  commentsColumn.setAttribute("data-bs-target", `#collapseComments-${index}`);
   commentsColumn.setAttribute("aria-expanded", "false");
-  commentsColumn.setAttribute("aria-controls", "collapseComments");
+  commentsColumn.setAttribute("aria-controls", `collapseComments-${index}`);
 
   const commentsIcon = document.createElement("span");
   commentsIcon.className = "material-symbols-outlined";
@@ -214,14 +214,15 @@ const createPostsItem = (post) => {
   // comments body
   const commentsBody = document.createElement("div");
   commentsBody.className = "collapse";
-  commentsBody.id = "collapseComments";
+  commentsBody.id = `collapseComments-${index}`;
   const commentsList = document.createElement("div");
-  commentsList.className = "card card-body";
+  commentsList.className = "card card-body border-0";
   const comments = post.getComments();
-  if (comments != null) {
+  if (comments.length > 0) {
     comments.forEach((comment) => {
       const commentItem = document.createElement("div");
-      commentItem.className = "commentItem";
+      commentItem.className =
+        "commentItem border-bottom border-bottom-5 border-black";
 
       const commentRow = document.createElement("div");
       commentRow.className =
@@ -269,6 +270,9 @@ const createPostsItem = (post) => {
       commentItem.appendChild(commentRow);
       commentsList.appendChild(commentItem);
     });
+  } else {
+    const noComments = createNoCommentItem();
+    commentsList.appendChild(noComments);
   }
   commentsBody.appendChild(commentsList);
   footerContainer.appendChild(commentsBody);
@@ -293,6 +297,25 @@ const createPostsItem = (post) => {
   return postItem;
 };
 
+const createNoCommentItem = () => {
+  // create card header
+  const headerContainer = document.createElement("div");
+  headerContainer.className = "card-header";
+  // header row
+  const headerRow = document.createElement("div");
+  headerRow.className = "row d-flex justify-content-between align-items-center";
+  const NoFoundText = document.createElement("span");
+  NoFoundText.className = "card-text text-center";
+  NoFoundText.textContent = `No Comments yet, be the first to comment!`;
+  // append to header row
+  headerRow.appendChild(NoFoundText);
+  headerContainer.appendChild(headerRow);
+  const postItem = document.createElement("div");
+  postItem.className = "card border-0";
+  postItem.appendChild(headerContainer);
+  return postItem;
+};
+
 const createNoFoundItem = () => {
   // create card header
   const headerContainer = document.createElement("div");
@@ -308,7 +331,7 @@ const createNoFoundItem = () => {
   headerRow.appendChild(NoFoundText);
   headerContainer.appendChild(headerRow);
   const postItem = document.createElement("div");
-  postItem.className = "card";
+  postItem.className = "card border-0";
   postItem.appendChild(headerContainer);
   return postItem;
 };
@@ -321,7 +344,7 @@ const createImage = (photo) => {
   const img = document.createElement("img");
   img.src = url;
   img.alt = "photo";
-  img.className = "img-fluid rounded-3";
+  img.className = "img-fluid rounded-3 border border-black border-2";
   img.style.height = "200px";
   img.style.width = "100%";
   return img;
