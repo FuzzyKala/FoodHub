@@ -65,21 +65,22 @@
 
 
 -- output query command --
-
+-- drop table account;
 -- drop table post,account;
 -- drop table comment
 
-select * from account;
-
--- SELECT * FROM pg_timezone_names;
--- ALTER DATABASE postgres SET timezone TO 'Europe/Helsinki';
-SHOW TIMEZONE;
-
+-- select * from account;
 -- select * from post;
 -- select * from comment;
 
 -- Reset SERIAL Sequence
 -- SELECT setval('account_account_id_seq', (SELECT MAX(account_id) FROM account));
+-- SELECT setval('post_post_id_seq', (SELECT MAX(post_id) FROM post));
+
+-- timezone
+-- SELECT * FROM pg_timezone_names
+-- ALTER DATABASE postgres SET timezone TO 'Europe/Helsinki';
+-- SHOW TIMEZONE;
 
 -- Top 3 trending posts
 -- SELECT post.*,account.username FROM post
@@ -106,8 +107,14 @@ SHOW TIMEZONE;
 -- WHERE post.account_id = 1
 
 -- search function
+-- select account.account_id, account.username, account.avantar,
+-- post.post_id, post.title, post.description, post.category, 
+-- post.photo_data, post.rate, post.comment_num, post.date from account
+-- join post
+-- on account.account_id = post.account_id
+-- WHERE description ILIKE '%new%'
+-- ORDER BY post.date DESC;
 
--- Select * from ( SELECT * FROM post WHERE description like 2) 
--- post join account on account.account_id = post.account_id
 
-
+-- select * from account;
+select * from post;
