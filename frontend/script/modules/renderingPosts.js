@@ -71,16 +71,18 @@ export const renderingMyPosts = async (PostsObj) => {
 
 export const renderingSearchResult = async (PostsObj) => {
   const postList = await PostsObj.getPosts();
-  console.log("postList", postList);
   const searchResultContainer = document.getElementById(
     "searchResultContainer"
   );
   searchResultContainer.innerHTML = "";
-  if (postList != null) {
+  if (postList.length > 0) {
     postList.forEach((post) => {
       const postItem = createMyPostsItem(post);
       searchResultContainer.appendChild(postItem);
     });
+  } else {
+    const noFoundItem = createNoFoundItem();
+    searchResultContainer.appendChild(noFoundItem);
   }
 };
 
@@ -216,9 +218,7 @@ export const renderingSearchResult = async (PostsObj) => {
 // };
 
 // createImage
-
 const createMyPostsItem = (post) => {
-  console.log("post", post);
   // create card header
   const headerContainer = document.createElement("div");
   headerContainer.className = "card-header";
@@ -244,14 +244,13 @@ const createMyPostsItem = (post) => {
   userAvatar.style.height = "30px";
   // user name
   const userName = document.createElement("span");
-  userName.className = "card-text m-2";
+  userName.className = "card-text";
   userName.id = "userName";
   userName.textContent = post.getUsername();
   // post time
   const postTime = document.createElement("small");
   postTime.className = "card-text";
   postTime.textContent = post.getDate();
-
   // append to header row
   userAvatarColumn.appendChild(userAvatar);
   userNameColumn.appendChild(userName);
@@ -267,7 +266,6 @@ const createMyPostsItem = (post) => {
   const description = document.createElement("p");
   description.className = "card-text description";
   description.textContent = post.getDescription();
-
   // append to card body
   bodyContainer.appendChild(description);
 
@@ -294,39 +292,37 @@ const createMyPostsItem = (post) => {
   // create card footer
   const footerContainer = document.createElement("div");
   footerContainer.className = "card-footer text-muted";
+  // footer row
   const footerRow = document.createElement("div");
   footerRow.className = "row";
-
-  // comments column part
+  // comments column
   const commentsColumn = document.createElement("div");
-  commentsColumn.className = "col-auto d-flex align-items-center";
+  commentsColumn.className = "collapse col-auto d-flex align-items-center";
+  commentsColumn.id = "commentsColumn";
 
   const commentsIcon = document.createElement("span");
-  commentsIcon.className = "material-icons";
+  commentsIcon.className = "material-symbols-outlined";
   commentsIcon.textContent = " comment ";
 
   const commentsNum = document.createElement("span");
-  commentsNum.className = "card-text";
+  commentsNum.className = "card-text m-2";
   commentsNum.id = "commentsNum";
   commentsNum.textContent = post.getCommentNum();
 
-  // const userAvatar = document.createElement("img");
-  // userAvatar.className = "userAvatar";
-  // userAvatar.src = "https://www.w3schools.com/howto/img_avatar.png";
-  // userAvatar.alt = "userAvatar";
-  // userAvatar.style.width = "30px";
-  // userAvatar.style.height = "30px";
+  const commentsBody = document.createElement("div");
+  commentsBody.className = "card card-body";
 
   // rate column part
   const rateColumn = document.createElement("div");
   rateColumn.className = "col-auto d-flex align-items-center";
+  rateColumn.id = "rateColumn";
 
   const rateIcon = document.createElement("span");
-  rateIcon.className = "material-icons";
-  rateIcon.textContent = " star ";
+  rateIcon.className = "material-symbols-outlined";
+  rateIcon.textContent = " grade ";
 
   const rateNum = document.createElement("span");
-  rateNum.className = "card-text";
+  rateNum.className = "card-text m-2";
   rateNum.id = "rateNum";
   rateNum.textContent = post.getRate();
 
@@ -358,6 +354,25 @@ const createMyPostsItem = (post) => {
   const photo = photos[0];
   const img = createImage(photo);
   bodyContainer.appendChild(img);
+  return postItem;
+};
+const createNoFoundItem = () => {
+  // create card header
+  const headerContainer = document.createElement("div");
+  headerContainer.className = "card-header";
+  // header row
+  const headerRow = document.createElement("div");
+  headerRow.className =
+    "row  d-flex justify-content-between align-items-center";
+  const NoFoundText = document.createElement("span");
+  NoFoundText.className = "card-text text-center";
+  NoFoundText.textContent = "No post found";
+  // append to header row
+  headerRow.appendChild(NoFoundText);
+  headerContainer.appendChild(headerRow);
+  const postItem = document.createElement("div");
+  postItem.className = "card";
+  postItem.appendChild(headerContainer);
   return postItem;
 };
 

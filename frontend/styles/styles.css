@@ -70,3 +70,8 @@ body {
 .badge.bg-success.me-1 {
   margin-bottom: 0.3rem;
 }
+
+#commentsColumn,
+#rateColumn {
+  padding: 0rem 0.5rem;
+}

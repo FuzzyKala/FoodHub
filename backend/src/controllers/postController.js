@@ -75,6 +75,10 @@ const getAllPostsBySearchingKeyword = async (req, res) => {
   const keyword = req.params.keyword;
   try {
     const posts = await Post.getAllPostsBySearchingKeyword(keyword);
+    if (!posts) {
+      res.status(404).json({ error: "No post found" });
+      return;
+    }
     res.status(200).json(posts);
   } catch (err) {
     res.status(500).json({ error: err.message });
