@@ -1,14 +1,7 @@
 /* index.html */
-body.index-background {
-  background-image: url("../img/background.svg");
-}
-body.searchResult-background {
-  background-image: url("https://mdbootstrap.com/img/new/standard/city/041.jpg");
-}
-/* background-image: url("https://mdbootstrap.com/img/new/standard/city/041.jpg"); */
-/* background-image: url("https://mdbcdn.b-cdn.net/img/new/slides/026.webp"); */
 
 body {
+  background-image: url("../img/background.svg");
   background-size: cover; /* Adjust the size to cover the entire viewport */
   background-repeat: no-repeat; /* Ensure the background image doesn't repeat */
   font-family: "Work Sans", sans-serif;

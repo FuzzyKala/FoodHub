@@ -331,7 +331,7 @@ const createNoFoundItem = () => {
   headerRow.appendChild(NoFoundText);
   headerContainer.appendChild(headerRow);
   const postItem = document.createElement("div");
-  postItem.className = "card border-0";
+  postItem.className = "card border border-2 border-dark rounded-3";
   postItem.appendChild(headerContainer);
   return postItem;
 };
