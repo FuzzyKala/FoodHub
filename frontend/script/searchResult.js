@@ -1,4 +1,5 @@
-import { posts } from "./modules/posts.js";
+import { Posts } from "./modules/posts.js";
+import { Comments } from "./modules/comments.js";
 import { renderingSearchResult } from "./modules/renderingPosts.js";
 import {
   registration,
@@ -14,7 +15,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const localToken = localStorage.getItem("token");
   const searchParams = new URLSearchParams(window.location.search);
   const keyword = searchParams.get("keyword");
-  const searchResult = new posts(backendUrl, `/posts/search/${keyword}`);
+  const searchResult = new Posts(backendUrl, `/posts/search/${keyword}`);
+
   jumpToSearchResult();
   renderingSearchResult(searchResult);
   loginStatusIsValid(localToken, backendUrl);

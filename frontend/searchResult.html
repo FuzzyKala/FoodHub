@@ -77,20 +77,43 @@
       </div>
     </section>
 
-    <section
-      class="bg-white border border-2 border-dark rounded-3 mx-3"
-      id="searchResultCollection"
-    >
+    <section class="rounded-3 mx-3" id="searchResultCollection">
       <!-- Rendering Search Result Section -->
       <!-- <div class="container mt-4"> -->
-      <div class="card" id="searchResultContainer">
+      <div class="card bg-transparent border-0" id="searchResultContainer">
         <!-- insert header here -->
         <!-- insert body here -->
         <!-- insert footer here -->
         <!-- Comments section, initially hidden -->
-        <!-- Include your comments here -->
+
+        <!-- <div class="card-body comments-section" style="display: none"> -->
+        <!-- <div class="collapse" id="collapseComments" style="display: none"> -->
+        <div class="collapse" id="collapseComments">
+          <!-- Include your comments here -->
+        </div>
+        <!-- </div> -->
       </div>
     </section>
+
+    <!-- <div class="container mt-5">
+      <div class="row">
+        <div class="col-md-8">
+          <h2>Comments</h2>
+          <div id="comments-container" class="mb-3"></div>
+          <form id="comment-form">
+            <div class="mb-3">
+              <textarea
+                id="comment-input"
+                class="form-control"
+                rows="3"
+                placeholder="Write your comment here..."
+              ></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div> -->
 
     <!-- login Modal -->
     <div

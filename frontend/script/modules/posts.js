@@ -1,5 +1,7 @@
 import { Post } from "./post.js";
-class posts {
+import { Comments } from "./comments.js";
+
+class Posts {
   #posts = [];
   #backendUrl = "";
   #restUrl = "";
@@ -15,6 +17,7 @@ class posts {
       if (response.ok) {
         const json = await response.json();
         this.#readJson(json);
+        await this.#fetchCommentsForPosts();
         return this.#posts;
       } else {
         throw new Error("Failed to fetch posts");
@@ -41,6 +44,16 @@ class posts {
         )
     );
   };
+  #fetchCommentsForPosts = async () => {
+    const promises = this.#posts.map(async (post) => {
+      const comments = new Comments(
+        this.#backendUrl,
+        `/posts/${post.getPostId()}/comments`
+      );
+      post.setComments(await comments.getComments());
+    });
+    await Promise.all(promises);
+  };
 }
 
-export { posts };
+export { Posts };
