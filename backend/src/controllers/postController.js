@@ -24,6 +24,20 @@ const getPostByPostId = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+// Get comments by post id
+const getCommentsByPostId = async (req, res) => {
+  const post_id = req.params.post_id;
+  try {
+    const comments = await Post.getCommentsByPostId(post_id);
+    if (!comments) {
+      res.status(404).json({ error: "No comment for this post" });
+      return;
+    }
+    res.status(200).json(comments);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
 
 // Function to get all of posts by account_id
 const getAllPostsByAccountId = async (req, res) => {
@@ -134,6 +148,7 @@ const deletePostById = async (req, res) => {
 module.exports = {
   getAllPosts,
   getPostByPostId,
+  getCommentsByPostId,
   getAllPostsByAccountId,
   getLatestPost,
   getTrendingPosts,

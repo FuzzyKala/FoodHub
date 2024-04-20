@@ -60,6 +60,21 @@
 -- 	  (5, 'Description 5', 3.1 , 21 ,'2024-03-28 14:00:00'::timestamp with time zone),
 --     (5, 'Description 5', 2.2 , 39 ,'2024-03-28 14:00:00'::timestamp with time zone);
 
+-- INSERT INTO comment (comment_id, account_id, post_id, comment ,date) 
+-- VALUES 
+--     (1, 1,1, 'good' ,'2024-03-20 10:00:00'::timestamp with time zone),
+--     (2, 1, 2 , 'easy' ,'2024-03-21 11:00:00'::timestamp with time zone),
+--     (3, 3, 11 , 'sweet' ,'2024-03-25 12:00:00'::timestamp with time zone),
+--     (4, 2, 11 , 'very good' ,'2024-03-25 13:00:00'::timestamp with time zone),
+--     (5, 3, 27 , 'very spicy' ,'2024-03-31 11:00:00'::timestamp with time zone),
+--     (6, 2, 2 , 'very good' ,'2024-04-15 13:00:00'::timestamp with time zone),
+--     (7, 4, 27 , 'good' ,'2024-04-19 13:00:00'::timestamp with time zone),
+--     (8, 4, 2 , 'good' ,'2024-04-19 17:00:00'::timestamp with time zone),
+--     (9, 5, 28 , 'normal' ,'2024-04-20 11:00:00'::timestamp with time zone),
+--     (10, 5, 28 , 'hard' ,'2024-04-20 11:55:00'::timestamp with time zone)
+
+
+
 -- update data
 -- UPDATE post SET description = 'update desc',account_id = 3 WHERE post_id = 2
 
@@ -117,4 +132,9 @@
 
 
 -- select * from account;
-select * from post;
+-- select * from post;
+-- select * from comment
+
+
+
+

@@ -8,6 +8,7 @@ router.get("/following", postController.getFollowingPosts);
 router.get("/trending", postController.getTrendingPosts);
 router.get("/latest", postController.getLatestPost);
 router.get("/:post_id", postController.getPostByPostId);
+router.get("/:post_id/comments", postController.getCommentsByPostId);
 router.get("/account/:account_id", postController.getAllPostsByAccountId);
 router.get("/", postController.getAllPosts);
 

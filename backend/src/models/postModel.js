@@ -22,6 +22,18 @@ class Post {
       throw new Error(err.message);
     }
   }
+  // Function to get comments by post_id
+  static async getCommentsByPostId(post_id) {
+    try {
+      const queryText = `SELECT comment.*, account.username, account.avatar FROM comment 
+      join account on comment.account_id = account.account_id
+      WHERE post_id = $1 ORDER BY date DESC`;
+      const comments = await query(queryText, [post_id]);
+      return comments.rows || [];
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  }
   // Function to get all of posts by account_id
   static async getAllPostsByAccountId(account_id) {
     try {
@@ -74,7 +86,7 @@ class Post {
   // Function to search for posts by keyword
   static async getAllPostsBySearchingKeyword(keyword) {
     try {
-      const queryText = `select account.account_id, account.username, account.avantar,
+      const queryText = `select account.account_id, account.username, account.avatar,
       post.post_id, post.title, post.description, post.category, 
       post.photo_data, post.rate, post.comment_num, post.date from account
       join post
