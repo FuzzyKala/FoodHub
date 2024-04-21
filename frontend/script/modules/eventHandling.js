@@ -165,10 +165,6 @@ export const logout = () => {
     reloadPage();
   });
 };
-// export const showComments = () => {
-//   const commentsLabel = document.getElementById("commentsLabel");
-//   commentsLabel.addEventListener("click", () => {});
-// };
 
 export const toggleCategoryButton = () => {
   const buttons = document.querySelectorAll(".btn.category-button");
@@ -275,3 +271,76 @@ export const hideFollowingCollection = (userLoginSuccessfully) => {
     followingCollection.classList.add("d-none");
   }
 };
+
+export const submitComment = (post, index, backendUrl) => {
+  // console.log("submitComment -> backendUrl", backendUrl);
+  // console.log("submitComment -> post", post);
+  // console.log("submitComment -> index", index);
+
+  // add event listener to comment button
+  const commentButton = document.getElementById(`commentButton-${index}`);
+  commentButton.addEventListener("click", async () => {
+    const commentInput = document.getElementById(`commentInput-${index}`);
+    const comment = commentInput.value;
+    const token = localStorage.getItem("token");
+    const userDataString = localStorage.getItem("userData");
+    const userData = JSON.parse(userDataString);
+    const account_id = userData.account_id;
+    const post_id = post.getPostId();
+    const commentData = {
+      account_id: account_id,
+      post_id: post_id,
+      comment: comment,
+    };
+    try {
+      const response = await fetch(`${backendUrl}/posts/${post_id}/comments`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(commentData),
+      });
+      if (response.ok) {
+        alert("Comment successful!");
+        commentInput.value = "";
+        location.reload();
+        // const comments = await fetchComments(post_id, backendUrl);
+        // updateCommentArea(comments, index);
+      } else {
+        throw new Error("Failed to comment");
+      }
+    } catch (error) {
+      console.error("Error commenting:", error);
+      alert("Failed to comment");
+    }
+  });
+};
+
+const fetchComments = async (postId, backendUrl) => {
+  try {
+    const response = await fetch(`${backendUrl}/posts/${postId}/comments`);
+    if (response.ok) {
+      const comments = await response.json();
+      return comments;
+    } else {
+      throw new Error("Failed to fetch comments");
+    }
+  } catch (error) {
+    console.error("Error fetching comments:", error);
+    return [];
+  }
+};
+
+// const updateCommentArea = (comments, index) => {
+//   console.log("updateCommentArea -> comments", comments);
+//   console.log("updateCommentArea -> index", index);
+//   const commentsList = document.getElementById(`commentsList-${index}`);
+//   commentsList.innerHTML = ""; // Clear existing comments
+//   comments.forEach((comment) => {
+//     // Create DOM elements for each comment and append to commentsList
+//     const commentItem = document.createElement("div");
+//     commentItem.textContent = comment.text; // Adjust this according to your comment data structure
+//     commentsList.appendChild(commentItem);
+//   });
+// };

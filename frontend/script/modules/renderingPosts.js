@@ -1,3 +1,5 @@
+import { submitComment } from "./eventHandling.js";
+
 export const renderingTrending = async (PostsObj) => {
   const postList = await PostsObj.getPosts();
   const trendingContainer = document.getElementById("trendingPostsContainer");
@@ -69,8 +71,7 @@ export const renderingMyPosts = async (PostsObj) => {
   }
 };
 
-export const renderingSearchResult = async (PostsObj) => {
-  // console.log("renderingSearchResult -> PostsObj", PostsObj);
+export const renderingSearchResult = async (PostsObj, backendUrl) => {
   const postList = await PostsObj.getPosts();
   const searchResultContainer = document.getElementById(
     "searchResultContainer"
@@ -83,6 +84,7 @@ export const renderingSearchResult = async (PostsObj) => {
       postContainer.className = "col-md-4 mb-4 postContainer";
       postContainer.appendChild(postItem);
       searchResultContainer.appendChild(postContainer);
+      submitComment(post, index, backendUrl);
     });
   } else {
     const noFoundItem = createNoFoundItem();
@@ -186,6 +188,30 @@ const createPostsItem = (post, index) => {
   commentsNum.id = "commentsNum";
   commentsNum.textContent = post.getCommentNum();
 
+  const commentInputContainer = document.createElement("div");
+  commentInputContainer.className = "my-3 mx-3";
+  commentInputContainer.id = `commentInputContainer-${index}`;
+
+  const commentForm = document.createElement("form");
+  commentForm.id = `commentForm-${index}`;
+  commentForm.className = "";
+
+  const commentInput = document.createElement("textarea");
+  commentInput.className = "form-control border border-2 border-dark";
+  commentInput.rows = "3";
+  commentInput.id = `commentInput-${index}`;
+  commentInput.placeholder = "Add a comment...";
+
+  const commentButton = document.createElement("button");
+  commentButton.type = "button";
+  commentButton.className = "btn btn-primary mt-2 float-end";
+  commentButton.textContent = "Comment";
+  commentButton.id = `commentButton-${index}`;
+
+  commentForm.appendChild(commentInput);
+  commentForm.appendChild(commentButton);
+  commentInputContainer.appendChild(commentForm);
+
   // rate column part
   const rateColumn = document.createElement("div");
   rateColumn.className = "col-auto d-flex align-items-center";
@@ -203,6 +229,7 @@ const createPostsItem = (post, index) => {
   // append to card footer
   commentsColumn.appendChild(commentsIcon);
   commentsColumn.appendChild(commentsNum);
+
   rateColumn.appendChild(rateIcon);
   rateColumn.appendChild(rateNum);
 
@@ -217,12 +244,14 @@ const createPostsItem = (post, index) => {
   commentsBody.id = `collapseComments-${index}`;
   const commentsList = document.createElement("div");
   commentsList.className = "card card-body border-0";
+  commentsList.id = `commentsList-${index}`;
   const comments = post.getComments();
   if (comments.length > 0) {
-    comments.forEach((comment) => {
+    comments.forEach((comment, index) => {
       const commentItem = document.createElement("div");
       commentItem.className =
         "commentItem border-bottom border-bottom-5 border-black";
+      commentItem.id = `commentItem-${index}`;
 
       const commentRow = document.createElement("div");
       commentRow.className =
@@ -275,6 +304,7 @@ const createPostsItem = (post, index) => {
     commentsList.appendChild(noComments);
   }
   commentsBody.appendChild(commentsList);
+  commentsBody.appendChild(commentInputContainer);
   footerContainer.appendChild(commentsBody);
 
   // create card
@@ -331,7 +361,7 @@ const createNoFoundItem = () => {
   headerRow.appendChild(NoFoundText);
   headerContainer.appendChild(headerRow);
   const postItem = document.createElement("div");
-  postItem.className = "card border-0";
+  postItem.className = "card border border-2 border-dark rounded-3";
   postItem.appendChild(headerContainer);
   return postItem;
 };

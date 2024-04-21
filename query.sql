@@ -5,7 +5,7 @@
 -- 	username varchar(20) not null,
 -- 	password varchar(100) not null,
 -- 	email varchar(50) not null,
---  avantar BYTEA,
+--  avatar BYTEA,
 -- 	following_id INT[],
 -- 	date TIMESTAMP WITH TIME ZONE
 -- );
@@ -91,6 +91,7 @@
 -- Reset SERIAL Sequence
 -- SELECT setval('account_account_id_seq', (SELECT MAX(account_id) FROM account));
 -- SELECT setval('post_post_id_seq', (SELECT MAX(post_id) FROM post));
+-- SELECT setval('comment_comment_id_seq', (SELECT MAX(comment_id) FROM comment));
 
 -- timezone
 -- SELECT * FROM pg_timezone_names
@@ -130,10 +131,17 @@
 -- WHERE description ILIKE '%new%'
 -- ORDER BY post.date DESC;
 
+-- search comment
+SELECT comment.*, account.username, account.avatar FROM comment 
+join account on comment.account_id = account.account_id
+WHERE post_id = 11
+
 
 -- select * from account;
 -- select * from post;
--- select * from comment
+-- select * from comment 
+-- select count(*) from comment where post_id =28;
+
 
 
 
