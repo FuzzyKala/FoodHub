@@ -5,7 +5,7 @@
 -- 	username varchar(20) not null,
 -- 	password varchar(100) not null,
 -- 	email varchar(50) not null,
---  avantar BYTEA,
+--  avatar BYTEA,
 -- 	following_id INT[],
 -- 	date TIMESTAMP WITH TIME ZONE
 -- );
@@ -130,10 +130,15 @@
 -- WHERE description ILIKE '%new%'
 -- ORDER BY post.date DESC;
 
+-- search comment
+-- SELECT comment.*, account.username, account.avatar FROM comment 
+-- join account on comment.account_id = account.account_id
+-- WHERE post_id = 11
+
 
 -- select * from account;
 -- select * from post;
--- select * from comment
+
 
 
 

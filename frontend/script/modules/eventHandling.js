@@ -275,3 +275,28 @@ export const hideFollowingCollection = (userLoginSuccessfully) => {
     followingCollection.classList.add("d-none");
   }
 };
+export const submitComment = async (postId, comment, token, backendUrl) => {
+  // try {
+  //   const response = await fetch(`${backendUrl}/posts/${postId}/comment`, {
+  //     method: "POST",
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({ comment }),
+  //   });
+  //   if (response.ok) {
+  //     alert("Comment added successfully!");
+  //     // reloadPage();
+  //   } else {
+  //     const errorMessage = await response.text();
+  //     throw new Error(errorMessage);
+  //   }
+  // } catch (err) {
+  //   if (err.message) {
+  //     alert(err.message);
+  //   } else {
+  //     alert("Comment failed. Please try again.");
+  //   }
+  // }
+};

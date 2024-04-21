@@ -186,6 +186,28 @@ const createPostsItem = (post, index) => {
   commentsNum.id = "commentsNum";
   commentsNum.textContent = post.getCommentNum();
 
+  const commentInputContainer = document.createElement("div");
+  commentInputContainer.className = "my-3 mx-3";
+  commentInputContainer.id = `commentInputContainer`;
+
+  const commentForm = document.createElement("form");
+  commentForm.id = "commentForm";
+  commentForm.className = "";
+
+  const commentInput = document.createElement("textarea");
+  commentInput.className = "form-control border border-2 border-dark";
+  commentInput.rows = "3";
+  commentInput.id = `commentInput-${index}`;
+  commentInput.placeholder = "Add a comment...";
+
+  const commentButton = document.createElement("button");
+  commentButton.className = "btn btn-primary mt-2 float-end";
+  commentButton.textContent = "Comment";
+
+  commentForm.appendChild(commentInput);
+  commentForm.appendChild(commentButton);
+  commentInputContainer.appendChild(commentForm);
+
   // rate column part
   const rateColumn = document.createElement("div");
   rateColumn.className = "col-auto d-flex align-items-center";
@@ -203,6 +225,7 @@ const createPostsItem = (post, index) => {
   // append to card footer
   commentsColumn.appendChild(commentsIcon);
   commentsColumn.appendChild(commentsNum);
+
   rateColumn.appendChild(rateIcon);
   rateColumn.appendChild(rateNum);
 
@@ -219,10 +242,11 @@ const createPostsItem = (post, index) => {
   commentsList.className = "card card-body border-0";
   const comments = post.getComments();
   if (comments.length > 0) {
-    comments.forEach((comment) => {
+    comments.forEach((comment, index) => {
       const commentItem = document.createElement("div");
       commentItem.className =
         "commentItem border-bottom border-bottom-5 border-black";
+      commentItem.id = `commentItem-${index}`;
 
       const commentRow = document.createElement("div");
       commentRow.className =
@@ -275,6 +299,7 @@ const createPostsItem = (post, index) => {
     commentsList.appendChild(noComments);
   }
   commentsBody.appendChild(commentsList);
+  commentsBody.appendChild(commentInputContainer);
   footerContainer.appendChild(commentsBody);
 
   // create card
