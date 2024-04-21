@@ -121,13 +121,27 @@ const addNewPost = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+// add a new comment
+const addNewComment = async (req, res) => {
+  const post_id = req.params.post_id;
+  const { account_id, comment } = req.body;
+  try {
+    if (comment == "") {
+      return res.status(400).send("Comment is required");
+    }
+    const newComment = await Post.addNewComment(post_id, account_id, comment);
+    res.status(201).json(newComment);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
 
 // Update a post by id
 const updatePostById = async (req, res) => {
-  const id = req.params.id;
+  const post_id = req.params.post_id;
   try {
     const newData = req.body;
-    await Post.updatePost(id, newData);
+    await Post.updatePost(post_id, newData);
     res.status(200).json({ message: "Post updated successfully" });
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -137,8 +151,8 @@ const updatePostById = async (req, res) => {
 // Delete a post by id
 const deletePostById = async (req, res) => {
   try {
-    const id = req.params.id;
-    await Post.deletePost(id);
+    const post_id = req.params.post_id;
+    await Post.deletePost(post_id);
     res.status(200).json({ message: "Post deleted successfully" });
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -154,6 +168,7 @@ module.exports = {
   getTrendingPosts,
   getFollowingPosts,
   addNewPost,
+  addNewComment,
   getAllPostsBySearchingKeyword,
   updatePostById,
   deletePostById,

@@ -1,3 +1,5 @@
+import { submitComment } from "./eventHandling.js";
+
 export const renderingTrending = async (PostsObj) => {
   const postList = await PostsObj.getPosts();
   const trendingContainer = document.getElementById("trendingPostsContainer");
@@ -69,8 +71,7 @@ export const renderingMyPosts = async (PostsObj) => {
   }
 };
 
-export const renderingSearchResult = async (PostsObj) => {
-  // console.log("renderingSearchResult -> PostsObj", PostsObj);
+export const renderingSearchResult = async (PostsObj, backendUrl) => {
   const postList = await PostsObj.getPosts();
   const searchResultContainer = document.getElementById(
     "searchResultContainer"
@@ -83,6 +84,7 @@ export const renderingSearchResult = async (PostsObj) => {
       postContainer.className = "col-md-4 mb-4 postContainer";
       postContainer.appendChild(postItem);
       searchResultContainer.appendChild(postContainer);
+      submitComment(post, index, backendUrl);
     });
   } else {
     const noFoundItem = createNoFoundItem();
@@ -188,10 +190,10 @@ const createPostsItem = (post, index) => {
 
   const commentInputContainer = document.createElement("div");
   commentInputContainer.className = "my-3 mx-3";
-  commentInputContainer.id = `commentInputContainer`;
+  commentInputContainer.id = `commentInputContainer-${index}`;
 
   const commentForm = document.createElement("form");
-  commentForm.id = "commentForm";
+  commentForm.id = `commentForm-${index}`;
   commentForm.className = "";
 
   const commentInput = document.createElement("textarea");
@@ -201,8 +203,10 @@ const createPostsItem = (post, index) => {
   commentInput.placeholder = "Add a comment...";
 
   const commentButton = document.createElement("button");
+  commentButton.type = "button";
   commentButton.className = "btn btn-primary mt-2 float-end";
   commentButton.textContent = "Comment";
+  commentButton.id = `commentButton-${index}`;
 
   commentForm.appendChild(commentInput);
   commentForm.appendChild(commentButton);
@@ -240,6 +244,7 @@ const createPostsItem = (post, index) => {
   commentsBody.id = `collapseComments-${index}`;
   const commentsList = document.createElement("div");
   commentsList.className = "card card-body border-0";
+  commentsList.id = `commentsList-${index}`;
   const comments = post.getComments();
   if (comments.length > 0) {
     comments.forEach((comment, index) => {

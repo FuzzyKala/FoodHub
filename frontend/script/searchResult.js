@@ -7,6 +7,7 @@ import {
   logout,
   loginStatusIsValid,
   jumpToSearchResult,
+  submitComment,
 } from "./modules/eventHandling.js";
 
 const backendUrl = `http://localhost:10000`;
@@ -16,9 +17,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   const searchParams = new URLSearchParams(window.location.search);
   const keyword = searchParams.get("keyword");
   const searchResult = new Posts(backendUrl, `/posts/search/${keyword}`);
-
+  // submitComment(backendUrl);
   jumpToSearchResult();
-  renderingSearchResult(searchResult);
+  renderingSearchResult(searchResult, backendUrl);
   loginStatusIsValid(localToken, backendUrl);
   registration(backendUrl);
   login(backendUrl);

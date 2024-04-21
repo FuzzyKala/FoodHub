@@ -75,3 +75,8 @@ body {
 #rateColumn {
   padding: 0rem 0.5rem;
 }
+
+.collapse.show {
+  max-height: 300px; /* Adjust the maximum height as needed */
+  overflow-y: auto; /* Enable vertical scrolling */
+}

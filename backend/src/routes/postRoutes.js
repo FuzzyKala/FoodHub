@@ -18,13 +18,20 @@ router.post(
   multerMiddleware.upload,
   postController.addNewPost
 );
+
+router.post(
+  "/:post_id/comments",
+  authMiddleware.authenticateToken,
+  postController.addNewComment
+);
+
 router.put(
-  "/:id",
+  "/:post_id",
   authMiddleware.authenticateToken,
   postController.updatePostById
 );
 router.delete(
-  "/:id",
+  "/:post_id",
   authMiddleware.authenticateToken,
   postController.deletePostById
 );
