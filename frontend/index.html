@@ -22,51 +22,56 @@
   </head>
   <body class="index-background">
     <!-- Nav bar -->
-    <nav
-      class="navbar bg-white border border-2 border-dark rounded-3 mx-3 mt-3"
-    >
-      <div
-        class="container-fluid d-flex justify-content-between align-items-center"
-      >
-        <span class="material-symbols-outlined" id="homeButton">
-          <a href="./index.html" class="noHrefColor"> house </a></span
+    <nav class="navbar bg-white border-bottom border-bottom-3 border-dark">
+      <div class="d-flex justify-content-between align-items-center px-2">
+        <!-- dropdown menu -->
+        <div class="container nav-start d-flex align-items-center align-middle">
+          <div class="dropdown col-4">
+            <span
+              class="material-symbols-outlined border border-2 border-black rounded-3 mt-1"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              menu
+            </span>
+
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </div>
+          <a href="./index.html" class="col-6" id="homePage">
+            <img
+              src="./img/logo2.png"
+              alt="logo"
+              id="logo"
+              class="rounded-circle border border-2 border-black rounded-3"
+              href="./index.html"
+            />
+          </a>
+        </div>
+        <div
+          class="container nav-end d-flex align-items-center justify-content-end"
         >
-        <img src="./img/logo.png" alt="logo" id="logo" />
-        <span
-          data-bs-toggle="modal"
-          data-bs-target="#loginModal"
-          class="material-symbols-outlined"
-          id="loginButton"
-        >
-          login
-        </span>
+          <span
+            data-bs-toggle="modal"
+            data-bs-target="#loginModal"
+            class="material-symbols-outlined border border-2 border-black rounded-3"
+            id="loginButton"
+          >
+            login
+          </span>
+          <img
+            src=".."
+            alt="userProfile"
+            id="userProfile"
+            class="rounded-circle border border-2 border-black rounded-3 d-none"
+          />
+        </div>
         <span class="material-symbols-outlined d-none" id="logoutButton">
           logout
         </span>
-
-        <!-- side menu -->
-        <div class="dropstart">
-          <!-- <button
-            class="btn btn-secondary dropdown-toggle"
-            type="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Dropdown button
-          </button> -->
-          <span
-            class="material-symbols-outlined"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            menu
-          </span>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </div>
       </div>
     </nav>
 
