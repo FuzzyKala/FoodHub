@@ -1,4 +1,4 @@
-import { closeModal, reloadPage } from "./modalInteraction.js";
+import { openModal, closeModal, reloadPage } from "./modalInteraction.js";
 
 export const registration = (backendUrl) => {
   // Get the submit button inside the registration form modal
