@@ -86,7 +86,8 @@ body {
   height: 2.5rem;
 }
 
-#navOffCanvas {
+#navOffCanvas,
+#userOffCanvas {
   width: 250px;
 }
 

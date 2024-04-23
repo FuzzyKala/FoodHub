@@ -258,9 +258,11 @@ const hideLoginButton = (userLoginSuccessfully) => {
   if (userLoginSuccessfully) {
     loginButton.classList.add("d-none");
     logoutButton.classList.remove("d-none");
+    userAvatar.classList.remove("d-none");
   } else {
     loginButton.classList.remove("d-none");
     logoutButton.classList.add("d-none");
+    userAvatar.classList.add("d-none");
   }
 };
 

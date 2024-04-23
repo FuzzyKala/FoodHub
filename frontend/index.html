@@ -29,10 +29,10 @@
     <!-- Nav bar -->
     <nav class="navbar bg-white border-bottom border-bottom-3 border-dark">
       <div class="container row align-items-center justify-content-between">
-        <!-- dropdown menu -->
-        <div class="col-1 d-flex align-items-center ms-1 me-2" id="navStart">
+        <!-- nav off canvas -->
+        <div class="col-1 d-flex align-items-center ms-1 me-3" id="navStart">
           <span
-            class="material-symbols-outlined border border-2 border-black rounded-3"
+            class="material-symbols-outlined border border-2 border-black rounded"
             data-bs-toggle="offcanvas"
             data-bs-target="#navOffCanvas"
             aria-expanded="false"
@@ -56,12 +56,12 @@
                   src="./img/logo2.png"
                   alt="logo"
                   id="logo"
-                  class="rounded-circle border border-3 border-white"
+                  class="rounded-circle border border-2 border-white"
                   href="./index.html"
                 />
               </a>
               <h3 class="offcanvas-title" id="offcanvasLabel">FoodHub</h3>
-              <!-- <div data-bs-theme="dark"> -->
+
               <button
                 type="button"
                 class="btn-close me-2"
@@ -69,7 +69,6 @@
                 aria-label="Close"
                 id="closeOffCanvasButton"
               ></button>
-              <!-- </div> -->
             </div>
             <div class="offcanvas-body">
               <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
@@ -117,18 +116,45 @@
           >
             login
           </span>
-          <div class="dropstart mx-1" id="profileContainer">
-            <ul class="dropdown-menu dropdown-menu-dark">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </li>
-            </ul>
+
+          <!-- user avatar off canvas -->
+          <div class="mx-1" id="profileContainer">
+            <a
+              data-bs-toggle="offcanvas"
+              href="#userOffCanvas"
+              role="button"
+              id="userAvatarButton"
+            >
+              <img
+                src=""
+                alt="userAvatar"
+                class="rounded-circle border border-2 border-black d-none"
+                id="userAvatar"
+              />
+            </a>
+
+            <div
+              class="offcanvas offcanvas-end text-bg-dark rounded-start"
+              tabindex="-1"
+              id="userOffCanvas"
+              aria-labelledby="offcanvasRightLabel"
+            >
+              <div class="offcanvas-header">
+                <h5 id="offcanvasRightLabel">Offcanvas right</h5>
+                <button
+                  type="button"
+                  class="btn-close me-2"
+                  data-bs-dismiss="offcanvas"
+                  aria-label="Close"
+                  id="closeOffCanvasButton"
+                ></button>
+              </div>
+              <div class="offcanvas-body">...</div>
+            </div>
           </div>
-          <!-- <span class="material-symbols-outlined d-none" id="logoutButton">
-                logout
-              </span> -->
+          <span class="material-symbols-outlined d-none" id="logoutButton">
+            logout
+          </span>
         </div>
       </div>
     </nav>
