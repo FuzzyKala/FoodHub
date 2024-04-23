@@ -23,39 +23,53 @@
   <body class="index-background">
     <!-- Nav bar -->
     <nav class="navbar bg-white border-bottom border-bottom-3 border-dark">
-      <div class="container-fluid">
-        <div class="row align-items-center justify-content-between">
-          <!-- dropdown menu -->
-          <div class="col-auto d-flex align-items-center" id="navStart">
-            <div class="dropdown mx-1">
-              <span
-                class="material-symbols-outlined border border-2 border-black rounded-3 mt-1"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                menu
-              </span>
+      <!-- <div class="container"> -->
+      <div class="container row align-items-center justify-content-between">
+        <!-- dropdown menu -->
+        <div class="col-1 d-flex align-items-center ms-1 me-2" id="navStart">
+          <span
+            class="material-symbols-outlined border border-2 border-black rounded-3"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#navOffCanvas"
+            aria-expanded="false"
+            href="#navOffCanvas"
+            role="button"
+          >
+            menu
+          </span>
 
-              <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </li>
-              </ul>
+          <div
+            class="offcanvas offcanvas-start text-bg-dark"
+            tabindex="-1"
+            id="navOffCanvas"
+            aria-labelledby="offcanvasExampleLabel"
+          >
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasLabel">Offcanvas</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              ></button>
             </div>
-            <a href="./index.html" id="homePage" class="ms-2">
-              <img
-                src="./img/logo2.png"
-                alt="logo"
-                id="logo"
-                class="rounded-circle border border-3 border-black rounded-3"
-                href="./index.html"
-              />
-            </a>
+            <div class="offcanvas-body">
+              <div class="row">following</div>
+            </div>
           </div>
         </div>
-        <div class="col-auto d-flex align-items-center me-2" id="navEnd">
+        <div class="col-6">
+          <a href="./index.html" id="homePage" class="ms-2">
+            <img
+              src="./img/logo2.png"
+              alt="logo"
+              id="logo"
+              class="rounded-circle border border-3 border-black rounded-3"
+              href="./index.html"
+            />
+          </a>
+        </div>
+        <div class="col-1 ms-auto me-3" id="navEnd">
           <span
             data-bs-toggle="modal"
             data-bs-target="#loginModal"
@@ -73,10 +87,11 @@
               </li>
             </ul>
           </div>
-          <span class="material-symbols-outlined d-none" id="logoutButton">
-            logout
-          </span>
+          <!-- <span class="material-symbols-outlined d-none" id="logoutButton">
+                logout
+              </span> -->
         </div>
+        <!-- </div> -->
       </div>
     </nav>
 

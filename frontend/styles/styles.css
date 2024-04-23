@@ -80,11 +80,8 @@ body {
   max-height: 300px; /* Adjust the maximum height as needed */
   overflow-y: auto; /* Enable vertical scrolling */
 }
-#logo {
-  width: 3rem;
-  height: 3rem;
-}
+#logo,
 #userAvatar {
-  width: 3rem;
-  height: 3rem;
+  width: 2.5rem;
+  height: 2.5rem;
 }
