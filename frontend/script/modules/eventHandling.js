@@ -1,4 +1,5 @@
-import { closeModal, reloadPage } from "./modalInteraction.js";
+import { openModal, closeModal, reloadPage } from "./modalInteraction.js";
+import { renderingAvatar } from "./renderingUser.js";
 
 export const registration = (backendUrl) => {
   // Get the submit button inside the registration form modal
@@ -273,10 +274,6 @@ export const hideFollowingCollection = (userLoginSuccessfully) => {
 };
 
 export const submitComment = (post, index, backendUrl) => {
-  // console.log("submitComment -> backendUrl", backendUrl);
-  // console.log("submitComment -> post", post);
-  // console.log("submitComment -> index", index);
-
   // add event listener to comment button
   const commentButton = document.getElementById(`commentButton-${index}`);
   commentButton.addEventListener("click", async () => {
@@ -316,31 +313,3 @@ export const submitComment = (post, index, backendUrl) => {
     }
   });
 };
-
-const fetchComments = async (postId, backendUrl) => {
-  try {
-    const response = await fetch(`${backendUrl}/posts/${postId}/comments`);
-    if (response.ok) {
-      const comments = await response.json();
-      return comments;
-    } else {
-      throw new Error("Failed to fetch comments");
-    }
-  } catch (error) {
-    console.error("Error fetching comments:", error);
-    return [];
-  }
-};
-
-// const updateCommentArea = (comments, index) => {
-//   console.log("updateCommentArea -> comments", comments);
-//   console.log("updateCommentArea -> index", index);
-//   const commentsList = document.getElementById(`commentsList-${index}`);
-//   commentsList.innerHTML = ""; // Clear existing comments
-//   comments.forEach((comment) => {
-//     // Create DOM elements for each comment and append to commentsList
-//     const commentItem = document.createElement("div");
-//     commentItem.textContent = comment.text; // Adjust this according to your comment data structure
-//     commentsList.appendChild(commentItem);
-//   });
-// };

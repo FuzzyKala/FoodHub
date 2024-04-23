@@ -80,3 +80,16 @@ body {
   max-height: 300px; /* Adjust the maximum height as needed */
   overflow-y: auto; /* Enable vertical scrolling */
 }
+#logo,
+#userAvatar {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+#navOffCanvas {
+  width: 250px;
+}
+
+#closeOffCanvasButton {
+  background-color: #4d4545;
+}

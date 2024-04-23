@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const searchParams = new URLSearchParams(window.location.search);
   const keyword = searchParams.get("keyword");
   const searchResult = new Posts(backendUrl, `/posts/search/${keyword}`);
-  // submitComment(backendUrl);
+
   jumpToSearchResult();
   renderingSearchResult(searchResult, backendUrl);
   loginStatusIsValid(localToken, backendUrl);

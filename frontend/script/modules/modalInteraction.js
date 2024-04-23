@@ -1,9 +1,6 @@
-// export const openRegisterModal = () => {
-//   const registerModal = new bootstrap.Modal(
-//     document.getElementById("registerModal")
-//   );
-//   registerModal.show();
-// };
+export const openModal = (currentModal) => {
+  currentModal.show();
+};
 
 export const closeModal = (currentModal) => {
   currentModal.hide();
