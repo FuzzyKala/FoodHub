@@ -23,37 +23,39 @@
   <body class="index-background">
     <!-- Nav bar -->
     <nav class="navbar bg-white border-bottom border-bottom-3 border-dark">
-      <div class="d-flex justify-content-between align-items-center px-2">
-        <!-- dropdown menu -->
-        <div class="container nav-start d-flex align-items-center align-middle">
-          <div class="dropdown col-4">
-            <span
-              class="material-symbols-outlined border border-2 border-black rounded-3 mt-1"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              menu
-            </span>
+      <div class="container-fluid">
+        <div class="row align-items-center justify-content-between">
+          <!-- dropdown menu -->
+          <div class="col-auto d-flex align-items-center" id="navStart">
+            <div class="dropdown mx-1">
+              <span
+                class="material-symbols-outlined border border-2 border-black rounded-3 mt-1"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                menu
+              </span>
 
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
+              <ul class="dropdown-menu dropdown-menu-dark">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </li>
+              </ul>
+            </div>
+            <a href="./index.html" id="homePage" class="ms-2">
+              <img
+                src="./img/logo2.png"
+                alt="logo"
+                id="logo"
+                class="rounded-circle border border-3 border-black rounded-3"
+                href="./index.html"
+              />
+            </a>
           </div>
-          <a href="./index.html" class="col-6" id="homePage">
-            <img
-              src="./img/logo2.png"
-              alt="logo"
-              id="logo"
-              class="rounded-circle border border-2 border-black rounded-3"
-              href="./index.html"
-            />
-          </a>
         </div>
-        <div
-          class="container nav-end d-flex align-items-center justify-content-end"
-        >
+        <div class="col-auto d-flex align-items-center me-2" id="navEnd">
           <span
             data-bs-toggle="modal"
             data-bs-target="#loginModal"
@@ -62,16 +64,19 @@
           >
             login
           </span>
-          <img
-            src=".."
-            alt="userProfile"
-            id="userProfile"
-            class="rounded-circle border border-2 border-black rounded-3 d-none"
-          />
+          <div class="dropstart mx-1" id="profileContainer">
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </li>
+            </ul>
+          </div>
+          <span class="material-symbols-outlined d-none" id="logoutButton">
+            logout
+          </span>
         </div>
-        <span class="material-symbols-outlined d-none" id="logoutButton">
-          logout
-        </span>
       </div>
     </nav>
 
@@ -91,8 +96,6 @@
                 placeholder="What are you looking for today?..."
                 aria-label="Search"
               />
-              <!-- <button type="button" class="btn btn-secondary">Search</button>
-               -->
               <span class="material-symbols-outlined" id="searchButton">
                 search
               </span>

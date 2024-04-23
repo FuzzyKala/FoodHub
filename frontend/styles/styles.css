@@ -81,6 +81,10 @@ body {
   overflow-y: auto; /* Enable vertical scrolling */
 }
 #logo {
-  width: 45%;
-  height: auto;
+  width: 3rem;
+  height: 3rem;
+}
+#userAvatar {
+  width: 3rem;
+  height: 3rem;
 }

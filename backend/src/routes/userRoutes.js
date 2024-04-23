@@ -4,6 +4,7 @@ const { userController } = require("../controllers/index");
 const {
   authMiddleware,
   userExistingMiddleware,
+  multerMiddleware,
 } = require("../middleware/index");
 
 // Define routes for user actions (signup, login, profile updates, etc.)

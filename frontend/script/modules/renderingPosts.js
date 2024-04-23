@@ -366,7 +366,7 @@ const createNoFoundItem = () => {
   return postItem;
 };
 
-const createImage = (photo) => {
+export const createImage = (photo) => {
   const photoData = photo.data;
   const uint8Array = new Uint8Array(photoData);
   const blob = new Blob([uint8Array], { type: "image/jpeg" });

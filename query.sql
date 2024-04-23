@@ -132,12 +132,12 @@
 -- ORDER BY post.date DESC;
 
 -- search comment
-SELECT comment.*, account.username, account.avatar FROM comment 
-join account on comment.account_id = account.account_id
-WHERE post_id = 11
+-- SELECT comment.*, account.username, account.avatar FROM comment 
+-- join account on comment.account_id = account.account_id
+-- WHERE post_id = 11
 
 
--- select * from account;
+select * from account;
 -- select * from post;
 -- select * from comment 
 -- select count(*) from comment where post_id =28;

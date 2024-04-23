@@ -4,6 +4,7 @@ import {
   renderingMyPosts,
 } from "./modules/renderingPosts.js";
 import { Posts } from "./modules/posts.js";
+import { renderingAvatar } from "./modules/renderingUser.js";
 import {
   toggleCategoryButton,
   registration,
@@ -37,8 +38,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   renderingFollowing(following);
   registration(backendUrl);
   login(backendUrl);
+  renderingAvatar(userData);
   loginStatusIsValid(localToken, backendUrl);
   hideFollowingCollection(userData);
+
   jumpToTrendingPage();
   jumpToFollowingPage();
   jumpToSearchResult();
