@@ -1,6 +1,5 @@
 import { openModal, closeModal, reloadPage } from "./modalInteraction.js";
 import { renderingAvatar } from "./renderingUser.js";
-
 export const registration = (backendUrl) => {
   // Get the submit button inside the registration form modal
   const registrationForm = document.getElementById("registrationForm");
@@ -221,7 +220,9 @@ export const loginStatusIsValid = async (localToken, backendUrl) => {
     if (response.ok) {
       const userDataString = localStorage.getItem("userData");
       const userData = JSON.parse(userDataString);
+      console.log("userData", userData);
       hideLoginButton(userData);
+      renderingAvatar(userData);
       console.log("Login session is valid");
       return true;
     } else {
@@ -258,11 +259,9 @@ const hideLoginButton = (userLoginSuccessfully) => {
   if (userLoginSuccessfully) {
     loginButton.classList.add("d-none");
     logoutButton.classList.remove("d-none");
-    userAvatar.classList.remove("d-none");
   } else {
     loginButton.classList.remove("d-none");
     logoutButton.classList.add("d-none");
-    userAvatar.classList.add("d-none");
   }
 };
 

@@ -38,7 +38,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   renderingFollowing(following);
   registration(backendUrl);
   login(backendUrl);
-  renderingAvatar(userData);
   loginStatusIsValid(localToken, backendUrl);
   hideFollowingCollection(userData);
 

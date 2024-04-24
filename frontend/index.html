@@ -96,7 +96,7 @@
             </div>
           </div>
         </div>
-        <div class="col-6">
+        <div class="col-2">
           <a href="./index.html" id="homePage" class="ms-2">
             <img
               src="./img/logo2.png"
@@ -107,66 +107,15 @@
             />
           </a>
         </div>
-        <div class="col-1 ms-auto me-3" id="navEnd">
-          <span
-            data-bs-toggle="modal"
-            data-bs-target="#loginModal"
-            class="material-symbols-outlined border border-2 border-black rounded-3"
-            id="loginButton"
+        <div class="col-6 ms-3 px-0">
+          <!-- search bar section -->
+          <section
+            class="bg-white border border-2 border-dark rounded"
+            id="searchBar"
           >
-            login
-          </span>
-
-          <!-- user avatar off canvas -->
-          <div class="mx-1" id="profileContainer">
-            <a
-              data-bs-toggle="offcanvas"
-              href="#userOffCanvas"
-              role="button"
-              id="userAvatarButton"
-            >
-              <img
-                src=""
-                alt="userAvatar"
-                class="rounded-circle border border-2 border-black d-none"
-                id="userAvatar"
-              />
-            </a>
-
-            <div
-              class="offcanvas offcanvas-end text-bg-dark rounded-start"
-              tabindex="-1"
-              id="userOffCanvas"
-              aria-labelledby="offcanvasRightLabel"
-            >
-              <div class="offcanvas-header">
-                <h5 id="offcanvasRightLabel">Offcanvas right</h5>
-                <button
-                  type="button"
-                  class="btn-close me-2"
-                  data-bs-dismiss="offcanvas"
-                  aria-label="Close"
-                  id="closeOffCanvasButton"
-                ></button>
-              </div>
-              <div class="offcanvas-body">...</div>
-            </div>
-          </div>
-          <span class="material-symbols-outlined d-none" id="logoutButton">
-            logout
-          </span>
-        </div>
-      </div>
-    </nav>
-
-    <!-- search bar section -->
-    <section
-      class="bg-white border border-2 border-dark rounded-3 mx-3 my-3"
-      id="searchBar"
-    >
-      <div class="container">
-        <div class="row">
-          <div class="col">
+            <!-- <div class="container"> -->
+            <!-- <div class="row"> -->
+            <!-- <div class="col"> -->
             <div class="input-group align-items-center">
               <input
                 id="searchInput"
@@ -178,11 +127,98 @@
               <span class="material-symbols-outlined" id="searchButton">
                 search
               </span>
+              <!-- </div> -->
+              <!-- </div> -->
+              <!-- </div> -->
+            </div>
+          </section>
+        </div>
+        <div class="col-1 ms-0 me-2 p-0" id="navEnd">
+          <span
+            data-bs-toggle="modal"
+            data-bs-target="#loginModal"
+            class="material-symbols-outlined border border-2 border-black rounded-3"
+            id="loginButton"
+          >
+            login
+          </span>
+
+          <!-- nav userAvatar offCanvas -->
+          <div class="mx-1" id="profileContainer">
+            <a
+              data-bs-toggle="offcanvas"
+              href="#userOffCanvas"
+              role="button"
+              id="userAvatarContainer"
+            >
+            </a>
+
+            <div
+              class="offcanvas offcanvas-end text-bg-dark rounded-start"
+              tabindex="-1"
+              id="userOffCanvas"
+              aria-labelledby="offcanvasRightLabel"
+            >
+              <div
+                class="offcanvas-header border-bottom border-2 border-white align-items-center p-2"
+              >
+                <div id="userAvatarInOffCanvasContainer" class="me-3"></div>
+                <div
+                  id="userInfo"
+                  class="justify-content-center align-items-center"
+                >
+                  <div><p class="mb-0" id="offCanvasUsername">username</p></div>
+                  <div><p class="mb-0" id="offCanvasEmail">email</p></div>
+                </div>
+                <button
+                  type="button"
+                  class="btn-close me-0"
+                  data-bs-dismiss="offcanvas"
+                  aria-label="Close"
+                  id="closeOffCanvasButton"
+                ></button>
+              </div>
+              <div
+                class="offcanvas-body border-bottom border-2 border-white align-items-center p-3"
+              >
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                  <li class="nav-item d-flex align-items-center">
+                    <i class="bi bi-journal-arrow-up fs-1 me-3"></i>
+                    <a class="nav-link text-white fs-5" href="./myPosts.html"
+                      >My Posts</a
+                    >
+                  </li>
+                  <li class="nav-item d-flex align-items-center">
+                    <a class="nav-link text-white fs-5" href="./myProfile.html"
+                      ><span>
+                        <i class="bi bi-person-square fs-2 me-3"></i
+                      ></span>
+                      <span>My Profile</span></a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div class="offcanvas-footer align-items-center p-2 ps-3">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                  <li class="nav-item d-flex align-items-center">
+                    <i class="bi bi-box-arrow-right fs-1 me-3"></i>
+                    <a
+                      class="nav-link text-white fs-5"
+                      href="./following.html"
+                      id="logoutButton"
+                      >Log Out</a
+                    >
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
+          <!-- <span class="material-symbols-outlined d-none" id="logoutButton">
+            logout
+          </span> -->
         </div>
       </div>
-    </section>
+    </nav>
 
     <!-- categories section -->
     <!-- <section class="bg-light py-4">
@@ -206,7 +242,7 @@
 
     <!-- Trending section -->
     <div
-      class="receipt p-3 mb-3 mx-3 bg-light border border-2 border-dark rounded-3"
+      class="receipt p-3 m-3 bg-light border border-2 border-dark rounded"
       id="trendingCollection"
     >
       <div class="row">
@@ -251,7 +287,7 @@
 
     <!-- Following section -->
     <div
-      class="receipt p-3 mb-3 mx-3 bg-light border border-2 border-dark rounded-3"
+      class="receipt p-3 mb-3 mx-3 bg-light border border-2 border-dark rounded"
       id="followingCollection"
     >
       <div class="row">
