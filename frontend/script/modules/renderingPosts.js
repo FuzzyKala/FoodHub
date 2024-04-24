@@ -92,7 +92,6 @@ export const renderingSearchResult = async (PostsObj, backendUrl) => {
   }
 };
 
-// renderingMyPosts
 const createPostsItem = (post, index) => {
   console.log("createMyPostsItem -> post", post);
   // create card header

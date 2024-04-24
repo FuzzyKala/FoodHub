@@ -9,7 +9,6 @@ class User {
       const timestamp = moment().format();
       const filePath = path.join(__dirname, "../config/img/default_avatar.png");
       const photoData = await this.getDefaultAvatar(filePath);
-      console.log("photoData", photoData);
       const queryText =
         "INSERT INTO account (username, email, password, avatar, date) VALUES ($1, $2, $3, $4, $5) RETURNING *";
       const result = await query(queryText, [
