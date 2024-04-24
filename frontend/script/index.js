@@ -28,10 +28,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const userData = localStorage.getItem("userData");
 
   const trending = new Posts(backendUrl, "/posts/trending");
-  const following = new Posts(backendUrl, "/posts/following");
 
   renderingTrending(trending);
-  renderingFollowing(following);
   registration(backendUrl);
   login(backendUrl);
   loginStatusIsValid(localToken, backendUrl);
@@ -41,4 +39,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   jumpToFollowingPage();
   jumpToSearchResult();
   logout();
+
+  const userDataObj = JSON.parse(userData);
+  const following = new Posts(
+    backendUrl,
+    `/posts/following/${userDataObj.account_id}`
+  );
+  renderingFollowing(following);
 });

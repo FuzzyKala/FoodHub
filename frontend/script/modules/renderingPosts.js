@@ -81,7 +81,7 @@ export const renderingSearchResult = async (PostsObj, backendUrl) => {
     postList.forEach((post, index) => {
       const postItem = createPostsItem(post, index);
       const postContainer = document.createElement("div");
-      postContainer.className = "col-md-4 mb-4 postContainer";
+      postContainer.className = "col-md-4 postContainer";
       postContainer.appendChild(postItem);
       searchResultContainer.appendChild(postContainer);
       submitComment(post, index, backendUrl);
@@ -93,7 +93,6 @@ export const renderingSearchResult = async (PostsObj, backendUrl) => {
 };
 
 const createPostsItem = (post, index) => {
-  console.log("createMyPostsItem -> post", post);
   // create card header
   const headerContainer = document.createElement("div");
   headerContainer.className = "card-header";
@@ -308,7 +307,7 @@ const createPostsItem = (post, index) => {
 
   // create card
   const postItem = document.createElement("div");
-  postItem.className = "card border border-dark border-2 postItem";
+  postItem.className = "card border border-dark border-2 postItem mb-3";
   postItem.appendChild(headerContainer);
   postItem.appendChild(bodyContainer);
   // postItem.appendChild(categoryContainer);

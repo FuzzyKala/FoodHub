@@ -157,12 +157,12 @@ export const addNewPost = (backendUrl) => {
 
 export const logout = () => {
   const logoutButton = document.getElementById("logoutButton");
-
   logoutButton.addEventListener("click", () => {
     localStorage.removeItem("token");
     localStorage.removeItem("userData");
     hideLoginButton(null);
-    reloadPage();
+    jumpToHomePage();
+    // reloadPage();
   });
 };
 
@@ -179,13 +179,16 @@ export const toggleCategoryButton = () => {
     });
   });
 };
-
+export const jumpToHomePage = () => {
+  window.location.href = "index.html";
+};
 export const jumpToTrendingPage = () => {
   const carouselItem = document.querySelector("#trendingTitle");
   carouselItem.addEventListener("click", () => {
     window.location.href = "trending.html";
   });
 };
+
 export const jumpToFollowingPage = () => {
   const carouselItem = document.querySelector("#followingTitle");
   carouselItem.addEventListener("click", () => {

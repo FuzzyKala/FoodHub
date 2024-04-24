@@ -76,8 +76,9 @@ const getTrendingPosts = async (req, res) => {
 
 // Function to get Top 3 following posts for following collection
 const getFollowingPosts = async (req, res) => {
+  const account_id = req.params.account_id;
   try {
-    const posts = await Post.getFollowingPosts();
+    const posts = await Post.getFollowingPosts(account_id);
     res.status(200).json(posts);
   } catch (err) {
     res.status(500).json({ error: err.message });
