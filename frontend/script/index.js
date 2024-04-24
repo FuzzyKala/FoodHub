@@ -30,10 +30,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const trending = new Posts(backendUrl, "/posts/trending");
   const following = new Posts(backendUrl, "/posts/following");
 
-  // const account_id = await loginStatusIsValid(localToken, backendUrl);
-  // const myPosts = new posts(backendUrl, `/posts/account/${account_id}`);
-  // renderingMyPosts(myPosts);
-
   renderingTrending(trending);
   renderingFollowing(following);
   registration(backendUrl);

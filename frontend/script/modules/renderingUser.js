@@ -13,7 +13,7 @@ export const renderingAvatar = (userData) => {
       "userAvatarInOffCanvasContainer"
     );
     userAvatarInOffCanvas.classList =
-      "rounded-circle border border-2 border-white d-none";
+      "rounded border border-2 border-white d-none";
     userAvatarContainer.appendChild(userAvatar);
     userAvatarInOffCanvasContainer.appendChild(userAvatarInOffCanvas);
     const offCanvasUsername = document.getElementById("offCanvasUsername");
@@ -36,7 +36,7 @@ const createUserAvatar = (photo, id) => {
   img.id = id;
   img.src = url;
   img.alt = "userAvatar";
-  img.className = "rounded-circle border border-2 border-black d-none";
+  img.className = "rounded border border-2 border-black d-none";
   return img;
 };
 
