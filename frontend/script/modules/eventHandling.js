@@ -217,9 +217,17 @@ export const jumpToSearchResult = () => {
 
 export const jumpToPostDetailPage = () => {
   const postItems = document.querySelectorAll(`[class*="postId:"]`);
-  console.log("postItems", postItems);
   postItems.forEach((postItem) => {
-    postItem.addEventListener("click", () => {
+    const cardBody = postItem.querySelector(".card-body");
+    const cardHeader = postItem.querySelector(".card-header");
+    cardHeader.addEventListener("click", () => {
+      const postClassList = postItem.classList;
+      const postId = postClassList[postClassList.length - 1].split(":")[1];
+      window.location.href = `postDetail.html?postId=${encodeURIComponent(
+        postId
+      )}`;
+    });
+    cardBody.addEventListener("click", () => {
       const postClassList = postItem.classList;
       const postId = postClassList[postClassList.length - 1].split(":")[1];
       window.location.href = `postDetail.html?postId=${encodeURIComponent(
