@@ -214,11 +214,19 @@ export const jumpToSearchResult = () => {
     }
   });
 };
+
 export const jumpToPostDetailPage = () => {
-  if (window.location.pathname === "/postDetail.html") {
-    return;
-  }
-  window.location.href = "postDetail.html";
+  const postItems = document.querySelectorAll(`[class*="postId:"]`);
+  console.log("postItems", postItems);
+  postItems.forEach((postItem) => {
+    postItem.addEventListener("click", () => {
+      const postClassList = postItem.classList;
+      const postId = postClassList[postClassList.length - 1].split(":")[1];
+      window.location.href = `postDetail.html?postId=${encodeURIComponent(
+        postId
+      )}`;
+    });
+  });
 };
 
 export const loginStatusIsValid = async (localToken, backendUrl) => {

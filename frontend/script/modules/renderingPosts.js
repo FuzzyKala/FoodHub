@@ -1,4 +1,4 @@
-import { submitComment } from "./eventHandling.js";
+import { submitComment, jumpToPostDetailPage } from "./eventHandling.js";
 
 export const renderingTrending = async (PostsObj) => {
   const postList = await PostsObj.getPosts();
@@ -73,6 +73,7 @@ export const renderingMyPosts = async (PostsObj, backendUrl) => {
     const noFoundItem = createNoFoundItem();
     searchResultContainer.appendChild(noFoundItem);
   }
+  jumpToPostDetailPage();
 };
 
 // renderingSearchResult
@@ -96,6 +97,7 @@ export const renderingSearchResult = async (PostsObj, backendUrl) => {
     const noFoundItem = createNoFoundItem();
     searchResultContainer.appendChild(noFoundItem);
   }
+  jumpToPostDetailPage();
 };
 
 const createPostsItem = (post, index) => {
@@ -313,7 +315,8 @@ const createPostsItem = (post, index) => {
 
   // create card
   const postItem = document.createElement("div");
-  postItem.className = "card border border-dark border-2 postItem mb-3";
+  const post_id = post.getPostId();
+  postItem.className = `card border border-dark border-2 mb-3 postId:${post_id}`;
   postItem.id = `postItem-${index}`;
   postItem.appendChild(headerContainer);
   postItem.appendChild(bodyContainer);
