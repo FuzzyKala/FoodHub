@@ -157,12 +157,12 @@ export const addNewPost = (backendUrl) => {
 
 export const logout = () => {
   const logoutButton = document.getElementById("logoutButton");
-
   logoutButton.addEventListener("click", () => {
     localStorage.removeItem("token");
     localStorage.removeItem("userData");
     hideLoginButton(null);
-    reloadPage();
+    jumpToHomePage();
+    // reloadPage();
   });
 };
 
@@ -179,13 +179,16 @@ export const toggleCategoryButton = () => {
     });
   });
 };
-
+export const jumpToHomePage = () => {
+  window.location.href = "index.html";
+};
 export const jumpToTrendingPage = () => {
   const carouselItem = document.querySelector("#trendingTitle");
   carouselItem.addEventListener("click", () => {
     window.location.href = "trending.html";
   });
 };
+
 export const jumpToFollowingPage = () => {
   const carouselItem = document.querySelector("#followingTitle");
   carouselItem.addEventListener("click", () => {
@@ -209,6 +212,20 @@ export const jumpToSearchResult = () => {
     if (event.key === "Enter") {
       performSearch();
     }
+  });
+};
+
+export const jumpToPostDetailPage = () => {
+  const postItems = document.querySelectorAll(`[class*="postId:"]`);
+  console.log("postItems", postItems);
+  postItems.forEach((postItem) => {
+    postItem.addEventListener("click", () => {
+      const postClassList = postItem.classList;
+      const postId = postClassList[postClassList.length - 1].split(":")[1];
+      window.location.href = `postDetail.html?postId=${encodeURIComponent(
+        postId
+      )}`;
+    });
   });
 };
 
