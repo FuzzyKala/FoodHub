@@ -214,6 +214,12 @@ export const jumpToSearchResult = () => {
     }
   });
 };
+export const jumpToPostDetailPage = () => {
+  if (window.location.pathname === "/postDetail.html") {
+    return;
+  }
+  window.location.href = "postDetail.html";
+};
 
 export const loginStatusIsValid = async (localToken, backendUrl) => {
   try {

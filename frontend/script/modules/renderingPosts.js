@@ -59,18 +59,23 @@ const createFollowingItem = (post, isActive) => {
 };
 
 // renderingMyPosts
-export const renderingMyPosts = async (PostsObj) => {
+export const renderingMyPosts = async (PostsObj, backendUrl) => {
   const postList = await PostsObj.getPosts();
   const myPostsContainer = document.getElementById("myPostsContainer");
   myPostsContainer.innerHTML = "";
-  if (postList != null) {
-    postList.forEach((post) => {
-      const postItem = createPostsItem(post);
+  if (postList.length > 0) {
+    postList.forEach((post, index) => {
+      const postItem = createPostsItem(post, index);
       myPostsContainer.appendChild(postItem);
+      submitComment(post, index, backendUrl);
     });
+  } else {
+    const noFoundItem = createNoFoundItem();
+    searchResultContainer.appendChild(noFoundItem);
   }
 };
 
+// renderingSearchResult
 export const renderingSearchResult = async (PostsObj, backendUrl) => {
   const postList = await PostsObj.getPosts();
   const searchResultContainer = document.getElementById(
@@ -80,10 +85,11 @@ export const renderingSearchResult = async (PostsObj, backendUrl) => {
   if (postList.length > 0) {
     postList.forEach((post, index) => {
       const postItem = createPostsItem(post, index);
-      const postContainer = document.createElement("div");
-      postContainer.className = "col-md-4 postContainer";
-      postContainer.appendChild(postItem);
-      searchResultContainer.appendChild(postContainer);
+      // const postContainer = document.createElement("div");
+      // postContainer.className = "col-md-4 postContainer";
+      // postContainer.id = `postContainer-${index}`;
+      // postContainer.appendChild(postItem);
+      searchResultContainer.appendChild(postItem);
       submitComment(post, index, backendUrl);
     });
   } else {
@@ -308,6 +314,7 @@ const createPostsItem = (post, index) => {
   // create card
   const postItem = document.createElement("div");
   postItem.className = "card border border-dark border-2 postItem mb-3";
+  postItem.id = `postItem-${index}`;
   postItem.appendChild(headerContainer);
   postItem.appendChild(bodyContainer);
   // postItem.appendChild(categoryContainer);

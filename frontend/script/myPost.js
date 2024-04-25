@@ -16,6 +16,7 @@ import {
   jumpToFollowingPage,
   jumpToSearchResult,
   hideFollowingCollection,
+  jumpToPostDetailPage,
   // showComments,
 } from "./modules/eventHandling.js";
 
@@ -28,10 +29,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   const account_id = userDataObj.account_id;
   const myPosts = new Posts(backendUrl, `/posts/account/${account_id}`);
 
-  renderingMyPosts(myPosts);
+  renderingMyPosts(myPosts, backendUrl);
   registration(backendUrl);
   login(backendUrl);
   loginStatusIsValid(localToken, backendUrl);
   jumpToSearchResult();
+  // jumpToPostDetailPage();
   logout();
 });
