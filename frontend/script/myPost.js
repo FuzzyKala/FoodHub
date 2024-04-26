@@ -18,6 +18,7 @@ import {
   hideFollowingCollection,
   jumpToPostDetailPage,
   // showComments,
+  openAddPostModal,
 } from "./modules/eventHandling.js";
 
 const backendUrl = `http://localhost:10000`;
@@ -37,5 +38,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const account_id = userDataObj.account_id;
   const myPosts = new Posts(backendUrl, `/posts/account/${account_id}`);
   renderingMyPosts(myPosts, backendUrl);
-  // jumpToPostDetailPage();
+  openAddPostModal();
+  addNewPost(backendUrl);
 });

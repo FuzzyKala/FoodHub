@@ -98,3 +98,10 @@ body {
 .form-control:focus {
   box-shadow: none;
 }
+
+.addIcon {
+  font-size: 2rem;
+}
+.addIconContainer {
+  width: 3.2rem;
+}

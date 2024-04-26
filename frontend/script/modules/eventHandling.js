@@ -102,6 +102,15 @@ export const login = (backendUrl) => {
   });
 };
 
+export const openAddPostModal = () => {
+  const addPostButton = document.getElementById("addPostButton");
+  // console.log("addPostButton", addPostButton);
+  // addPostButton.addEventListener("click", () => {
+  //   console.log("addPostButton clicked");
+  //   openModal("addPostModal");
+  // });
+};
+
 export const addNewPost = (backendUrl) => {
   const postForm = document.getElementById("postForm");
 
@@ -140,7 +149,7 @@ export const addNewPost = (backendUrl) => {
       if (response.ok) {
         alert("Post added successfully!");
         postForm.reset();
-        // reloadPage();
+        reloadPage();
       } else {
         const errorMessage = await response.text();
         throw new Error(errorMessage);

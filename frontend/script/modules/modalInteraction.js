@@ -1,4 +1,5 @@
 export const openModal = (currentModal) => {
+  console.log("currentModal:", currentModal);
   currentModal.show();
 };
 
