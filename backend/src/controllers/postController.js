@@ -103,6 +103,7 @@ const getAllPostsBySearchingKeyword = async (req, res) => {
 // Add a new post
 const addNewPost = async (req, res) => {
   const { account_id, title, description, category } = req.body;
+  console.log(category);
   try {
     const photoData =
       req.files.length > 0 ? req.files.map((file) => file.buffer) : null;

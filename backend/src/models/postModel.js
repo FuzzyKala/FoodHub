@@ -46,7 +46,7 @@ class Post {
     try {
       const queryText = `SELECT post.*, account.username FROM post 
       join account on post.account_id = account.account_id
-      WHERE post.account_id = $1`;
+      WHERE post.account_id = $1 order by date desc;`;
       const post = await query(queryText, [account_id]);
       await Post.updateCommentNum(post.post_id);
       return post.rows || null;
