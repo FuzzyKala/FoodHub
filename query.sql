@@ -138,7 +138,7 @@
 
 
 -- select * from account;
--- select * from post order by post_id;
+select * from post order by post_id;
 -- select * from comment; 
 -- select count(*) from comment where post_id =28;
 
@@ -147,7 +147,7 @@
 -- SELECT setval('post_post_id_seq', (SELECT MAX(post_id) FROM post));
 -- SELECT setval('comment_comment_id_seq', (SELECT MAX(comment_id) FROM comment));
 
-SELECT post.*, account.username FROM post 
-      join account on post.account_id = account.account_id
-      WHERE post.account_id = 11 order by date
+-- SELECT post.*, account.username FROM post 
+--       join account on post.account_id = account.account_id
+--       WHERE post.account_id = 11 order by date
 

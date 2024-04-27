@@ -6,7 +6,6 @@ import {
 import { Posts } from "./modules/posts.js";
 import { renderingAvatar } from "./modules/renderingUser.js";
 import {
-  toggleCategoryButton,
   registration,
   login,
   addNewPost,
