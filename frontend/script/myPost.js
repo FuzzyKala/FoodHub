@@ -33,10 +33,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   logout();
 
-  const userDataObj = JSON.parse(userData);
-  const account_id = userDataObj.account_id;
-  const myPosts = new Posts(backendUrl, `/posts/account/${account_id}`);
-  renderingMyPosts(myPosts, backendUrl);
-  // openAddPostModal();
+  if (userData) {
+    const userDataObj = JSON.parse(userData);
+    const account_id = userDataObj.account_id;
+    const myPosts = new Posts(backendUrl, `/posts/account/${account_id}`);
+    renderingMyPosts(myPosts, backendUrl);
+  }
   addNewPost(backendUrl);
 });

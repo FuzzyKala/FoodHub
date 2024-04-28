@@ -38,8 +38,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   jumpToSearchResult();
   logout();
 
-  const userDataObj = JSON.parse(userData);
-  const account_id = userDataObj.account_id;
-  const following = new Posts(backendUrl, `/posts/following/${account_id}`);
-  renderingFollowing(following);
+  if (userData) {
+    const userDataObj = JSON.parse(userData);
+    const account_id = userDataObj.account_id;
+    const following = new Posts(backendUrl, `/posts/following/${account_id}`);
+    renderingFollowing(following);
+  }
 });
