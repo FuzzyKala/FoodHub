@@ -138,7 +138,7 @@
 
 
 -- select * from account;
-select * from post order by post_id;
+-- select * from post order by post_id;
 -- select * from comment; 
 -- select count(*) from comment where post_id =28;
 

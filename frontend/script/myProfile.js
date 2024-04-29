@@ -4,7 +4,10 @@ import {
   renderingMyPosts,
 } from "./modules/renderingPosts.js";
 import { Posts } from "./modules/posts.js";
-import { renderingAvatar } from "./modules/renderingUser.js";
+import {
+  renderingAvatar,
+  renderingMyProfile,
+} from "./modules/renderingUser.js";
 import {
   registration,
   login,
@@ -15,33 +18,29 @@ import {
   jumpToFollowingPage,
   jumpToSearchResult,
   hideFollowingCollection,
+  jumpToPostDetailPage,
   // showComments,
+  // openAddPostModal,
 } from "./modules/eventHandling.js";
 
 const backendUrl = `http://localhost:10000`;
 
 document.addEventListener("DOMContentLoaded", async () => {
-  // toggleCategoryButton();
-
   const localToken = localStorage.getItem("token");
   const userData = localStorage.getItem("userData");
-  const trending = new Posts(backendUrl, "/posts/trending");
 
-  renderingTrending(trending);
   registration(backendUrl);
   login(backendUrl);
   loginStatusIsValid(localToken, backendUrl);
-  hideFollowingCollection(userData);
-
-  jumpToTrendingPage();
-  jumpToFollowingPage();
   jumpToSearchResult();
   logout();
 
   if (userData) {
     const userDataObj = JSON.parse(userData);
     const account_id = userDataObj.account_id;
-    const following = new Posts(backendUrl, `/posts/following/${account_id}`);
-    renderingFollowing(following);
+    const myPosts = new Posts(backendUrl, `/posts/account/${account_id}`);
+    renderingMyPosts(myPosts, backendUrl);
+    renderingMyProfile(userDataObj);
   }
+  //   addNewPost(backendUrl);
 });
