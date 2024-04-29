@@ -22,7 +22,6 @@ export const renderingAvatar = (userData) => {
     const offCanvasEmail = document.getElementById("offCanvasEmail");
     const email = userData.email;
     offCanvasEmail.textContent = email;
-
     showUserAvatar(userData);
   }
 };
@@ -51,5 +50,29 @@ const showUserAvatar = (userLoginSuccessfully) => {
   } else {
     userAvatar.classList.add("d-none");
     userAvatarInOffCanvas.classList.add("d-none");
+  }
+};
+
+export const renderingMyProfile = (userData) => {
+  const photoData = userData.avatar;
+  const myProfileAvatar = createUserAvatar(photoData, "myProfileAvatar");
+  const myProfileAvatarContainer = document.getElementById(
+    "myProfileAvatarContainer"
+  );
+  myProfileAvatarContainer.appendChild(myProfileAvatar);
+  if (userData) {
+    const username = userData.username;
+    const myProfileUsername = document.getElementById("myProfileUsername");
+    myProfileUsername.textContent = username;
+    const email = userData.email;
+    const myProfileEmail = document.getElementById("myProfileEmail");
+    myProfileEmail.textContent = email;
+    const userAvatar = document.getElementById("myProfileAvatar");
+    userAvatar.classList = "ms-2 mt-2 rounded border border-2 border-dark";
+    userAvatar.classList.remove("d-none");
+    userAvatar.style.width = "10rem";
+    userAvatar.addEventListener("click", () => {
+      userAvatarInOffCanvas.classList.toggle("d-none");
+    });
   }
 };
