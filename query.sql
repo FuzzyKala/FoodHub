@@ -101,7 +101,7 @@
 -- Top 3 trending posts
 -- SELECT post.*,account.username FROM post
 -- join account on post.account_id = account.account_id
--- where post.comment_num > 10 and photo_data IS NOT Null ORDER BY post.rate DESC LIMIT 3
+-- where post.comment_num > 5 and photo_data IS NOT Null ORDER BY post.rate DESC LIMIT 3
 
 -- Top 3 following posts
 -- SELECT DISTINCT *
@@ -137,12 +137,17 @@
 -- WHERE post_id = 11
 
 
-select * from account;
--- select * from post;
--- select * from comment 
+-- select * from account;
+select * from post order by post_id;
+-- select * from comment; 
 -- select count(*) from comment where post_id =28;
 
+-- Reset SERIAL Sequence
+-- SELECT setval('account_account_id_seq', (SELECT MAX(account_id) FROM account));
+-- SELECT setval('post_post_id_seq', (SELECT MAX(post_id) FROM post));
+-- SELECT setval('comment_comment_id_seq', (SELECT MAX(comment_id) FROM comment));
 
-
-
+-- SELECT post.*, account.username FROM post 
+--       join account on post.account_id = account.account_id
+--       WHERE post.account_id = 11 order by date
 

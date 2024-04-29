@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home Page</title>
+    <title>FoodHub</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -30,7 +30,7 @@
     <nav class="navbar bg-white border-bottom border-bottom-3 border-dark">
       <div class="container row align-items-center justify-content-between">
         <!-- nav off canvas -->
-        <div class="col-1 d-flex align-items-center ms-1 me-3" id="navStart">
+        <div class="col-1 d-flex align-items-center ms-1 me-0" id="navStart">
           <span
             class="material-symbols-outlined border border-2 border-black rounded"
             data-bs-toggle="offcanvas"
@@ -102,7 +102,7 @@
               src="./img/logo2.png"
               alt="logo"
               id="logo"
-              class="rounded border border-2 border-black rounded-3"
+              class="rounded border border-2 border-black rounded"
               href="./index.html"
             />
           </a>
@@ -351,13 +351,17 @@
             <form id="loginForm">
               <div class="mb-3">
                 <label for="email" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="loginEmail" />
+                <input
+                  type="email"
+                  class="form-control border border-2"
+                  id="loginEmail"
+                />
               </div>
               <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
                 <input
                   type="password"
-                  class="form-control"
+                  class="form-control border border-2"
                   id="loginPassword"
                 />
               </div>
@@ -416,19 +420,23 @@
                 <label for="username" class="form-label">Username</label>
                 <input
                   type="text"
-                  class="form-control"
+                  class="form-control border border-2"
                   id="registeredUsername"
                 />
               </div>
               <div class="mb-3">
                 <label for="email" class="form-label">Email address</label>
-                <input type="email" class="form-control" id="registeredEmail" />
+                <input
+                  type="email"
+                  class="form-control border border-2"
+                  id="registeredEmail"
+                />
               </div>
               <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
                 <input
                   type="password"
-                  class="form-control"
+                  class="form-control border border-2"
                   id="registeredPassword"
                 />
               </div>
@@ -449,6 +457,84 @@
                 class="btn btn-primary"
                 id="registeredFormSubmit"
               >
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- add posts Modal -->
+    <div
+      class="modal fade"
+      id="addPostModal"
+      tabindex="-1"
+      aria-labelledby="addPostLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addPostModalLabel">Add a new post</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              id="closeAddPostModalButton"
+            ></button>
+          </div>
+
+          <div class="modal-body">
+            <!-- post form goes here -->
+            <form id="postForm" enctype="multipart/form-data">
+              <!-- Add enctype attribute for file upload -->
+              <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <textarea
+                  class="form-control border border-2"
+                  id="title"
+                  rows="1"
+                ></textarea>
+                <!-- Add textarea for description -->
+              </div>
+              <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea
+                  class="form-control border border-2"
+                  id="description"
+                  rows="3"
+                ></textarea>
+                <!-- Add textarea for description -->
+              </div>
+              <div
+                class="mb-3 d-flex align-items-center"
+                id="categoryContainer"
+              >
+                <i class="bi bi-bookmark-plus fs-1 m-0 me-2"></i>
+                <!-- <label for="category" class="form-label m-0 me-2"
+                  >Category</label
+                > -->
+                <input
+                  class="form-control border border-2"
+                  id="categoryInput"
+                  rows="1"
+                />
+                <!-- Add textarea for description -->
+              </div>
+              <div class="mb-3">
+                <label for="photos" class="form-label">Photos</label>
+                <input
+                  type="file"
+                  class="form-control border border-2"
+                  id="photos"
+                  accept="image/*"
+                  multiple=""
+                />
+                <!-- Add file input for photo upload -->
+              </div>
+              <button type="submit" class="btn btn-primary" id="postFormSubmit">
                 Submit
               </button>
             </form>

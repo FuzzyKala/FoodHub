@@ -98,3 +98,65 @@ body {
 .form-control:focus {
   box-shadow: none;
 }
+
+.addIcon {
+  font-size: 2rem;
+}
+.addIconContainer {
+  width: 3.2rem;
+}
+
+.stars {
+  text-align: center;;
+  font-size: 30px;
+}
+
+.stars i {
+  --v:0;
+  background: linear-gradient(90deg,yellow calc(var(--v)*1%), transparent 0%);
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-stroke: 3px rgb(173, 19, 19);
+  cursor: pointer;
+}
+
+/* .stars:hover i,
+.stars:hover .half-filled::before {
+  width: 50%;
+  overflow: hidden;
+  color: yellow;
+} */
+.fa-star.filled,
+.fa-star.half-filled {
+  color: yellow; /* 已填充和半填充星星的颜色 */
+}
+
+.fa-star.half-filled::before {
+  content: "\f089"; /* Unicode 图标代码，表示半星 */
+}
+
+.avgStars {
+  position: relative;
+  font-size: 20px;
+}
+
+.avgStars i {
+  color: #ddd;
+  
+
+}
+
+.avgStars .rated, .stars .half-rated {
+  color: yellow;
+}
+
+.avgStars .half-rated::before {
+  content: '\f089';
+  /* overflow: hidden; */
+  width: 50%;
+}
+
+.commentDescription {
+  font-size: 13px; /* 自定义字体大小 */
+  line-height: 1; /* 自定义行距 */
+}

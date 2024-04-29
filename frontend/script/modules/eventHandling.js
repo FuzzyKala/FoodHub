@@ -1,5 +1,11 @@
-import { openModal, closeModal, reloadPage } from "./modalInteraction.js";
+import {
+  openModal,
+  closeModal,
+  reloadPage,
+  escapeModal,
+} from "./modalInteraction.js";
 import { renderingAvatar } from "./renderingUser.js";
+
 export const registration = (backendUrl) => {
   // Get the submit button inside the registration form modal
   const registrationForm = document.getElementById("registrationForm");
@@ -102,15 +108,39 @@ export const login = (backendUrl) => {
   });
 };
 
-export const addNewPost = (backendUrl) => {
-  const postForm = document.getElementById("postForm");
+export const renderingCategory = (currentCategory) => {
+  const categoriesDisplayArea = document.getElementById(
+    "categoriesDisplayArea"
+  );
+  const categoryBadge = document.createElement("span");
+  categoryBadge.classList = "categoryBadge badge bg-success me-1";
+  categoryBadge.textContent = currentCategory;
+  categoriesDisplayArea.appendChild(categoryBadge);
+  categoryBadge.addEventListener("click", () => {
+    categoryBadge.remove();
+  });
+};
 
-  postForm.addEventListener("submit", async (event) => {
+export const addNewPost = (backendUrl) => {
+  const postFormSubmit = document.getElementById("postFormSubmit");
+
+  const categoryInput = document.getElementById("categoryInput");
+
+  categoryInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      const currentCategory = categoryInput.value;
+      categoryInput.value = "";
+      renderingCategory(currentCategory);
+    }
+  });
+
+  postFormSubmit.addEventListener("click", async (event) => {
     event.preventDefault();
     const formData = new FormData();
     const title = document.getElementById("title").value;
     const description = document.getElementById("description").value;
-
+    const categoriesForSubmit = document.querySelectorAll(".categoryBadge");
     const photos = document.getElementById("photos").files;
     // Check if the input element exists and files are attached
     if (photos) {
@@ -128,7 +158,10 @@ export const addNewPost = (backendUrl) => {
       formData.append("account_id", account_id);
       formData.append("title", title);
       formData.append("description", description);
-
+      categoriesForSubmit.forEach((category, index) => {
+        formData.append(`category[${index}]`, category.textContent);
+      });
+      console.log("formData", formData);
       const response = await fetch(`${backendUrl}/posts/new`, {
         method: "POST",
         headers: {
@@ -139,8 +172,12 @@ export const addNewPost = (backendUrl) => {
 
       if (response.ok) {
         alert("Post added successfully!");
+        const postModal = bootstrap.Modal.getInstance(
+          document.getElementById("postModal")
+        );
         postForm.reset();
-        // reloadPage();
+        closeModal(postModal);
+        reloadPage();
       } else {
         const errorMessage = await response.text();
         throw new Error(errorMessage);
@@ -153,39 +190,51 @@ export const addNewPost = (backendUrl) => {
       }
     }
   });
+  const closePostModalButton = document.getElementById(
+    "closeAddPostModalButton"
+  );
+  closePostModalButton.addEventListener("click", () => {
+    postForm.reset();
+    categoriesDisplayArea.innerHTML = "";
+  });
+  escapeModal(categoriesDisplayArea);
 };
 
 export const logout = () => {
   const logoutButton = document.getElementById("logoutButton");
-
   logoutButton.addEventListener("click", () => {
     localStorage.removeItem("token");
     localStorage.removeItem("userData");
     hideLoginButton(null);
-    reloadPage();
+    jumpToHomePage();
+    // reloadPage();
   });
 };
 
-export const toggleCategoryButton = () => {
-  const buttons = document.querySelectorAll(".btn.category-button");
-  buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-      if (button.classList.contains("active")) {
-        button.classList.remove("active");
-        return;
-      } else {
-        button.classList.add("active");
-      }
-    });
-  });
-};
+// export const toggleCategoryButton = () => {
+//   const buttons = document.querySelectorAll(".btn.category-button");
+//   buttons.forEach((button) => {
+//     button.addEventListener("click", () => {
+//       if (button.classList.contains("active")) {
+//         button.classList.remove("active");
+//         return;
+//       } else {
+//         button.classList.add("active");
+//       }
+//     });
+//   });
+// };
 
+export const jumpToHomePage = () => {
+  window.location.href = "index.html";
+};
 export const jumpToTrendingPage = () => {
   const carouselItem = document.querySelector("#trendingTitle");
   carouselItem.addEventListener("click", () => {
     window.location.href = "trending.html";
   });
 };
+
 export const jumpToFollowingPage = () => {
   const carouselItem = document.querySelector("#followingTitle");
   carouselItem.addEventListener("click", () => {
@@ -209,6 +258,28 @@ export const jumpToSearchResult = () => {
     if (event.key === "Enter") {
       performSearch();
     }
+  });
+};
+
+export const jumpToPostDetailPage = () => {
+  const postItems = document.querySelectorAll(`[class*="postId:"]`);
+  postItems.forEach((postItem) => {
+    const cardBody = postItem.querySelector(".card-body");
+    const cardHeader = postItem.querySelector(".card-header");
+    cardHeader.addEventListener("click", () => {
+      const postClassList = postItem.classList;
+      const postId = postClassList[postClassList.length - 1].split(":")[1];
+      window.location.href = `postDetail.html?postId=${encodeURIComponent(
+        postId
+      )}`;
+    });
+    cardBody.addEventListener("click", () => {
+      const postClassList = postItem.classList;
+      const postId = postClassList[postClassList.length - 1].split(":")[1];
+      window.location.href = `postDetail.html?postId=${encodeURIComponent(
+        postId
+      )}`;
+    });
   });
 };
 

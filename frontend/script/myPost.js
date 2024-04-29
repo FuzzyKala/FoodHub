@@ -6,7 +6,6 @@ import {
 import { Posts } from "./modules/posts.js";
 import { renderingAvatar } from "./modules/renderingUser.js";
 import {
-  toggleCategoryButton,
   registration,
   login,
   addNewPost,
@@ -16,7 +15,9 @@ import {
   jumpToFollowingPage,
   jumpToSearchResult,
   hideFollowingCollection,
+  jumpToPostDetailPage,
   // showComments,
+  // openAddPostModal,
 } from "./modules/eventHandling.js";
 
 const backendUrl = `http://localhost:10000`;
@@ -24,14 +25,18 @@ const backendUrl = `http://localhost:10000`;
 document.addEventListener("DOMContentLoaded", async () => {
   const localToken = localStorage.getItem("token");
   const userData = localStorage.getItem("userData");
-  const userDataObj = JSON.parse(userData);
-  const account_id = userDataObj.account_id;
-  const myPosts = new Posts(backendUrl, `/posts/account/${account_id}`);
 
-  renderingMyPosts(myPosts);
   registration(backendUrl);
   login(backendUrl);
   loginStatusIsValid(localToken, backendUrl);
   jumpToSearchResult();
+
   logout();
+
+  const userDataObj = JSON.parse(userData);
+  const account_id = userDataObj.account_id;
+  const myPosts = new Posts(backendUrl, `/posts/account/${account_id}`);
+  renderingMyPosts(myPosts, backendUrl);
+  // openAddPostModal();
+  addNewPost(backendUrl);
 });

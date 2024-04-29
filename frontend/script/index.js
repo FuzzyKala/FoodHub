@@ -6,7 +6,6 @@ import {
 import { Posts } from "./modules/posts.js";
 import { renderingAvatar } from "./modules/renderingUser.js";
 import {
-  toggleCategoryButton,
   registration,
   login,
   addNewPost,
@@ -26,12 +25,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const localToken = localStorage.getItem("token");
   const userData = localStorage.getItem("userData");
-
   const trending = new Posts(backendUrl, "/posts/trending");
-  const following = new Posts(backendUrl, "/posts/following");
 
   renderingTrending(trending);
-  renderingFollowing(following);
   registration(backendUrl);
   login(backendUrl);
   loginStatusIsValid(localToken, backendUrl);
@@ -41,4 +37,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   jumpToFollowingPage();
   jumpToSearchResult();
   logout();
+
+  const userDataObj = JSON.parse(userData);
+  const account_id = userDataObj.account_id;
+  const following = new Posts(backendUrl, `/posts/following/${account_id}`);
+  renderingFollowing(following);
 });
