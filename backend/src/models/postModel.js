@@ -18,7 +18,8 @@ class Post {
   // Function to get a post by post_id
   static async getPostByPostId(post_id) {
     try {
-      const queryText = "SELECT * FROM post WHERE post_id = $1";
+      const queryText =
+        "SELECT post.*, account.username FROM post join account on post.account_id = account.account_id WHERE post_id = $1";
       const post = await query(queryText, [post_id]);
       await Post.updateCommentNum(post_id);
       return post.rows[0] || null;
@@ -153,6 +154,17 @@ class Post {
         timestamp,
       ]);
       await Post.updateCommentNum(post_id);
+      return result.rows[0];
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  }
+  // Function to add a new rate
+  static async addNewRate(post_id, rate) {
+    try {
+      const queryText =
+        "INSERT INTO star (post_id, rate) VALUES ($1, $2) RETURNING *";
+      const result = await query(queryText, [post_id, rate]);
       return result.rows[0];
     } catch (err) {
       throw new Error(err.message);

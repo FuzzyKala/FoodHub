@@ -30,7 +30,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   login(backendUrl);
   loginStatusIsValid(localToken, backendUrl);
   jumpToSearchResult();
-
   logout();
 
   if (userData) {

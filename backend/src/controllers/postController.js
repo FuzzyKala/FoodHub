@@ -138,6 +138,16 @@ const addNewComment = async (req, res) => {
   }
 };
 
+// Function to add a new rate
+const addNewRate = async (req, res) => {
+  const { post_id, rate } = req.body;
+  try {
+    const newRate = await Post.addNewRate(post_id, rate);
+    res.status(201).json(newRate);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
 // Update a post by id
 const updatePostById = async (req, res) => {
   const post_id = req.params.post_id;
@@ -171,6 +181,7 @@ module.exports = {
   getFollowingPosts,
   addNewPost,
   addNewComment,
+  addNewRate,
   getAllPostsBySearchingKeyword,
   updatePostById,
   deletePostById,

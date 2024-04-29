@@ -19,6 +19,8 @@ router.post(
   postController.addNewPost
 );
 
+router.post("/newRate", postController.addNewRate);
+
 router.post(
   "/:post_id/comments",
   authMiddleware.authenticateToken,
