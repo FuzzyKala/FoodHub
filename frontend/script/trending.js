@@ -2,6 +2,7 @@ import {
   renderingTrendingCollection,
   renderingFollowingCollection,
   renderingMyPosts,
+  renderingTrendingPosts,
 } from "./modules/renderingPosts.js";
 import { Posts } from "./modules/posts.js";
 import { renderingAvatar } from "./modules/renderingUser.js";
@@ -33,10 +34,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   logout();
 
   if (userData) {
-    const userDataObj = JSON.parse(userData);
-    const account_id = userDataObj.account_id;
-    const myPosts = new Posts(backendUrl, `/posts/account/${account_id}`);
-    renderingMyPosts(myPosts, backendUrl);
+    const trending = new Posts(backendUrl, "/posts/trending");
+    renderingTrendingPosts(trending, backendUrl);
   }
-  addNewPost(backendUrl);
 });

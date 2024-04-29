@@ -2,6 +2,8 @@ import {
   renderingTrendingCollection,
   renderingFollowingCollection,
   renderingMyPosts,
+  renderingTrendingPosts,
+  renderingFollowingPosts,
 } from "./modules/renderingPosts.js";
 import { Posts } from "./modules/posts.js";
 import { renderingAvatar } from "./modules/renderingUser.js";
@@ -35,8 +37,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (userData) {
     const userDataObj = JSON.parse(userData);
     const account_id = userDataObj.account_id;
-    const myPosts = new Posts(backendUrl, `/posts/account/${account_id}`);
-    renderingMyPosts(myPosts, backendUrl);
+    const following = new Posts(backendUrl, `/posts/following/${account_id}`);
+    renderingFollowingPosts(following);
   }
-  addNewPost(backendUrl);
 });

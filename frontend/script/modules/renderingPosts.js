@@ -1,6 +1,6 @@
 import { submitComment, jumpToPostDetailPage } from "./eventHandling.js";
 
-export const renderingTrending = async (PostsObj) => {
+export const renderingTrendingCollection = async (PostsObj) => {
   const postList = await PostsObj.getPosts();
   const trendingContainer = document.getElementById("trendingPostsContainer");
   trendingContainer.innerHTML = "";
@@ -29,14 +29,14 @@ const createTrendingItem = (post, isActive) => {
   return postItem;
 };
 
-export const renderingFollowing = async (PostsObj) => {
+export const renderingFollowingCollection = async (PostsObj) => {
   const postList = await PostsObj.getPosts();
-  const trendingContainer = document.getElementById("followingPostsContainer");
-  trendingContainer.innerHTML = "";
+  const followingContainer = document.getElementById("followingPostsContainer");
+  followingContainer.innerHTML = "";
   if (postList != null) {
     postList.forEach((post, index) => {
       const postItem = createFollowingItem(post, index === 0);
-      trendingContainer.appendChild(postItem);
+      followingContainer.appendChild(postItem);
     });
   }
 };
@@ -72,6 +72,42 @@ export const renderingMyPosts = async (PostsObj, backendUrl) => {
   } else {
     const noFoundItem = createNoFoundItem();
     searchResultContainer.appendChild(noFoundItem);
+  }
+  jumpToPostDetailPage();
+};
+
+// renderingTrendingPosts
+export const renderingTrendingPosts = async (PostsObj, backendUrl) => {
+  const postList = await PostsObj.getPosts();
+  const trendingContainer = document.getElementById("trendingContainer");
+  trendingContainer.innerHTML = "";
+  if (postList.length > 0) {
+    postList.forEach((post, index) => {
+      const postItem = createPostsItem(post, index);
+      trendingContainer.appendChild(postItem);
+      submitComment(post, index, backendUrl);
+    });
+  } else {
+    const noFoundItem = createNoFoundItem();
+    trendingContainer.appendChild(noFoundItem);
+  }
+  jumpToPostDetailPage();
+};
+
+// renderingFollowingPosts
+export const renderingFollowingPosts = async (PostsObj, backendUrl) => {
+  const postList = await PostsObj.getPosts();
+  const followingContainer = document.getElementById("followingContainer");
+  followingContainer.innerHTML = "";
+  if (postList.length > 0) {
+    postList.forEach((post, index) => {
+      const postItem = createPostsItem(post, index);
+      followingContainer.appendChild(postItem);
+      submitComment(post, index, backendUrl);
+    });
+  } else {
+    const noFoundItem = createNoFoundItem();
+    followingContainer.appendChild(noFoundItem);
   }
   jumpToPostDetailPage();
 };

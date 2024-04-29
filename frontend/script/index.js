@@ -1,6 +1,6 @@
 import {
-  renderingTrending,
-  renderingFollowing,
+  renderingTrendingCollection,
+  renderingFollowingCollection,
   renderingMyPosts,
 } from "./modules/renderingPosts.js";
 import { Posts } from "./modules/posts.js";
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const userData = localStorage.getItem("userData");
   const trending = new Posts(backendUrl, "/posts/trending");
 
-  renderingTrending(trending);
+  renderingTrendingCollection(trending);
   registration(backendUrl);
   login(backendUrl);
   loginStatusIsValid(localToken, backendUrl);
@@ -42,6 +42,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     const userDataObj = JSON.parse(userData);
     const account_id = userDataObj.account_id;
     const following = new Posts(backendUrl, `/posts/following/${account_id}`);
-    renderingFollowing(following);
+    renderingFollowingCollection(following);
   }
 });

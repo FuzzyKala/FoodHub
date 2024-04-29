@@ -1,6 +1,6 @@
 import {
-  renderingTrending,
-  renderingFollowing,
+  renderingTrendingCollection,
+  renderingFollowingCollection,
   renderingMyPosts,
 } from "./modules/renderingPosts.js";
 import { Posts } from "./modules/posts.js";
