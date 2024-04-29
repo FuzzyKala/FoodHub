@@ -34,45 +34,53 @@
 -- CONSTRAINT fk_post_id FOREIGN KEY (post_id) REFERENCES post(post_id)
 -- );
 
+-- create table star(
+--    rate_id SERIAL primary key,
+--    post_id INT not null,
+--    rate numeric(2,1),
+--    CONSTRAINT fk_post_id FOREIGN KEY (post_id) REFERENCES post(post_id)
+-- );
 
-
--- insert dummy data to table account and post--
-
--- INSERT INTO account (username, password ,email, date) 
+-- INSERT INTO star (rate_id, post_id, rate ) 
 -- VALUES 
---     ('user1', 'password1', 'foodhub1@example.com','2024-03-25 10:00:00'::timestamp with time zone),
---     ('user2', 'password2', 'foodhub2@example.com','2024-03-26 11:00:00'::timestamp with time zone),
---     ('user3', 'password3', 'foodhub3@example.com','2024-03-27 12:00:00'::timestamp with time zone),
---     ('user4', 'password4', 'foodhub4@example.com','2024-03-28 13:00:00'::timestamp with time zone),
---     ('user5', 'password5', 'foodhub5@example.com','2024-03-29 19:00:00'::timestamp with time zone),
---     ('user6', 'password6', 'foodhub6@example.com','2024-04-01 20:00:00'::timestamp with time zone);
+--  (1, 1, 4.5 ),
+--     (2, 1, 4.6 ),
+--     (3, 1, 5 ),
+--     (4, 1, 4.1 ),
+--     (5, 2, 3.8 ),
+--     (6, 2, 4 ),
+--     (7, 2, 4.1 ),
+--     (8, 3, 4.5 ),
+--     (9, 4, 4.2 ),
+--     (10, 4, 4.0 ),
+--     (11, 5, 5 ),
+--     (12, 5, 4.8 ),
+--     (13, 5, 4.8 ),
+--     (14, 6, 3 ),
+--     (15, 6, 3.5 )
 
+-- update avg rate to DB
 
--- INSERT INTO post (account_id, description, rate, comment_num ,date) 
--- VALUES 
---     (1, 'Description 1', 3.5 , 19 ,'2024-03-25 10:00:00'::timestamp with time zone),
---     (2, 'Description 2', 4.8 , 1  ,'2024-03-25 11:00:00'::timestamp with time zone),
---     (1, 'Description 3', 4.1 , 15 ,'2024-03-25 12:00:00'::timestamp with time zone),
---     (3, 'Description 4', 2   , 8  ,'2024-03-25 13:00:00'::timestamp with time zone),
---     (4, 'Description 5', 3   , 33 ,'2024-03-28 14:00:00'::timestamp with time zone),
---     (5, 'Description 5', 3.2 , 1  ,'2024-03-28 14:00:00'::timestamp with time zone),
---     (2, 'Description 5', 4.5 , 17 ,'2024-03-28 14:00:00'::timestamp with time zone),
--- 	  (5, 'Description 5', 3.1 , 21 ,'2024-03-28 14:00:00'::timestamp with time zone),
---     (5, 'Description 5', 2.2 , 39 ,'2024-03-28 14:00:00'::timestamp with time zone);
+-- CREATE OR REPLACE FUNCTION update_post_rate()
+-- RETURNS TRIGGER AS $$
+-- BEGIN
 
--- INSERT INTO comment (comment_id, account_id, post_id, comment ,date) 
--- VALUES 
---     (1, 1,1, 'good' ,'2024-03-20 10:00:00'::timestamp with time zone),
---     (2, 1, 2 , 'easy' ,'2024-03-21 11:00:00'::timestamp with time zone),
---     (3, 3, 11 , 'sweet' ,'2024-03-25 12:00:00'::timestamp with time zone),
---     (4, 2, 11 , 'very good' ,'2024-03-25 13:00:00'::timestamp with time zone),
---     (5, 3, 27 , 'very spicy' ,'2024-03-31 11:00:00'::timestamp with time zone),
---     (6, 2, 2 , 'very good' ,'2024-04-15 13:00:00'::timestamp with time zone),
---     (7, 4, 27 , 'good' ,'2024-04-19 13:00:00'::timestamp with time zone),
---     (8, 4, 2 , 'good' ,'2024-04-19 17:00:00'::timestamp with time zone),
---     (9, 5, 28 , 'normal' ,'2024-04-20 11:00:00'::timestamp with time zone),
---     (10, 5, 28 , 'hard' ,'2024-04-20 11:55:00'::timestamp with time zone)
+--     UPDATE post
+--     SET rate = (
+--         SELECT AVG(rate)
+--         FROM star
+--         WHERE post_id = NEW.post_id
+--     )
+--     WHERE post_id = NEW.post_id;
 
+--     RETURN NEW;
+-- END;
+-- $$ LANGUAGE plpgsql;
+
+-- CREATE TRIGGER star_update_trigger
+-- AFTER INSERT OR UPDATE OR DELETE ON star
+-- FOR EACH ROW
+-- EXECUTE FUNCTION update_post_rate(); 
 
 
 -- update data
@@ -151,3 +159,32 @@
 --       join account on post.account_id = account.account_id
 --       WHERE post.account_id = 11 order by date
 
+
+-- select * from account
+
+select * from post
+
+
+-- comment number update
+
+-- CREATE OR REPLACE FUNCTION update_comment_num()
+-- RETURNS TRIGGER AS $$
+-- BEGIN
+--     --count comments
+--     UPDATE post AS p
+--     SET comment_num = (
+--         SELECT COUNT(comment)
+--         FROM comment AS c
+--         WHERE c.post_id = p.post_id
+--     )
+--     WHERE p.post_id = NEW.post_id;
+
+--     RETURN NEW;
+-- END;
+-- $$ LANGUAGE plpgsql;
+
+
+-- CREATE TRIGGER comment_trigger
+-- AFTER INSERT OR DELETE ON comment
+-- FOR EACH ROW
+-- EXECUTE FUNCTION update_comment_num();
