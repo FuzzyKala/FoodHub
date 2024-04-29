@@ -387,3 +387,23 @@ export const createImage = (photo) => {
   img.style.width = "100%";
   return img;
 };
+
+export const renderingFollowingPosts = async (PostsObj, backendUrl) => {
+  const postList = await PostsObj.getPosts();
+  const searchResultContainer = document.getElementById(
+    "searchResultContainer"
+  );
+  if (postList.length > 0) {
+    postList.forEach((post, index) => {
+      const postItem = createPostsItem(post, index);
+      const postContainer = document.createElement("div");
+      postContainer.className = "col-md-4 mb-4 postContainer";
+      postContainer.appendChild(postItem);
+      searchResultContainer.appendChild(postContainer);
+      submitComment(post, index, backendUrl);
+    });
+  } else {
+    const noFoundItem = createNoFoundItem();
+    searchResultContainer.appendChild(noFoundItem);
+  }
+};
