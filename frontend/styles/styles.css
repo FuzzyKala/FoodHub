@@ -163,3 +163,9 @@ body {
   font-size: 13px; /* 自定义字体大小 */
   line-height: 1; /* 自定义行距 */
 }
+
+#postImg {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}

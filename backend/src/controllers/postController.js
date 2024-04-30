@@ -53,6 +53,20 @@ const getAllPostsByAccountId = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+// Function to get all of comments by account_id
+const getAllCommentsByAccountId = async (req, res) => {
+  const account_id = req.params.account_id;
+  try {
+    const comments = await Post.getAllCommentsByAccountId(account_id);
+    if (!comments) {
+      res.status(404).json({ error: "No comment for this account" });
+      return;
+    }
+    res.status(200).json(comments);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
 
 // Get the latest post
 const getLatestPost = async (req, res) => {
@@ -176,6 +190,7 @@ module.exports = {
   getPostByPostId,
   getCommentsByPostId,
   getAllPostsByAccountId,
+  getAllCommentsByAccountId,
   getLatestPost,
   getTrendingPosts,
   getFollowingPosts,

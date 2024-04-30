@@ -224,19 +224,12 @@
       <div class="row justify-content-lg-center align-items-center">
         <div
           class="col-lg-6 col-md-6 col-sm-6 text-lg-right text-md-right text-sm-right"
-        >
-          <img
-            src="./img/1714268312304.jpg"
-            class="mb-4 rounded-circle"
-            width="100"
-          />
-        </div>
+          id="myAvatar"
+        ></div>
         <div
           class="mb-4 col-lg-6 col-md-6 col-sm-6 text-lg-left text-md-left text-sm-left"
         >
           <h3 class="font-weight-bold" id="username">Username</h3>
-          <p id="accountId">account id:</p>
-          <!-- <p id="country">country:</p> -->
           <p id="email">email:</p>
         </div>
       </div>
@@ -540,92 +533,7 @@
       </div>
     </div>
 
-    <!-- add posts Modal -->
-    <div
-      class="modal fade"
-      id="addPostModal"
-      tabindex="-1"
-      aria-labelledby="addPostLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="addPostModalLabel">Add a new post</h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-              id="closeAddPostModalButton"
-            ></button>
-          </div>
-
-          <div class="modal-body">
-            <!-- post form goes here -->
-            <form id="postForm" enctype="multipart/form-data">
-              <!-- Add enctype attribute for file upload -->
-              <div class="mb-3">
-                <label for="title" class="form-label">Title</label>
-                <textarea
-                  class="form-control border border-2"
-                  id="title"
-                  rows="1"
-                ></textarea>
-                <!-- Add textarea for description -->
-              </div>
-              <div class="mb-3">
-                <label for="description" class="form-label">Description</label>
-                <textarea
-                  class="form-control border border-2"
-                  id="description"
-                  rows="3"
-                ></textarea>
-                <!-- Add textarea for description -->
-              </div>
-              <div class="mb-3" id="categoryContainer">
-                <label for="category" class="form-label">Category</label>
-                <div id="categoriesDisplayArea"></div>
-                <div class="d-flex align-items-center" id="categoriesInputArea">
-                  <input
-                    class="form-control border border-2 me-2"
-                    id="categoryInput"
-                    rows="1"
-                  />
-                  <!-- <i
-                    class="bi bi-bookmark-plus fs-1 m-0 me-2"
-                    id="addCategoryButton"
-                  ></i> -->
-                </div>
-                <!-- Add textarea for description -->
-              </div>
-              <div class="mb-3">
-                <label for="photos" class="form-label">Photos</label>
-                <input
-                  type="file"
-                  class="form-control border border-2"
-                  id="photos"
-                  accept="image/*"
-                  multiple=""
-                />
-                <!-- Add file input for photo upload -->
-              </div>
-              <button type="submit" class="btn btn-primary" id="postFormSubmit">
-                Submit
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- <script>
-      var firstTabEl = document.querySelector('#myTab li:last-child a')
-      var firstTab = new bootstrap.Tab(firstTabEl)
-      
-      firstTab.show()
-    </script> -->
     <script src="./script/myProfile.js" type="module"></script>
   </body>
 </html>
