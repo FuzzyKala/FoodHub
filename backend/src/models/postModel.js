@@ -86,8 +86,13 @@ class Post {
   // Function to get Top 3 following posts for following collection
   static async getFollowingPosts(account_id) {
     try {
-      const queryText = `SELECT DISTINCT * FROM post
-      WHERE account_id = ANY(SELECT unnest(following_id) FROM account WHERE account_id = $1)
+      // const queryText = `SELECT DISTINCT * FROM post
+      // WHERE account_id = ANY(SELECT unnest(following_id) FROM account WHERE account_id = $1)
+      // LIMIT 3;`;
+
+      const queryText = `SELECT DISTINCT post.*,account.username FROM post
+      join account on post.account_id = account.account_id
+      WHERE post.account_id = ANY(SELECT unnest(following_id) FROM account WHERE account_id = $1)
       LIMIT 3;`;
       const posts = await query(queryText, [account_id]);
       posts.rows.forEach(async (post) => {
