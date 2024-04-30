@@ -83,11 +83,36 @@
 -- EXECUTE FUNCTION update_post_rate(); 
 
 
+-- comment number update
+-- CREATE OR REPLACE FUNCTION update_comment_num()
+-- RETURNS TRIGGER AS $$
+-- BEGIN
+--     --count comments
+--     UPDATE post AS p
+--     SET comment_num = (
+--         SELECT COUNT(comment)
+--         FROM comment AS c
+--         WHERE c.post_id = p.post_id
+--     )
+--     WHERE p.post_id = NEW.post_id;
+
+--     RETURN NEW;
+-- END;
+-- $$ LANGUAGE plpgsql;
+
+
+-- CREATE TRIGGER comment_trigger
+-- AFTER INSERT OR DELETE ON comment
+-- FOR EACH ROW
+-- EXECUTE FUNCTION update_comment_num();
+
+
+
 -- update data
 -- UPDATE post SET description = 'update desc',account_id = 3 WHERE post_id = 2
 
 
--- output query command --
+-- drop tables
 -- drop table account;
 -- drop table post,account;
 -- drop table comment
@@ -112,9 +137,9 @@
 -- where post.comment_num > 5 and photo_data IS NOT Null ORDER BY post.rate DESC LIMIT 3
 
 -- Top 3 following posts
--- SELECT DISTINCT *
--- FROM post
--- WHERE account_id = ANY(SELECT unnest(following_id) FROM account WHERE account_id = 1)
+-- SELECT post.*,account.username FROM post
+-- join account on post.account_id = account.account_id
+-- WHERE post.account_id = ANY(SELECT unnest(following_id) FROM account WHERE account_id = 10)
 -- LIMIT 3;
 
 
@@ -154,6 +179,8 @@
 -- SELECT setval('account_account_id_seq', (SELECT MAX(account_id) FROM account));
 -- SELECT setval('post_post_id_seq', (SELECT MAX(post_id) FROM post));
 -- SELECT setval('comment_comment_id_seq', (SELECT MAX(comment_id) FROM comment));
+-- SELECT setval('star_rate_id_seq', (SELECT MAX(rate_id) FROM star));
+
 
 -- SELECT post.*, account.username FROM post 
 --       join account on post.account_id = account.account_id
@@ -161,30 +188,9 @@
 
 
 -- select * from account
-
-select * from post
-
-
--- comment number update
-
--- CREATE OR REPLACE FUNCTION update_comment_num()
--- RETURNS TRIGGER AS $$
--- BEGIN
---     --count comments
---     UPDATE post AS p
---     SET comment_num = (
---         SELECT COUNT(comment)
---         FROM comment AS c
---         WHERE c.post_id = p.post_id
---     )
---     WHERE p.post_id = NEW.post_id;
-
---     RETURN NEW;
--- END;
--- $$ LANGUAGE plpgsql;
+-- select * from post
 
 
--- CREATE TRIGGER comment_trigger
--- AFTER INSERT OR DELETE ON comment
--- FOR EACH ROW
--- EXECUTE FUNCTION update_comment_num();
+
+
+

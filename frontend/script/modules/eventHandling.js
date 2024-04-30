@@ -176,7 +176,7 @@ export const addNewPost = (backendUrl) => {
           document.getElementById("postModal")
         );
         postForm.reset();
-        closeModal(postModal);
+        // closeModal(postModal);
         reloadPage();
       } else {
         const errorMessage = await response.text();
