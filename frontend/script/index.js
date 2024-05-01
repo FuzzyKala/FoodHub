@@ -25,6 +25,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const localToken = localStorage.getItem("token");
   const userData = localStorage.getItem("userData");
+  const following_id = localStorage.getItem("following_id");
+
   const trending = new Posts(backendUrl, "/posts/trending");
 
   renderingTrendingCollection(trending);
@@ -43,5 +45,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     const account_id = userDataObj.account_id;
     const following = new Posts(backendUrl, `/posts/following/${account_id}`);
     renderingFollowingCollection(following);
+  }
+  if (following_id == null) {
+    hideFollowingCollection(false);
   }
 });
