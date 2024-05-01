@@ -33,8 +33,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   jumpToSearchResult();
   logout();
 
-  if (userData) {
-    const trending = new Posts(backendUrl, "/posts/trending");
-    renderingTrendingPosts(trending, backendUrl);
-  }
+  const trending = new Posts(backendUrl, "/posts/trending");
+  renderingTrendingPosts(trending, backendUrl);
 });
