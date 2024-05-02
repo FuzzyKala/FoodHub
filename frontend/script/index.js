@@ -46,7 +46,4 @@ document.addEventListener("DOMContentLoaded", async () => {
     const following = new Posts(backendUrl, `/posts/following/${account_id}`);
     renderingFollowingCollection(following);
   }
-  if (following_id == null) {
-    hideFollowingCollection(false);
-  }
 });
