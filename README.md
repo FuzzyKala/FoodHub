@@ -9,30 +9,4 @@
    
 </p>
 
-An application that can record your receipts and diet, wanted to record your workout program? no problem! all in FoodHub.
-
-## 🚀 Start
-
-- run server script
-
-```sh
-npm start
-```
-
-## 📝 Product
-
-### Render deployment:
-
-TBD
-
-### UI:
-
-TBD
-
-### Local Database:
-
-TBD
-
-### Note:
-
-TBD
+In this project, I used Nodejs, PostgreSQL, and Javascript to help me finish this project.
